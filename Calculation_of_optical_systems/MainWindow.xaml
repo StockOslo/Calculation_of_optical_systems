@@ -1,14 +1,41 @@
 ﻿<Window x:Class="Calculation_of_optical_systems.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Оптические системы" Height="450" Width="800">
+        Title="Optical System Designer"
+        Height="650" Width="1100"
+        Background="#F4F6FB">
+
     <Grid>
-        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Button x:Name="ParseButton" 
-                    Content="Загрузить объективы с сайта" 
-                    Click="ParseButton_Click"
-                    Height="30" Width="200"/>
-            <ListBox x:Name="LensesListBox" Margin="0,20,0,0" Height="300" Width="500"/>
-        </StackPanel>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="220"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+
+        <Border Background="#1E2235">
+            <StackPanel Margin="10">
+
+                <TextBlock Text="OPTICAL SYSTEM"
+                           Foreground="White"
+                           FontSize="18"
+                           FontWeight="Bold"
+                           Margin="10"/>
+
+                <Button Style="{StaticResource MenuButton}"
+                        Content="Расчет оптической системы"
+                        Click="OpenOptical"/>
+
+                <Button Style="{StaticResource MenuButton}"
+                        Content="ГРИП"
+                        Click="OpenGrip"/>
+
+                <Button Style="{StaticResource MenuButton}"
+                        Content="Объективы сайта"
+                        Click="OpenLenses"/>
+            </StackPanel>
+        </Border>
+        <Frame x:Name="MainFrame"
+               Grid.Column="1"
+               NavigationUIVisibility="Hidden"/>
     </Grid>
 </Window>

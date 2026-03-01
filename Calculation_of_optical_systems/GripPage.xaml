@@ -1,0 +1,111 @@
+﻿<Page x:Class="Calculation_of_optical_systems.GripPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Background="#F4F6FB">
+
+    <Grid Margin="30">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+
+        <TextBlock
+            Text="Расчет глубины резко изображаемого пространства (ГРИП)"
+            FontSize="20"
+            FontWeight="SemiBold"
+            Margin="0,0,0,25"/>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="320"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Border Background="White"
+                    CornerRadius="14"
+                    Padding="25">
+
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="20"
+                                      ShadowDepth="2"
+                                      Opacity="0.18"/>
+                </Border.Effect>
+
+                <StackPanel>
+
+                    <TextBlock Text="Исходные данные"
+                               FontSize="18"
+                               FontWeight="Bold"
+                               Margin="0,0,0,18"/>
+
+                    <!-- R -->
+                    <StackPanel Margin="0,0,0,14">
+                        <TextBlock Text="R — дистанция фокусировки (м)"/>
+                        <TextBox Name="RBox"
+                                 Height="32"
+                                 Padding="6"
+                                 TextChanged="InputChanged"/>
+                    </StackPanel>
+
+                    <!-- f -->
+                    <StackPanel Margin="0,0,0,14">
+                        <TextBlock Text="f — фокусное расстояние (мм)"/>
+                        <TextBox Name="FBox"
+                                 Height="32"
+                                 Padding="6"
+                                 TextChanged="InputChanged"/>
+                    </StackPanel>
+
+                    <!-- z -->
+                    <StackPanel Margin="0,0,0,14">
+                        <TextBlock Text="z — кружок нерезкости (мкм)"/>
+                        <TextBox Name="ZBox"
+                                 Height="32"
+                                 Padding="6"
+                                 TextChanged="InputChanged"/>
+                    </StackPanel>
+
+                    <!-- K -->
+                    <StackPanel>
+                        <TextBlock Text="K — диафрагменное число"/>
+                        <TextBox Name="KBox"
+                                 Height="32"
+                                 Padding="6"
+                                 TextChanged="InputChanged"/>
+                    </StackPanel>
+
+                </StackPanel>
+            </Border>
+
+
+            <Border Grid.Column="1"
+                    Margin="25,0,0,0"
+                    Background="White"
+                    CornerRadius="14"
+                    Padding="25">
+
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="20"
+                                      ShadowDepth="2"
+                                      Opacity="0.18"/>
+                </Border.Effect>
+
+                <StackPanel>
+
+                    <TextBlock Text="Результаты"
+                               FontSize="18"
+                               FontWeight="Bold"
+                               Margin="0,0,0,20"/>
+
+                    <TextBlock Name="HResult" FontSize="16" Margin="0,6"/>
+                    <TextBlock Name="R1Result" FontSize="16" Margin="0,6"/>
+                    <TextBlock Name="R2Result" FontSize="16" Margin="0,6"/>
+
+                </StackPanel>
+            </Border>
+
+        </Grid>
+    </Grid>
+</Page>

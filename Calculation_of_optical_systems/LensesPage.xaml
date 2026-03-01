@@ -1,0 +1,73 @@
+﻿<Page x:Class="Calculation_of_optical_systems.LensesPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Background="#F4F6FB">
+
+    <Grid Margin="25">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Подбор объективов"
+                   FontSize="22"
+                   FontWeight="SemiBold"
+                   Margin="0,0,0,20"/>
+
+
+        <Border Background="White"
+        CornerRadius="14"
+        Padding="24"
+        Margin="0,0,0,10">
+
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="25"
+                          ShadowDepth="2"
+                          Opacity="0.15"/>
+            </Border.Effect>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Margin="0,0,20,0">
+                    <TextBlock Text="Формат матрицы"/>
+                    <TextBox Name="SensorBox"
+                             Width="160"
+                             Height="32"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="1" Margin="0,0,20,0">
+                    <TextBlock Text="Фокусное расстояние (мм)"/>
+                    <TextBox Name="FocalBox"
+                             Width="160"
+                             Height="32"/>
+                </StackPanel>
+
+                <Button Grid.Column="2"
+                        Name="SearchButton"
+                        Content="Подобрать"
+                        Width="140"
+                        Height="36"
+                        VerticalAlignment="Bottom"
+                        Click="ApplyFilter"/>
+
+
+                <TextBlock Grid.Column="3"
+                           Name="StatusText"
+                           VerticalAlignment="Bottom"
+                           Margin="15,0,0,5"
+                           FontWeight="SemiBold"/>
+            </Grid>
+        </Border>
+        <ScrollViewer Grid.Row="1" Margin="0,20,0,0">
+            <WrapPanel Name="LensPanel"/>
+        </ScrollViewer>
+
+    </Grid>
+</Page>
