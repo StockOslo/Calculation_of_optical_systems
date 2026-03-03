@@ -9,20 +9,19 @@ namespace Calculation_of_optical_systems
         {
             var r = new FirstFileCalculationResult();
 
-            // --- Геометрия матрицы ---
-            r.h = input.Nh * input.Δh / 1000.0;
-            r.i = input.Nv * input.Δv / 1000.0;
-            r.d = Math.Sqrt(r.h * r.h + r.i * r.i);
+            // Геометрия матрицы
+            r.h = Truncate5(input.Nh * input.Δh / 1000.0);
+            r.i = Truncate5(input.Nv * input.Δv / 1000.0);
+            r.d = Truncate5(Math.Sqrt(r.h * r.h + r.i * r.i));
 
-            // --- Углы поля зрения ---
-            r.δh = AngleDeg(r.i, input.f);
-            r.δv = AngleDeg(r.h, input.f);
-            r.δd = AngleDeg(r.d, input.f);
+            // Углы поля зрения
+            r.δh = Truncate5(AngleDeg(r.i, input.f));
+            r.δv = Truncate5(AngleDeg(r.h, input.f));
+            r.δd = Truncate5(AngleDeg(r.d, input.f));
 
-            // минуты (Excel: ОСТАТ(x;1)*60)
-            r.δh_min = AngleMinutes(r.δh);
-            r.δv_min = AngleMinutes(r.δv);
-            r.δd_min = AngleMinutes(r.δd);
+            r.δh_min = Truncate5(AngleMinutes(r.δh));
+            r.δv_min = Truncate5(AngleMinutes(r.δv));
+            r.δd_min = Truncate5(AngleMinutes(r.δd));
 
             // второй блок
             r.δv_2 = r.δv;
@@ -31,25 +30,22 @@ namespace Calculation_of_optical_systems
             r.δv_min_2 = r.δv_min;
             r.δd_min2 = r.δd_min;
 
-            // --- пиксельные углы ---
+            // пиксельные углы
             double pixelH = input.Δh / 1000.0;
             double pixelV = input.Δv / 1000.0;
 
-            r.δh_pix_grad = AngleDeg(pixelH, input.f);
-            r.δv_pix_grad = AngleDeg(pixelV, input.f);
+            r.δh_pix_grad = Truncate5(AngleDeg(pixelH, input.f));
+            r.δv_pix_grad = Truncate5(AngleDeg(pixelV, input.f));
 
-            // Excel: ОСТАТ(x;1)*3600
-            r.δh_pix_angle = AngleSeconds(r.δh_pix_grad);
-            r.δv_pix_angle = AngleSeconds(r.δv_pix_grad);
+            r.δh_pix_angle = Truncate5(AngleSeconds(r.δh_pix_grad));
+            r.δv_pix_angle = Truncate5(AngleSeconds(r.δv_pix_grad));
 
-            r.f_result = input.f;
+            r.f_result = Truncate5(input.f);
 
             return r;
         }
 
-
-        // Excel ATAN формула
-
+        // Формула угла поля зрения
         private static double AngleDeg(double size, double focal)
         {
             return 2.0 *
@@ -57,16 +53,22 @@ namespace Calculation_of_optical_systems
                    180.0 / Math.PI;
         }
 
-        // ОСТАТ(x;1)*60
+        // Перевод дробной части градусов в минуты
         private static double AngleMinutes(double angle)
         {
             return (angle - Math.Truncate(angle)) * 60.0;
         }
 
-        // ОСТАТ(x;1)*3600
+        // Перевод дробной части градусов в секунды
         private static double AngleSeconds(double angle)
         {
             return (angle - Math.Truncate(angle)) * 3600.0;
+        }
+
+        // Обрезка до 5 знаков после запятой БЕЗ округления
+        private static double Truncate5(double value)
+        {
+            return Math.Truncate(value * 100000) / 100000;
         }
     }
 }

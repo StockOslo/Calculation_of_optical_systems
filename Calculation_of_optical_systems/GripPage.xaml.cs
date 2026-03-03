@@ -1,4 +1,5 @@
 ﻿using System.Globalization;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace Calculation_of_optical_systems
@@ -10,8 +11,8 @@ namespace Calculation_of_optical_systems
             InitializeComponent();
         }
 
-        private void InputChanged(object sender,
-            System.Windows.RoutedEventArgs e)
+        // Пересчёт при изменении любого поля
+        private void InputChanged(object sender, RoutedEventArgs e)
         {
             Recalculate();
         }
@@ -28,15 +29,29 @@ namespace Calculation_of_optical_systems
 
             var result = GripCalculator.Calculate(input);
 
+            // Гиперфокальное расстояние
+            HResult.Text =
+                $"Гиперфокальное расстояние (H) = {result.H:0.00000} м";
 
-            // вывод результатов
+            // Передняя граница резкости
+            R1Result.Text =
+                $"Передняя граница (R₁) = {result.R1:0.00000} м";
 
-
-            HResult.Text = $"Гиперфокальное расстояние H = {result.H:F3} м";
-            R1Result.Text = $"Передняя граница R1 = {result.R1:F3} м";
-            R2Result.Text = $"Задняя граница R2 = {result.R2:F3} м";
+            // Задняя граница резкости
+            // Если отрицательная — значит уходит в бесконечность
+            if (result.R2 < 0)
+            {
+                R2Result.Text =
+                    $"Задняя граница (R₂) = ∞";
+            }
+            else
+            {
+                R2Result.Text =
+                    $"Задняя граница (R₂) = {result.R2:0.00000} м";
+            }
         }
 
+        // Безопасный парсинг числа (поддержка точки и запятой)
         private double Parse(string text)
         {
             double.TryParse(
