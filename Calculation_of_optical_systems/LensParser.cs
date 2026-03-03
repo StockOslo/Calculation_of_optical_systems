@@ -5,169 +5,187 @@ using System.Linq;
 using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
-using HtmlAgilityPack;
 
 namespace Calculation_of_optical_systems
 {
     public class LensParser
     {
-
+        // Модель объектива, в которую мы сохраняем данные из API
         public class Lens
         {
-            public string Model { get; set; }
-            public string SensorFormat { get; set; }
-            public string FocalLength { get; set; }
-
-            public string ProductUrl { get; set; }
-            public string ImageUrl { get; set; }
+            public string Model { get; set; }        // Название модели
+            public string SensorFormat { get; set; } // Формат матрицы
+            public string FocalLength { get; set; }  // Фокусное расстояние
+            public string ProductUrl { get; set; }   // Ссылка на товар
+            public string ImageUrl { get; set; }     // Ссылка на изображение
         }
 
-
-        public async IAsyncEnumerable<Lens> ParseLensesAsync()
+        // Основной метод парсинга через WooCommerce Store API
+        public async Task<List<Lens>> ParseLensesAsync()
         {
+            // Создаём HTTP-клиент для запросов к API
             using var client = new HttpClient();
             client.Timeout = TimeSpan.FromSeconds(30);
 
-            client.DefaultRequestHeaders.Add(
-                "User-Agent",
-                "Mozilla/5.0 (Windows NT 10.0; Win64; x64)");
-
+            // Список для хранения полученных объективов
             var parsedLenses = new List<Lens>();
 
-            int page = 1;
+            int page = 1;          // Текущая страница API
+            int perPage = 100;     // Сколько товаров запрашивать за один раз
 
+            // Листаем страницы API, пока товары не закончатся
             while (true)
             {
-                string url = page == 1
-                    ? "https://cctvlens.ru/catalog/?s=объективы"
-                    : $"https://cctvlens.ru/catalog/page/{page}/?s=объективы";
+                string url = $"https://cctvlens.ru/wp-json/wc/store/products?page={page}&per_page={perPage}";
+                Console.WriteLine($"API страница {page}");
 
-                string html;
+                HttpResponseMessage response;
 
                 try
                 {
-                    html = await client.GetStringAsync(url);
+                    // Отправляем GET-запрос
+                    response = await client.GetAsync(url);
                 }
                 catch
                 {
-                    yield break;
+                    // Если произошла ошибка соединения — выходим
+                    break;
                 }
 
-                var doc = new HtmlDocument();
-                doc.LoadHtml(html);
-
-                var productNodes = doc.DocumentNode
-                    .SelectNodes("//ul[@id='products_feed']//li[contains(@class,'product')]");
-
-                if (productNodes == null || productNodes.Count == 0)
+                // Если сервер вернул ошибку — прекращаем
+                if (!response.IsSuccessStatusCode)
                     break;
 
-                foreach (var product in productNodes)
+                // Читаем JSON-ответ
+                var json = await response.Content.ReadAsStringAsync();
+
+                // Десериализуем список товаров
+                var products = JsonSerializer.Deserialize<List<JsonElement>>(json);
+
+                // Если товаров больше нет — выходим из цикла
+                if (products == null || products.Count == 0)
+                    break;
+
+                // Обрабатываем каждый товар
+                foreach (var product in products)
                 {
                     var lens = new Lens();
 
+                    // Название товара
+                    if (product.TryGetProperty("name", out var nameProp))
+                        lens.Model = nameProp.GetString();
 
-                    // MODEL
+                    // Ссылка на страницу товара
+                    if (product.TryGetProperty("permalink", out var linkProp))
+                        lens.ProductUrl = linkProp.GetString();
 
-                    var modelNode = product.SelectSingleNode(
-                        ".//span[text()='Модель:']/following-sibling::span[@class='attribute-value']/a");
-
-                    lens.Model = modelNode?.InnerText.Trim();
-
-
-                    // SENSOR FORMAT
-
-                    var sensorNode = product.SelectSingleNode(
-                        ".//span[text()='Формат матрицы:']/following-sibling::span[@class='attribute-value']/a");
-
-                    lens.SensorFormat = sensorNode?.InnerText.Trim();
-
-
-                    // FOCAL LENGTH
-
-                    var focalNode = product.SelectSingleNode(
-                        ".//span[text()='Фокусное расстояние:']/following-sibling::span[@class='attribute-value']/a");
-
-                    lens.FocalLength = focalNode?.InnerText.Trim();
-
-
-                    // PRODUCT LINK
-
-                    var linkNode =
-                        product.SelectSingleNode(".//a[contains(@class,'woocommerce-LoopProduct-link')]");
-
-                    if (linkNode != null)
-                        lens.ProductUrl =
-                            linkNode.GetAttributeValue("href", "");
-
-
-                    // IMAGE LINK
-
-                    var imgNode = product.SelectSingleNode(".//img");
-
-                    if (imgNode != null)
-                        lens.ImageUrl =
-                            imgNode.GetAttributeValue("src", "");
-
-   
-                    // ADD RESULT
-
-                    if (!string.IsNullOrWhiteSpace(lens.Model))
+                    // Получение первой картинки товара
+                    if (product.TryGetProperty("images", out var imagesProp) &&
+                        imagesProp.ValueKind == JsonValueKind.Array &&
+                        imagesProp.GetArrayLength() > 0)
                     {
-                        parsedLenses.Add(lens);
-                        yield return lens;
+                        var firstImage = imagesProp[0];
+
+                        if (firstImage.TryGetProperty("src", out var srcProp))
+                            lens.ImageUrl = srcProp.GetString();
                     }
+
+                    // Обработка атрибутов товара (формат матрицы, фокусное расстояние)
+                    if (product.TryGetProperty("attributes", out var attributesProp) &&
+                        attributesProp.ValueKind == JsonValueKind.Array)
+                    {
+                        foreach (var attr in attributesProp.EnumerateArray())
+                        {
+                            // Название атрибута
+                            if (!attr.TryGetProperty("name", out var attrNameProp))
+                                continue;
+
+                            string attrName = attrNameProp.GetString();
+
+                            // Значение хранится в массиве terms
+                            if (!attr.TryGetProperty("terms", out var termsProp) ||
+                                termsProp.ValueKind != JsonValueKind.Array ||
+                                termsProp.GetArrayLength() == 0)
+                                continue;
+
+                            var term = termsProp[0];
+
+                            if (!term.TryGetProperty("name", out var valueProp))
+                                continue;
+
+                            string value = valueProp.GetString();
+
+                            // Проверяем по части названия атрибута
+                            if (!string.IsNullOrEmpty(attrName))
+                            {
+                                if (attrName.Contains("Фокус"))
+                                    lens.FocalLength = value;
+
+                                if (attrName.Contains("Формат"))
+                                    lens.SensorFormat = value;
+                            }
+                        }
+                    }
+
+                    // Добавляем товар, если у него есть модель
+                    if (!string.IsNullOrWhiteSpace(lens.Model))
+                        parsedLenses.Add(lens);
                 }
 
-                page++;
-                await Task.Delay(700); // мягкая пауза
+                page++;                // Переходим на следующую страницу
+                await Task.Delay(200); // Небольшая пауза, чтобы не спамить сервер
             }
 
+            Console.WriteLine($"Всего получено через API: {parsedLenses.Count}");
 
-            await SaveToJsonAsync(parsedLenses);
+            // Сохраняем результат в JSON-файл
+            return await SaveToJsonAsync(parsedLenses);
         }
 
-
-
-        private async Task SaveToJsonAsync(List<Lens> newLenses)
+        // Метод сохранения и объединения данных с уже существующим файлом
+        private async Task<List<Lens>> SaveToJsonAsync(List<Lens> newLenses)
         {
             var jsonOptions = new JsonSerializerOptions
             {
-                WriteIndented = true
+                WriteIndented = true // Красивое форматирование JSON
             };
 
             List<Lens> existing = new();
 
+            // Если файл уже существует — читаем старые данные
             if (File.Exists("objectivy.json"))
             {
                 try
                 {
-                    string oldJson =
-                        await File.ReadAllTextAsync("objectivy.json");
+                    string oldJson = await File.ReadAllTextAsync("objectivy.json");
 
-                    existing =
-                        JsonSerializer.Deserialize<List<Lens>>(oldJson)
-                        ?? new List<Lens>();
+                    existing = JsonSerializer.Deserialize<List<Lens>>(oldJson)
+                               ?? new List<Lens>();
                 }
                 catch
                 {
+                    // Если файл повреждён — начинаем заново
                     existing = new List<Lens>();
                 }
             }
 
-            // объединяем старые и новые
+            // Добавляем новые данные к старым
             existing.AddRange(newLenses);
 
-            // удаляем дубликаты
+            // Удаляем дубликаты (по модели + фокусному расстоянию)
             var merged = existing
-                .GroupBy(l => $"{l.Model}_{l.FocalLength}")
+                .Where(l => !string.IsNullOrWhiteSpace(l.Model))
+                .GroupBy(l => $"{l.Model?.Trim().ToLower()}_{l.FocalLength?.Trim().ToLower()}")
                 .Select(g => g.First())
                 .ToList();
 
-            string json =
-                JsonSerializer.Serialize(merged, jsonOptions);
+            // Сериализуем итоговый список
+            string json = JsonSerializer.Serialize(merged, jsonOptions);
 
+            // Перезаписываем файл
             await File.WriteAllTextAsync("objectivy.json", json);
+
+            return merged;
         }
     }
 }

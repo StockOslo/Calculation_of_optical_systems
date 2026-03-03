@@ -13,14 +13,11 @@ namespace Calculation_of_optical_systems
             InitializeComponent();
         }
 
-
-        // КНОПКА ПОДОБРАТЬ
-
+        // Кнопка подобрать
         private async void ApplyFilter(object sender, RoutedEventArgs e)
         {
             SearchButton.IsEnabled = false;
-            StatusText.Text = "Загрузка объективов...";
-
+            StatusText.Text = "Получение данных с сайта...";
             LensPanel.Children.Clear();
 
             var parser = new LensParser();
@@ -28,7 +25,11 @@ namespace Calculation_of_optical_systems
 
             try
             {
-                await foreach (var lens in parser.ParseLensesAsync())
+                var lenses = await parser.ParseLensesAsync();
+
+                StatusText.Text = "Применение фильтра...";
+
+                foreach (var lens in lenses)
                 {
                     if (!LensMatchesFilter(lens))
                         continue;
@@ -36,7 +37,7 @@ namespace Calculation_of_optical_systems
                     AddLensCard(lens);
 
                     count++;
-                    StatusText.Text = $"Загружено: {count}";
+                    StatusText.Text = $"Добавлено: {count}";
                 }
 
                 StatusText.Text = $"Готово. Найдено: {count}";
@@ -44,35 +45,53 @@ namespace Calculation_of_optical_systems
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+                StatusText.Text = "Ошибка загрузки.";
             }
 
             SearchButton.IsEnabled = true;
         }
 
+        // Нормализация формата матрицы
+        private string Normalize(string value)
+        {
+            if (string.IsNullOrWhiteSpace(value))
+                return "";
 
-        // ФИЛЬТР
+            return value
+                .ToLower()
+                .Replace("/", "")
+                .Replace(".", "")
+                .Replace(",", "")
+                .Replace(" ", "")
+                .Trim();
+        }
 
+        // Фильтр
         private bool LensMatchesFilter(LensParser.Lens lens)
         {
-            string sensor = SensorBox.Text?.ToLower().Trim() ?? "";
-            string focal = FocalBox.Text?.ToLower().Trim() ?? "";
+            string sensorInput = SensorBox.Text ?? "";
+            string focalInput = FocalBox.Text ?? "";
 
-            if (string.IsNullOrWhiteSpace(sensor) &&
-                string.IsNullOrWhiteSpace(focal))
+            string normalizedSensorInput = Normalize(sensorInput);
+            string normalizedLensSensor = Normalize(lens.SensorFormat);
+
+            string normalizedFocalInput = focalInput.ToLower().Trim();
+            string normalizedLensFocal = (lens.FocalLength ?? "").ToLower();
+
+            if (string.IsNullOrWhiteSpace(normalizedSensorInput) &&
+                string.IsNullOrWhiteSpace(normalizedFocalInput))
                 return true;
 
             bool sensorOk =
-                string.IsNullOrWhiteSpace(sensor) ||
-                (lens.SensorFormat ?? "").ToLower().Contains(sensor);
+                string.IsNullOrWhiteSpace(normalizedSensorInput) ||
+                normalizedLensSensor.Contains(normalizedSensorInput);
 
             bool focalOk =
-                string.IsNullOrWhiteSpace(focal) ||
-                (lens.FocalLength ?? "").ToLower().Contains(focal);
+                string.IsNullOrWhiteSpace(normalizedFocalInput) ||
+                normalizedLensFocal.Contains(normalizedFocalInput);
 
             return sensorOk && focalOk;
         }
-
-
 
         private void AddLensCard(LensParser.Lens lens)
         {
@@ -93,30 +112,41 @@ namespace Calculation_of_optical_systems
             };
 
             card.MouseEnter += (_, __) =>
-                card.RenderTransform =
-                    new ScaleTransform(1.03, 1.03);
+                card.RenderTransform = new ScaleTransform(1.03, 1.03);
 
             card.MouseLeave += (_, __) =>
-                card.RenderTransform =
-                    new ScaleTransform(1, 1);
+                card.RenderTransform = new ScaleTransform(1, 1);
 
             var stack = new StackPanel();
 
             if (!string.IsNullOrEmpty(lens.ImageUrl))
             {
-                stack.Children.Add(new Border
+                try
                 {
-                    CornerRadius = new CornerRadius(10),
-                    Background =
-                        new SolidColorBrush(Color.FromRgb(245, 247, 255)),
-                    Padding = new Thickness(6),
-                    Child = new Image
+                    var image = new BitmapImage();
+                    image.BeginInit();
+                    image.UriSource = new Uri(lens.ImageUrl);
+                    image.CacheOption = BitmapCacheOption.OnLoad;
+                    image.EndInit();
+
+                    stack.Children.Add(new Border
                     {
-                        Height = 130,
-                        Stretch = Stretch.Uniform,
-                        Source = new BitmapImage(new Uri(lens.ImageUrl))
-                    }
-                });
+                        CornerRadius = new CornerRadius(10),
+                        Background =
+                            new SolidColorBrush(Color.FromRgb(245, 247, 255)),
+                        Padding = new Thickness(6),
+                        Child = new Image
+                        {
+                            Height = 130,
+                            Stretch = Stretch.Uniform,
+                            Source = image
+                        }
+                    });
+                }
+                catch
+                {
+                    // если картинка не загрузилась — просто пропускаем
+                }
             }
 
             stack.Children.Add(new TextBlock
