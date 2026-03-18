@@ -13,6 +13,7 @@ namespace Calculation_of_optical_systems
     {
         // текущий источник
         private string currentSource = "cctv";
+        // Добавьте эти строки в начало класса
 
         public LensesPage()
         {

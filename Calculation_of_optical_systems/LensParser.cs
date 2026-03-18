@@ -10,13 +10,15 @@ namespace Calculation_of_optical_systems
 {
     public class LensParser
     {
-        // ================= ФАЙЛЫ =================
-        private const string CctvFile = "objectivy.json";
-        private const string AzureFile = "azure_lenses.json";
+        private readonly string CctvFile = "cctv_lenses.json";
+        private readonly string AzureFile = "azure_lenses.json";
 
-        // ================= МОДЕЛЬ =================
+        // Модель объектива, в которую мы сохраняем данные из API
         public class Lens
         {
+            
+
+
             public string Model { get; set; }
             public string SensorFormat { get; set; }
             public string FocalLength { get; set; }
@@ -24,9 +26,6 @@ namespace Calculation_of_optical_systems
             public string ImageUrl { get; set; }
         }
 
-        // =====================================================
-        // 🔥 CCTV (API)
-        // =====================================================
         public async Task<List<Lens>> GetCctvLensesAsync(bool offlineMode)
         {
             if (offlineMode)
