@@ -184,9 +184,6 @@ namespace Calculation_of_optical_systems
             return lens;
         }
 
-        // =====================================================
-        // 💾 УНИВЕРСАЛЬНЫЙ JSON
-        // =====================================================
         public async Task<List<Lens>> LoadFromJsonAsync(string path)
         {
             if (!File.Exists(path))
