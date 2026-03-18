@@ -5,67 +5,128 @@
 
     <Grid Margin="25">
 
+        <!-- Строки -->
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Text="Подбор объективов"
-                   FontSize="22"
-                   FontWeight="SemiBold"
-                   Margin="0,0,0,20"/>
+        <!-- 🔥 ВЕРХ: заголовок + источники -->
+        <Grid Margin="0,0,0,20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
 
+            <!-- Заголовок -->
+            <TextBlock Text="Подбор объективов"
+                       FontSize="22"
+                       FontWeight="SemiBold"
+                       VerticalAlignment="Center"/>
 
-        <Border Background="White"
-        CornerRadius="14"
-        Padding="24"
-        Margin="0,0,0,10">
+            <!-- КНОПКИ ИСТОЧНИКОВ -->
+            <StackPanel Grid.Column="1"
+                        Orientation="Horizontal"
+                        VerticalAlignment="Center">
+
+                <Button Name="BtnCctv"
+                        Content="CCTVLens"
+                        Width="110"
+                        Height="34"
+                        Margin="0,0,10,0"
+                        Click="SelectSource"/>
+
+                <Button Name="BtnCameraLab"
+                        Content="CameraLab"
+                        Width="110"
+                        Height="34"
+                        Margin="0,0,10,0"
+                        Click="SelectSource"/>
+
+                <Button Name="BtnAzimp"
+                        Content="Azimp"
+                        Width="90"
+                        Height="34"
+                        Click="SelectSource"/>
+            </StackPanel>
+        </Grid>
+
+        <!-- Панель фильтров -->
+        <Border Grid.Row="1"
+                Background="White"
+                CornerRadius="14"
+                Padding="24"
+                Margin="0,0,0,2">
 
             <Border.Effect>
                 <DropShadowEffect BlurRadius="25"
-                          ShadowDepth="2"
-                          Opacity="0.15"/>
+                                  ShadowDepth="2"
+                                  Opacity="0.15"/>
             </Border.Effect>
 
             <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
 
-                <StackPanel Margin="0,0,20,0">
-                    <TextBlock Text="Формат матрицы"/>
-                    <TextBox Name="SensorBox"
-                             Width="160"
-                             Height="35"/>
+                <!-- Верхняя строка -->
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Формат -->
+                    <StackPanel Margin="0,0,20,0">
+                        <TextBlock Text="Формат матрицы"/>
+                        <TextBox Name="SensorBox"
+                                 Width="160"
+                                 Height="35"/>
+                    </StackPanel>
+
+                    <!-- Фокус -->
+                    <StackPanel Grid.Column="1" Margin="0,0,20,0">
+                        <TextBlock Text="Фокусное расстояние (мм)"/>
+                        <TextBox Name="FocalBox"
+                                 Width="160"
+                                 Height="35"/>
+                    </StackPanel>
+
+                    <!-- Кнопка -->
+                    <Button Grid.Column="2"
+                            Name="SearchButton"
+                            Content="Подобрать"
+                            Width="140"
+                            Height="36"
+                            VerticalAlignment="Bottom"
+                            Click="ApplyFilter"/>
+
+                    <!-- Статус -->
+                    <TextBlock Grid.Column="3"
+                               Name="StatusText"
+                               VerticalAlignment="Bottom"
+                               Margin="10,0,0,5"
+                               FontWeight="SemiBold"/>
+                </Grid>
+
+                <!-- Офлайн режим -->
+                <StackPanel Grid.Row="1"
+                            Orientation="Horizontal"
+                            Margin="0,20,0,0"
+                            VerticalAlignment="Center">
+
+                    <CheckBox Name="OfflineToggle"
+                              Content="Офлайн режим (использовать локальный JSON)"
+                              FontWeight="SemiBold"/>
                 </StackPanel>
-
-                <StackPanel Grid.Column="1" Margin="0,0,20,0">
-                    <TextBlock Text="Фокусное расстояние (мм)"/>
-                    <TextBox Name="FocalBox"
-                             Width="160"
-                             Height="35"/>
-                </StackPanel>
-
-                <Button Grid.Column="2"
-                        Name="SearchButton"
-                        Content="Подобрать"
-                        Width="140"
-                        Height="36"
-                        VerticalAlignment="Bottom"
-                        Click="ApplyFilter"/>
-
-
-                <TextBlock Grid.Column="3"
-                           Name="StatusText"
-                           VerticalAlignment="Bottom"
-                           Margin="5,0,0,5"
-                           FontWeight="SemiBold"/>
             </Grid>
         </Border>
-        <ScrollViewer Grid.Row="1" Margin="0,20,0,0">
+
+        <!-- Список -->
+        <ScrollViewer Grid.Row="1" Margin="0,120,0,0">
             <WrapPanel Name="LensPanel"/>
         </ScrollViewer>
 
