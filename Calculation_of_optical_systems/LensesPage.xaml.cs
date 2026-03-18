@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -8,50 +11,113 @@ namespace Calculation_of_optical_systems
 {
     public partial class LensesPage : Page
     {
+        // текущий источник
+        private string currentSource = "cctv";
+
         public LensesPage()
         {
             InitializeComponent();
         }
 
-        // Кнопка подобрать
-        private async void ApplyFilter(object sender, RoutedEventArgs e)
+        // =========================
+        // 🔥 ВЫБОР САЙТА
+        // =========================
+        private void SelectSource(object sender, RoutedEventArgs e)
         {
-            SearchButton.IsEnabled = false;
-            StatusText.Text = "Получение данных с сайта...";
-            LensPanel.Children.Clear();
-
-            var parser = new LensParser();
-            int count = 0;
-
-            try
+            if (sender is Button btn)
             {
-                var lenses = await parser.ParseLensesAsync();
+                // сброс подсветки
+                BtnCctv.Background = Brushes.LightGray;
+                BtnCameraLab.Background = Brushes.LightGray;
+                BtnAzimp.Background = Brushes.LightGray;
 
-                StatusText.Text = "Применение фильтра...";
-
-                foreach (var lens in lenses)
+                switch (btn.Name)
                 {
-                    if (!LensMatchesFilter(lens))
-                        continue;
+                    case "BtnCctv":
+                        currentSource = "cctv";
+                        StatusText.Text = "Источник: CCTVLens";
+                        break;
 
-                    AddLensCard(lens);
+                    case "BtnCameraLab":
+                        currentSource = "cameralab";
+                        StatusText.Text = "Источник: CameraLab";
+                        break;
 
-                    count++;
-                    StatusText.Text = $"Добавлено: {count}";
+                    case "BtnAzimp":
+                        currentSource = "azimp";
+                        StatusText.Text = "Источник: Azimp";
+                        break;
                 }
 
-                StatusText.Text = $"Готово. Найдено: {count}";
+                btn.Background = Brushes.LightBlue;
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-                StatusText.Text = "Ошибка загрузки.";
-            }
-
-            SearchButton.IsEnabled = true;
         }
 
-        // Нормализация формата матрицы
+        // =========================
+        // 🔥 КНОПКА ПОДБОРА
+        // =========================
+        private async void ApplyFilter(object sender, RoutedEventArgs e)
+        {
+            bool isOffline = OfflineToggle.IsChecked == true;
+
+            StatusText.Text = isOffline
+                ? "Загрузка из файла..."
+                : "Загрузка с сервера...";
+
+            var lenses = await LoadLenses(isOffline);
+
+            var filtered = lenses.Where(l => LensMatchesFilter(l)).ToList();
+
+            StatusText.Text = $"Найдено: {filtered.Count}";
+
+            LensPanel.Children.Clear();
+
+            foreach (var lens in filtered)
+            {
+                AddLensCard(lens);
+            }
+        }
+
+        // =========================
+        // 🔥 ЕДИНАЯ ЗАГРУЗКА
+        // =========================
+        private async Task<List<LensParser.Lens>> LoadLenses(bool isOffline)
+        {
+            switch (currentSource)
+            {
+                case "cctv":
+                    return await new LensParser().GetCctvLensesAsync(isOffline);
+
+                case "cameralab":
+                    return await new LensParser().GetAzureLensesAsync(isOffline);
+
+                case "azimp":
+                    return await LoadFromAzimp(isOffline);
+
+                default:
+                    return new List<LensParser.Lens>();
+            }
+        }
+
+
+        private async Task<List<LensParser.Lens>> LoadFromAzimp(bool isOffline)
+        {
+            var parser = new AzimpParser();
+
+            if (isOffline)
+            {
+                return await parser.LoadFromJsonAsync();
+            }
+
+            var lenses = await parser.ParseAllPagesAsync();
+            await parser.SaveToJsonAsync(lenses);
+
+            return lenses;
+        }
+
+        // =========================
+        // 🔍 НОРМАЛИЗАЦИЯ
+        // =========================
         private string Normalize(string value)
         {
             if (string.IsNullOrWhiteSpace(value))
@@ -66,7 +132,9 @@ namespace Calculation_of_optical_systems
                 .Trim();
         }
 
-        // Фильтр
+        // =========================
+        // 🔍 ФИЛЬТР
+        // =========================
         private bool LensMatchesFilter(LensParser.Lens lens)
         {
             string sensorInput = SensorBox.Text ?? "";
@@ -93,6 +161,9 @@ namespace Calculation_of_optical_systems
             return sensorOk && focalOk;
         }
 
+        // =========================
+        // 🎴 КАРТОЧКА
+        // =========================
         private void AddLensCard(LensParser.Lens lens)
         {
             var card = new Border
@@ -145,7 +216,7 @@ namespace Calculation_of_optical_systems
                 }
                 catch
                 {
-                    // если картинка не загрузилась — просто пропускаем
+                    // игнор
                 }
             }
 
