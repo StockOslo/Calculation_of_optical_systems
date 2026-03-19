@@ -10,113 +10,203 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <TextBlock
-            Text="Расчет углов поля зрения объектива (ОБ)
-Трактовка: целая часть — градусы, дробная часть — минуты.
-Углы поля зрения пиксела отображаются в угловых секундах."
-            TextWrapping="Wrap"
-            FontSize="18"
-            FontWeight="SemiBold"
-            Margin="0,0,0,25"/>
+        <!-- ОПИСАНИЕ -->
+        <StackPanel Margin="0,0,0,20">
 
+            <TextBlock FontSize="16" FontWeight="SemiBold" TextWrapping="Wrap">
+                Исходные значения подставляем в белую область.
+                Результаты расчетов — желтая область.
+                Углы: градусы + минуты. Пиксель — в угловых секундах.
+            </TextBlock>
+
+            <ComboBox Name="ModeBox"
+                      SelectionChanged="ModeChanged"
+                      Margin="0,15,0,0"
+                      Height="32">
+
+                <ComboBoxItem Content="1. Объектив" IsSelected="True"/>
+                <ComboBoxItem Content="2. Пиксель"/>
+                <ComboBoxItem Content="3. Найти Nh Nv"/>
+                <ComboBoxItem Content="4. Найти Δh Δv"/>
+
+            </ComboBox>
+
+        </StackPanel>
+
+        <!-- ОСНОВНОЙ БЛОК -->
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="320"/>
+                <ColumnDefinition Width="340"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <Border Background="White"
-                    CornerRadius="14"
-                    Padding="25">
+            <!-- ВВОД -->
+            <Border Background="White" CornerRadius="12" Padding="20">
 
-                <Border.Effect>
-                    <DropShadowEffect BlurRadius="20"
-                                      ShadowDepth="2"
-                                      Opacity="0.18"/>
-                </Border.Effect>
+                <StackPanel>
 
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
+                    <!-- ===== РАЗРЕШЕНИЕ ===== -->
+                    <StackPanel x:Name="ResolutionPanel" Margin="0,0,0,15">
 
-                    <TextBlock Text="Исходные данные"
-                               FontSize="19"
-                               FontWeight="Bold"
-                               Margin="0,0,0,20"/>
+                        <TextBlock Text="Разрешение"
+                                   FontWeight="Bold"
+                                   Margin="0,0,0,10"/>
 
-                    <!-- Nh -->
-                    <StackPanel Grid.Row="1" Margin="0,0,0,14">
-                        <TextBlock Text="Nh — количество пикселей по горизонтали"
-                                   Margin="0,0,0,4"/>
-                        <TextBox Name="NhBox"
-                                 Height="32"
-                                 Padding="6"
-                                 TextChanged="InputChanged"/>
+                        <!-- Nh -->
+                        <Grid Margin="0,5">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="70"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Text="Nh"
+                                       VerticalAlignment="Center"/>
+                            <TextBox Name="NhBox"
+                                     Grid.Column="1"
+                                     TextChanged="InputChanged"/>
+                            <TextBlock Text="пикс"
+                                       Grid.Column="2"
+                                       VerticalAlignment="Center"/>
+                        </Grid>
+
+                        <!-- Nv -->
+                        <Grid Margin="0,5">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="70"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Text="Nv"
+                                       VerticalAlignment="Center"/>
+                            <TextBox Name="NvBox"
+                                     Grid.Column="1"
+                                     TextChanged="InputChanged"/>
+                            <TextBlock Text="пикс"
+                                       Grid.Column="2"
+                                       VerticalAlignment="Center"/>
+                        </Grid>
+
                     </StackPanel>
 
-                    <!-- Nv -->
-                    <StackPanel Grid.Row="2" Margin="0,0,0,14">
-                        <TextBlock Text="Nv — количество пикселей по вертикали"
-                                   Margin="0,0,0,4"/>
-                        <TextBox Name="NvBox"
-                                 Height="32"
-                                 Padding="6"
-                                 TextChanged="InputChanged"/>
+                    <!-- ===== ПИКСЕЛЬ ===== -->
+                    <StackPanel x:Name="PixelPanel" Margin="0,0,0,15">
+
+                        <TextBlock Text="Размер пикселя"
+                                   FontWeight="Bold"
+                                   Margin="0,0,0,10"/>
+
+                        <!-- Δh -->
+                        <Grid Margin="0,5">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="70"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Text="Δh"/>
+                            <TextBox Name="DhBox"
+                                     Grid.Column="1"
+                                     TextChanged="InputChanged"/>
+                            <TextBlock Text="мкм"
+                                       Grid.Column="2"/>
+                        </Grid>
+
+                        <!-- Δv -->
+                        <Grid Margin="0,5">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="70"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Text="Δv"/>
+                            <TextBox Name="DvBox"
+                                     Grid.Column="1"
+                                     TextChanged="InputChanged"/>
+                            <TextBlock Text="мкм"
+                                       Grid.Column="2"/>
+                        </Grid>
+
                     </StackPanel>
 
-                    <!-- Δh -->
-                    <StackPanel Grid.Row="3" Margin="0,0,0,14">
-                        <TextBlock Text="Δh — размер пикселя по горизонтали (мкм)"
-                                   Margin="0,0,0,4"/>
-                        <TextBox Name="DhBox"
-                                 Height="32"
-                                 Padding="6"
-                                 TextChanged="InputChanged"/>
+                    <!-- ===== УГЛЫ ===== -->
+                    <StackPanel x:Name="AnglePanel" Margin="0,0,0,15">
+
+                        <TextBlock Text="Углы"
+                                   FontWeight="Bold"
+                                   Margin="0,0,0,10"/>
+
+                        <!-- δh -->
+                        <Grid Margin="0,5">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="70"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Text="δh"/>
+                            <TextBox Name="AngleHBox"
+                                     Grid.Column="1"
+                                     TextChanged="InputChanged"/>
+                            <TextBlock Text="°"
+                                       Grid.Column="2"/>
+                        </Grid>
+
+                        <!-- δv -->
+                        <Grid Margin="0,5">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="70"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Text="δv"/>
+                            <TextBox Name="AngleVBox"
+                                     Grid.Column="1"
+                                     TextChanged="InputChanged"/>
+                            <TextBlock Text="°"
+                                       Grid.Column="2"/>
+                        </Grid>
+
                     </StackPanel>
 
-                    <!-- Δv -->
-                    <StackPanel Grid.Row="4" Margin="0,0,0,14">
-                        <TextBlock Text="Δv — размер пикселя по вертикали (мкм)"
-                                   Margin="0,0,0,4"/>
-                        <TextBox Name="DvBox"
-                                 Height="32"
-                                 Padding="6"
-                                 TextChanged="InputChanged"/>
+                    <!-- ===== ФОКУС ===== -->
+                    <StackPanel>
+
+                        <TextBlock Text="Фокус"
+                                   FontWeight="Bold"
+                                   Margin="0,0,0,10"/>
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="70"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Text="f"/>
+                            <TextBox Name="FBox"
+                                     Grid.Column="1"
+                                     TextChanged="InputChanged"/>
+                            <TextBlock Text="мм"
+                                       Grid.Column="2"/>
+                        </Grid>
+
                     </StackPanel>
 
-                    <!-- f -->
-                    <StackPanel Grid.Row="5">
-                        <TextBlock Text="f — фокусное расстояние объектива (мм)"
-                                   Margin="0,0,0,4"/>
-                        <TextBox Name="FBox"
-                                 Height="32"
-                                 Padding="6"
-                                 TextChanged="InputChanged"/>
-                    </StackPanel>
-
-                </Grid>
+                </StackPanel>
             </Border>
 
-
+            <!-- РЕЗУЛЬТАТ -->
             <Border Grid.Column="1"
-                    Margin="25,0,0,0"
-                    Background="White"
-                    CornerRadius="14"
-                    Padding="25">
+                    Margin="20,0,0,0"
+                    Background="#FFFBE6"
+                    CornerRadius="12"
+                    Padding="20">
 
-                <Border.Effect>
-                    <DropShadowEffect BlurRadius="20"
-                                      ShadowDepth="2"
-                                      Opacity="0.18"/>
-                </Border.Effect>
-
-                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <ScrollViewer>
                     <StackPanel Name="ResultPanel"/>
                 </ScrollViewer>
 
