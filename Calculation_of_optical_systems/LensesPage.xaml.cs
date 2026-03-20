@@ -55,94 +55,122 @@ namespace Calculation_of_optical_systems
 
             var lenses = await LoadLenses(isOffline);
 
+            // 🔹 Фильтруем
             var filtered = lenses.Where(l => LensMatchesFilter(l)).ToList();
 
-            StatusText.Text = $"Найдено: {filtered.Count}";
-
+            // 🔹 Обновляем интерфейс
             LensPanel.Children.Clear();
-
             foreach (var lens in filtered)
                 AddLensCard(lens);
+
+            StatusText.Text = $"Найдено: {filtered.Count}";
         }
 
-        // 🔹 Загрузка линз
+        // 🔹 Загрузка линз в зависимости от источника
         private async Task<List<LensParserPython.Lens>> LoadLenses(bool isOffline)
         {
             switch (currentSource)
             {
                 case "cctv":
+                    var cctvList = await new LensParser().GetCctvLensesAsync(isOffline);
+                    return cctvList.Select(l => new LensParserPython.Lens
                     {
-                        // Получаем обычный список CCTV
-                        var cctvList = await new LensParser().GetCctvLensesAsync(isOffline);
-
-                        // Конвертируем в LensParserPython.Lens
-                        var converted = cctvList.Select(l => new LensParserPython.Lens
+                        title = l.Model,
+                        link = l.ProductUrl,
+                        characteristics = new Dictionary<string, string>
                         {
-                            title = l.Model,
-                            link = l.ProductUrl,
-                            characteristics = new Dictionary<string, string>
-                {
-                    { "Фокусное расстояние, мм", l.FocalLength ?? "" },
-                    { "Формат сенсора", l.SensorFormat ?? "" },
-                    { "ImageUrl", l.ImageUrl ?? "" }
-                }
-                        }).ToList();
-
-                        return converted;
-                    }
+                            { "Фокусное расстояние, мм", l.FocalLength ?? "" },
+                            { "Формат сенсора", l.SensorFormat ?? "" },
+                            { "ImageUrl", l.ImageUrl ?? "" }
+                        }
+                    }).ToList();
 
                 case "cameralab":
-                    {
-                        // Для CameraLab сразу используем Python
-                        return isOffline
-                            ? await LensParserPython.LoadFromJsonAsync()
-                            : await LensParserPython.UpdateFromPythonAsync();
-                    }
+                    return isOffline
+                        ? await LensParserPython.LoadFromJsonAsync()
+                        : await LensParserPython.UpdateFromPythonAsync();
 
                 case "azimp":
-                    return await LoadAzimpAsync(isOffline);
+                    return isOffline
+                        ? await LensParserPython.LoadAzimpFromJsonAsync()
+                        : await LensParserPython.UpdateAzimpFromPythonAsync();
 
                 default:
                     return new List<LensParserPython.Lens>();
             }
         }
 
-        // 🔹 Загрузка/обновление Azimp через Python
-        private async Task<List<LensParserPython.Lens>> LoadAzimpAsync(bool isOffline)
-        {
-            if (isOffline)
-                return await LensParserPython.LoadFromJsonAsync();
-            else
-                return await LensParserPython.UpdateFromPythonAsync();
-        }
-
-        // 🔹 Нормализация строки для фильтра
-        private string Normalize(string value)
-        {
-            if (string.IsNullOrWhiteSpace(value))
-                return "";
-            return value.ToLower().Replace("/", "").Replace(".", "").Replace(",", "").Replace(" ", "").Trim();
-        }
-
-        // 🔹 Проверка фильтра
+        // 🔹 Проверка фильтра для сенсора и фокусного расстояния
         private bool LensMatchesFilter(LensParserPython.Lens lens)
         {
             string sensorInput = SensorBox.Text ?? "";
             string focalInput = FocalBox.Text ?? "";
 
-            string normSensorInput = Normalize(sensorInput);
-            string normLensSensor = Normalize(lens.characteristics.ContainsKey("Формат сенсора") ? lens.characteristics["Формат сенсора"] : "");
+            string lensSensor = lens.characteristics.ContainsKey("Формат сенсора")
+                ? lens.characteristics["Формат сенсора"]
+                : "";
+            string lensFocal = lens.characteristics.ContainsKey("Фокусное расстояние, мм")
+                ? lens.characteristics["Фокусное расстояние, мм"]
+                : "";
 
-            string normFocalInput = focalInput.ToLower().Trim();
-            string normLensFocal = lens.characteristics.ContainsKey("Фокусное расстояние, мм") ? lens.characteristics["Фокусное расстояние, мм"].ToLower() : "";
+            // 🔹 Нормализация сенсора
+            string normLensSensor = NormalizeSensor(lensSensor);
+            string normSensorInput = NormalizeSensor(sensorInput);
 
-            if (string.IsNullOrWhiteSpace(normSensorInput) && string.IsNullOrWhiteSpace(normFocalInput))
-                return true;
+            // 🔹 Парсим диапазоны фокусного расстояния
+            (double minFocal, double maxFocal) = ParseFocalRange(lensFocal);
+            (double userMin, double userMax) = ParseFocalRange(focalInput);
 
+            // 🔹 Проверка сенсора
             bool sensorOk = string.IsNullOrWhiteSpace(normSensorInput) || normLensSensor.Contains(normSensorInput);
-            bool focalOk = string.IsNullOrWhiteSpace(normFocalInput) || normLensFocal.Contains(normFocalInput);
+
+            // 🔹 Проверка пересечения диапазонов фокусного расстояния
+            bool focalOk = string.IsNullOrWhiteSpace(focalInput) || (userMax >= minFocal && userMin <= maxFocal);
 
             return sensorOk && focalOk;
+        }
+
+        // 🔹 Нормализация сенсора для корректного сравнения
+        private string NormalizeSensor(string s)
+        {
+            if (string.IsNullOrWhiteSpace(s)) return "";
+            return new string(s.Where(c => char.IsDigit(c) || c == '/').ToArray());
+        }
+
+        // 🔹 Парсим строку с фокусным расстоянием в диапазон
+        private (double min, double max) ParseFocalRange(string s)
+        {
+            if (string.IsNullOrWhiteSpace(s))
+                return (0, double.MaxValue);
+
+            s = s.ToLower()
+                 .Replace("мм", "")
+                 .Replace("mm", "")
+                 .Replace("f=", "")
+                 .Replace("f", "")
+                 .Replace("–", "-")
+                 .Replace(" ", "")
+                 .Trim();
+
+            s = new string(s.Where(c => char.IsDigit(c) || c == '.' || c == ',' || c == '-').ToArray());
+            s = s.Replace(',', '.');
+
+            string[] parts = s.Split('-', StringSplitOptions.RemoveEmptyEntries);
+
+            try
+            {
+                if (parts.Length == 1 && double.TryParse(parts[0], out double val))
+                    return (val, val);
+                else if (parts.Length == 2)
+                {
+                    double min = double.TryParse(parts[0], out double a) ? a : 0;
+                    double max = double.TryParse(parts[1], out double b) ? b : double.MaxValue;
+                    return (min, max);
+                }
+            }
+            catch { }
+
+            return (0, double.MaxValue);
         }
 
         // 🔹 Отображение карточки линзы
@@ -164,7 +192,7 @@ namespace Calculation_of_optical_systems
 
             var stack = new StackPanel();
 
-            // 🔹 Картинка (если есть)
+            // 🔹 Картинка
             if (lens.characteristics.ContainsKey("ImageUrl") && !string.IsNullOrEmpty(lens.characteristics["ImageUrl"]))
             {
                 try
@@ -198,9 +226,7 @@ namespace Calculation_of_optical_systems
 
             // 🔹 Характеристики
             foreach (var kv in lens.characteristics)
-            {
                 stack.Children.Add(new TextBlock { Text = $"{kv.Key}: {kv.Value}" });
-            }
 
             // 🔹 Кнопка открыть
             var openBtn = new Button { Content = "Открыть", Margin = new Thickness(0, 10, 0, 0) };

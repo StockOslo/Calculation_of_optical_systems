@@ -58,5 +58,54 @@ namespace Calculation_of_optical_systems
             // После завершения Python скрипта читаем JSON
             return await LoadFromJsonAsync();
         }
+
+        private static readonly string AzimpJsonFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "azimp_lenses.json");
+        private static readonly string AzimpPythonScript = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "azimp_parser.py");
+
+        // 🔹 Загрузка данных Azimp из JSON (офлайн)
+        public static async Task<List<Lens>> LoadAzimpFromJsonAsync()
+        {
+            if (!File.Exists(AzimpJsonFile))
+                return new List<Lens>();
+
+            try
+            {
+                string json = await File.ReadAllTextAsync(AzimpJsonFile);
+                return JsonSerializer.Deserialize<List<Lens>>(json) ?? new List<Lens>();
+            }
+            catch
+            {
+                return new List<Lens>();
+            }
+        }
+
+        // 🔹 Обновление данных Azimp через запуск Python-скрипта
+        public static async Task<List<Lens>> UpdateAzimpFromPythonAsync()
+        {
+            var psi = new ProcessStartInfo
+            {
+                FileName = "python",
+                Arguments = $"\"{AzimpPythonScript}\"",
+                UseShellExecute = false,
+                RedirectStandardOutput = true,
+                RedirectStandardError = true,
+                CreateNoWindow = true
+            };
+
+            var process = Process.Start(psi);
+            if (process != null)
+            {
+                string stdout = await process.StandardOutput.ReadToEndAsync();
+                string stderr = await process.StandardError.ReadToEndAsync();
+                await process.WaitForExitAsync();
+
+                if (!string.IsNullOrWhiteSpace(stderr))
+                    Console.WriteLine("Azimp parser error: " + stderr);
+
+                Console.WriteLine(stdout);
+            }
+
+            return await LoadAzimpFromJsonAsync();
+        }
     }
 }
