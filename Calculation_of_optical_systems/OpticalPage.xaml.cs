@@ -1,5 +1,4 @@
 ﻿using System.Globalization;
-using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -8,48 +7,101 @@ namespace Calculation_of_optical_systems
 {
     public partial class OpticalPage : Page
     {
+        private bool _isLoaded = false;
+
+        // запоминаем предыдущий режим
+        private int _previousMode = 0;
+
         public OpticalPage()
         {
             InitializeComponent();
+            Loaded += OpticalPage_Loaded;
         }
 
-        // Срабатывает при изменении любого поля ввода
-        // Каждый раз пересчитываем всё заново
-        private void InputChanged(object sender, RoutedEventArgs e)
+        private void OpticalPage_Loaded(object sender, RoutedEventArgs e)
         {
+            _isLoaded = true;
+
+            ApplyModeUI();
             Recalculate();
         }
 
-        // Основной метод пересчёта
-        // Забираем данные из TextBox → считаем → красиво выводим
+        private void InputChanged(object sender, RoutedEventArgs e)
+        {
+            if (!_isLoaded)
+                return;
+
+            Recalculate();
+        }
+
+        private CalculationMode GetMode()
+        {
+            return ModeBox.SelectedIndex switch
+            {
+                0 => CalculationMode.Base,
+                1 => CalculationMode.Base,
+                2 => CalculationMode.SolveResolution,
+                3 => CalculationMode.SolvePixelSize,
+                _ => CalculationMode.Base
+            };
+        }
+
         private void Recalculate()
         {
-            // Собираем входные данные из UI
+            if (!_isLoaded || ResultPanel == null)
+                return;
+
             var input = new FirstFileCalculationInput
             {
-                Nh = Parse(NhBox.Text),
-                Nv = Parse(NvBox.Text),
-                Δh = Parse(DhBox.Text),
-                Δv = Parse(DvBox.Text),
-                f = Parse(FBox.Text)
+                Nh = Parse(NhBox?.Text),
+                Nv = Parse(NvBox?.Text),
+                Δh = Parse(DhBox?.Text),
+                Δv = Parse(DvBox?.Text),
+                f = Parse(FBox?.Text),
+                δh = Parse(AngleHBox?.Text),
+                δv = Parse(AngleVBox?.Text)
             };
 
-            // Считаем оптику
-            var result = FirstFileCalculator.Calculate(input);
+            int uiMode = ModeBox.SelectedIndex;
+            var mode = GetMode();
 
-            // Очищаем старые результаты перед новым выводом
+            var result = FirstFileCalculator.Calculate(input, mode);
+
             ResultPanel.Children.Clear();
 
-            // Явно указываем какие поля выводим
-            // Без дублей *_2 и без фокусного расстояния
-            string[] visibleProps =
+            string[] visibleProps;
+
+            if (uiMode == 0)
             {
-                "h","i","d",
-                "δh","δv","δd",
-                "δh_min","δv_min","δd_min",
-                "δh_pix_grad","δv_pix_grad",
-                "δh_pix_angle","δv_pix_angle"
-            };
+                visibleProps = new[]
+                {
+                    "h","i","d",
+                    "δh","δv","δd",
+                    "δh_min","δv_min","δd_min"
+                };
+            }
+            else if (uiMode == 1)
+            {
+                visibleProps = new[]
+                {
+                    "δh_pix_grad","δv_pix_grad",
+                    "δh_pix_angle","δv_pix_angle"
+                };
+            }
+            else if (uiMode == 2)
+            {
+                visibleProps = new[]
+                {
+                    "Nh","Nv"
+                };
+            }
+            else
+            {
+                visibleProps = new[]
+                {
+                    "Δh","Δv"
+                };
+            }
 
             foreach (string name in visibleProps)
             {
@@ -59,13 +111,14 @@ namespace Calculation_of_optical_systems
                 var value = prop.GetValue(result);
                 if (value == null) continue;
 
-                // Создаём визуальный блок для одного параметра
+                if (value is double d && d == 0)
+                    continue;
+
                 var block = new StackPanel
                 {
                     Margin = new Thickness(0, 8, 0, 8)
                 };
 
-                // Подпись параметра (человеческая)
                 block.Children.Add(new TextBlock
                 {
                     Text = GetLabel(name),
@@ -73,14 +126,12 @@ namespace Calculation_of_optical_systems
                     FontWeight = FontWeights.SemiBold
                 });
 
-                // Само значение с 5 знаками после запятой
                 block.Children.Add(new TextBlock
                 {
                     Text = $"{value:0.00000} {GetUnit(name)}",
                     FontSize = 15
                 });
 
-                // Линия-разделитель, чтобы визуально всё не сливалось
                 block.Children.Add(new Border
                 {
                     Height = 1,
@@ -92,10 +143,11 @@ namespace Calculation_of_optical_systems
             }
         }
 
-        // Безопасный парсинг числа
-        // Разрешаем и точку, и запятую
         private double Parse(string t)
         {
+            if (string.IsNullOrWhiteSpace(t))
+                return 0;
+
             double.TryParse(
                 t.Replace(",", "."),
                 NumberStyles.Any,
@@ -105,53 +157,104 @@ namespace Calculation_of_optical_systems
             return v;
         }
 
-        // Преобразуем техническое имя свойства в нормальную подпись
         private string GetLabel(string name)
         {
             return name switch
             {
                 "h" => "Высота матрицы (h)",
                 "i" => "Ширина матрицы (i)",
-                "d" => "Диагональ матрицы (d)",
+                "d" => "Диагональ (d)",
 
-                "δh" => "Вертикальный угол поля зрения (δh)",
-                "δv" => "Горизонтальный угол поля зрения (δv)",
-                "δd" => "Диагональный угол поля зрения (δd)",
+                "δh" => "Вертикальный угол (δh)",
+                "δv" => "Горизонтальный угол (δv)",
+                "δd" => "Диагональный угол (δd)",
 
-                "δh_min" => "Минуты вертикального угла",
-                "δv_min" => "Минуты горизонтального угла",
-                "δd_min" => "Минуты диагонального угла",
+                "δh_min" => "Минуты δh",
+                "δv_min" => "Минуты δv",
+                "δd_min" => "Минуты δd",
 
-                "δh_pix_grad" => "Угол одного пикселя по вертикали",
-                "δv_pix_grad" => "Угол одного пикселя по горизонтали",
+                "δh_pix_grad" => "Угол пикселя δh",
+                "δv_pix_grad" => "Угол пикселя δv",
 
-                "δh_pix_angle" => "Угол пикселя по вертикали (в секундах)",
-                "δv_pix_angle" => "Угол пикселя по горизонтали (в секундах)",
+                "δh_pix_angle" => "Пиксель δh (сек)",
+                "δv_pix_angle" => "Пиксель δv (сек)",
+
+                "Nh" => "Nh",
+                "Nv" => "Nv",
+
+                "Δh" => "Δh",
+                "Δv" => "Δv",
 
                 _ => name
             };
         }
 
-        // Определяем единицу измерения для каждого типа параметра
         private string GetUnit(string name)
         {
-            // размеры матрицы и фокусное расстояние — миллиметры
             if (name == "h" || name == "i" || name == "d")
                 return "мм";
 
-            // углы пикселя в секундах
             if (name.Contains("pix_angle"))
                 return "″";
 
-            // минуты
             if (name.Contains("min"))
                 return "′";
 
-            // остальные δ — градусы
             if (name.StartsWith("δ"))
                 return "°";
 
+            if (name == "Δh" || name == "Δv")
+                return "мкм";
+
+            if (name == "Nh" || name == "Nv")
+                return "пикс";
+
             return "";
+        }
+
+        private void ApplyModeUI()
+        {
+            int m = ModeBox.SelectedIndex;
+
+            ResolutionPanel.Visibility = Visibility.Visible;
+            PixelPanel.Visibility = Visibility.Visible;
+            AnglePanel.Visibility = Visibility.Visible;
+
+            if (m == 0 || m == 1)
+                AnglePanel.Visibility = Visibility.Collapsed;
+            else if (m == 2)
+                ResolutionPanel.Visibility = Visibility.Collapsed;
+            else if (m == 3)
+                PixelPanel.Visibility = Visibility.Collapsed;
+        }
+
+        private void ModeChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (!_isLoaded)
+                return;
+
+            int currentMode = ModeBox.SelectedIndex;
+
+            ApplyModeUI();
+
+            
+            bool sameInput =
+                (_previousMode == 0 && currentMode == 1) ||
+                (_previousMode == 1 && currentMode == 0);
+
+            if (!sameInput)
+            {
+                NhBox.Text = "";
+                NvBox.Text = "";
+                DhBox.Text = "";
+                DvBox.Text = "";
+                AngleHBox.Text = "";
+                AngleVBox.Text = "";
+            }
+
+            _previousMode = currentMode;
+
+            Recalculate();
         }
     }
 }
