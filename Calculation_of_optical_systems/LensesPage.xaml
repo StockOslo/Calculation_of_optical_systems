@@ -60,13 +60,13 @@
                 <!-- SENSOR -->
                 <StackPanel x:Name="SensorPanel" Margin="0,0,20,0">
                     <TextBlock Text="Формат матрицы"/>
-                    <TextBox Name="SensorBox" Width="140" Height="30"/>
+                    <TextBox Name="SensorBox" FontSize="10" Width="140" Height="30"/>
                 </StackPanel>
 
                 <!-- FOCAL -->
                 <StackPanel x:Name="FocalPanel" Grid.Column="1" Margin="0,0,20,0">
                     <TextBlock Text="Фокус (мм)"/>
-                    <TextBox Name="FocalBox" Width="140" Height="30"/>
+                    <TextBox Name="FocalBox" FontSize="10" Width="140" Height="30"/>
                 </StackPanel>
 
                 <!-- CATEGORY -->
@@ -86,13 +86,13 @@
                             Visibility="Collapsed">
 
                     <TextBlock Text="Фокус (мм)"/>
-                    <TextBox Name="AzimpFocalBox" Width="140" Height="30" Margin="0,0,0,5"/>
+                    <TextBox Name="AzimpFocalBox" Width="140" FontSize="10" Height="30" Margin="0,0,0,5"/>
 
                     <TextBlock Text="ИК фильтр"/>
-                    <TextBox Name="AzimpIrBox" Width="140" Height="30" Margin="0,0,0,5"/>
+                    <ComboBox Name="AzimpIrComboBox" Width="140" Height="30" Margin="0,0,0,5"/>
 
                     <TextBlock Text="Поиск"/>
-                    <TextBox Name="AzimpSearchBox" Width="140" Height="30"/>
+                    <TextBox Name="AzimpSearchBox" Width="140" FontSize="10" Height="30"/>
 
                 </StackPanel>
 

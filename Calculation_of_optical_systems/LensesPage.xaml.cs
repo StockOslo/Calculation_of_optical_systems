@@ -15,83 +15,72 @@ namespace Calculation_of_optical_systems
     {
         private readonly HttpClient _client;
         private const string API_URL = "http://localhost:5220/api/lenses";
-
-    // флаг загрузки страницы чтобы избежать null ошибок
-    private bool _isLoaded = false;
+        private bool _isLoaded = false;
 
         public LensesPage()
         {
             InitializeComponent();
 
-            var handler = new HttpClientHandler()
+            _client = new HttpClient(new HttpClientHandler()
             {
                 UseProxy = false
-            };
+            });
 
-            _client = new HttpClient(handler);
-
-            // подписываемся на событие загрузки страницы
             Loaded += PageLoaded;
         }
 
-        // вызывается когда страница полностью загружена
         private void PageLoaded(object sender, RoutedEventArgs e)
         {
             _isLoaded = true;
 
-            // только теперь подписываемся на события
-            SourceBox.SelectionChanged += SourceChanged;
+            AzimpIrComboBox.Items.Clear();
+            AzimpIrComboBox.Items.Add("Все");
+            AzimpIrComboBox.Items.Add("ИК фильтр");
+            AzimpIrComboBox.Items.Add("Без ИК фильтра");
+            AzimpIrComboBox.SelectedIndex = 0;
 
-            // сразу применяем видимость фильтров
+            SourceBox.SelectionChanged += SourceChanged;
             SourceChanged(null, null);
         }
 
-        // безопасное получение выбранного источника
         private string GetSource()
         {
             return (SourceBox.SelectedItem as ComboBoxItem)?.Content?.ToString()?.ToLower() ?? "cctv";
         }
 
-        // переключение фильтров
         private void SourceChanged(object sender, SelectionChangedEventArgs e)
         {
             if (!_isLoaded) return;
 
             string source = GetSource();
 
-            if (source == "azimp")
-            {
-                SensorPanel.Visibility = Visibility.Collapsed;
-                FocalPanel.Visibility = Visibility.Collapsed;
-                CategoryPanel.Visibility = Visibility.Collapsed;
+            bool isAzimp = source == "azimp";
 
-                AzimpPanel.Visibility = Visibility.Visible;
-            }
-            else
-            {
-                SensorPanel.Visibility = Visibility.Visible;
-                FocalPanel.Visibility = Visibility.Visible;
-                CategoryPanel.Visibility = Visibility.Visible;
+            SensorPanel.Visibility = isAzimp ? Visibility.Collapsed : Visibility.Visible;
+            FocalPanel.Visibility = isAzimp ? Visibility.Collapsed : Visibility.Visible;
+            CategoryPanel.Visibility = isAzimp ? Visibility.Collapsed : Visibility.Visible;
 
-                AzimpPanel.Visibility = Visibility.Collapsed;
-            }
+            AzimpPanel.Visibility = isAzimp ? Visibility.Visible : Visibility.Collapsed;
         }
 
-        // кнопка поиска
+        // =========================
+        // 🔥 КНОПКА
+        // =========================
         private async void ApplyFilter(object sender, RoutedEventArgs e)
         {
             StatusText.Text = "Загрузка...";
 
             try
             {
-                var lenses = await LoadFromApi();
+                var data = await LoadFromApi();
 
+                // 🔥 ВАЖНО: сначала чистим UI
                 LensPanel.Children.Clear();
 
-                foreach (var lens in lenses)
+                foreach (var lens in data)
                     AddCard(lens);
 
-                StatusText.Text = $"Найдено: {lenses.Count}";
+                StatusText.Text = $"Найдено: {data.Count}";
             }
             catch (Exception ex)
             {
@@ -100,35 +89,14 @@ namespace Calculation_of_optical_systems
             }
         }
 
-        // загрузка данных с api
+        // =========================
+        // 🔥 API
+        // =========================
         private async Task<List<LensDto>> LoadFromApi()
         {
             string source = GetSource();
 
-            var query = new List<string>
-        {
-            $"source={Uri.EscapeDataString(source)}"
-        };
-
-            // безопасное получение категории
-            string category = "";
-            if (CategoryBox?.SelectedItem is ComboBoxItem item && item.Content != null)
-                category = item.Content.ToString();
-
-            // обычные фильтры
-            if (source != "azimp")
-            {
-                if (!string.IsNullOrWhiteSpace(SensorBox?.Text))
-                    query.Add($"sensor={Uri.EscapeDataString(SensorBox.Text)}");
-
-                if (!string.IsNullOrWhiteSpace(FocalBox?.Text))
-                    query.Add($"focal={Uri.EscapeDataString(FocalBox.Text)}");
-
-                if (!string.IsNullOrWhiteSpace(category))
-                    query.Add($"category={Uri.EscapeDataString(category)}");
-            }
-
-            string url = API_URL + "?" + string.Join("&", query);
+            var url = $"{API_URL}?source={source}";
 
             var response = await _client.GetAsync(url);
 
@@ -141,27 +109,92 @@ namespace Calculation_of_optical_systems
                 new JsonSerializerOptions { PropertyNameCaseInsensitive = true })
                 ?? new List<LensDto>();
 
-            // фильтрация azimp по тексту
+            // 🔥 ФИЛЬТР ТОЛЬКО ДЛЯ AZIMP
             if (source == "azimp")
             {
-                string focal = AzimpFocalBox?.Text?.ToLower() ?? "";
-                string ir = AzimpIrBox?.Text?.ToLower() ?? "";
+                string focalInput = AzimpFocalBox?.Text ?? "";
                 string search = AzimpSearchBox?.Text?.ToLower() ?? "";
+                string irMode = AzimpIrComboBox?.SelectedItem?.ToString() ?? "Все";
+
+                var (userMin, userMax) = ParseFocal(focalInput);
 
                 data = data.Where(l =>
                 {
                     string title = (l.Title ?? "").ToLower();
 
-                    return (string.IsNullOrWhiteSpace(focal) || title.Contains(focal)) &&
-                           (string.IsNullOrWhiteSpace(ir) || title.Contains(ir)) &&
-                           (string.IsNullOrWhiteSpace(search) || title.Contains(search));
+                    // 🔹 поиск
+                    bool searchOk = string.IsNullOrWhiteSpace(search) || title.Contains(search);
+
+                    // 🔹 фокус
+                    var (min, max) = ParseFocal(title);
+                    bool focalOk = string.IsNullOrWhiteSpace(focalInput) ||
+                                   (userMax >= min && userMin <= max);
+
+                    // 🔹 ИК
+                    bool irOk = true;
+
+                    if (irMode == "ИК фильтр")
+                        irOk = HasIr(title);
+
+                    if (irMode == "Без ИК фильтра")
+                        irOk = !HasIr(title);
+
+                    return searchOk && focalOk && irOk;
                 }).ToList();
             }
 
             return data;
         }
 
-        // универсальная карточка
+        // =========================
+        // 🔥 ПАРС ФОКУСА (УЛУЧШЕННЫЙ)
+        // =========================
+        private (double min, double max) ParseFocal(string text)
+        {
+            if (string.IsNullOrWhiteSpace(text))
+                return (0, double.MaxValue);
+
+            text = text.ToLower()
+                .Replace("мм", "")
+                .Replace("mm", "")
+                .Replace("f=", "")
+                .Replace("–", "-");
+
+            var numbers = new string(text
+                .Where(c => char.IsDigit(c) || c == '.' || c == ',' || c == '-')
+                .ToArray())
+                .Replace(',', '.');
+
+            var parts = numbers.Split('-', StringSplitOptions.RemoveEmptyEntries);
+
+            if (parts.Length == 1 && double.TryParse(parts[0], out double val))
+                return (val, val);
+
+            if (parts.Length >= 2 &&
+                double.TryParse(parts[0], out double min) &&
+                double.TryParse(parts[1], out double max))
+                return (min, max);
+
+            return (0, double.MaxValue);
+        }
+
+        // =========================
+        // 🔥 ОПРЕДЕЛЕНИЕ ИК
+        // =========================
+        private bool HasIr(string text)
+        {
+            text = text.ToLower();
+
+            return text.Contains("ик") ||
+                   text.Contains("ir") ||
+                   text.Contains("infrared") ||
+                   text.Contains("led") ||
+                   text.Contains("night");
+        }
+
+        // =========================
+        // UI
+        // =========================
         private void AddCard(LensDto lens)
         {
             var card = new Border
@@ -181,7 +214,6 @@ namespace Calculation_of_optical_systems
 
             var stack = new StackPanel();
 
-            // картинка
             if (!string.IsNullOrEmpty(lens.ImageUrl))
             {
                 try
@@ -196,7 +228,6 @@ namespace Calculation_of_optical_systems
                 catch { }
             }
 
-            // название
             stack.Children.Add(new TextBlock
             {
                 Text = lens.Title ?? "без названия",
@@ -205,15 +236,6 @@ namespace Calculation_of_optical_systems
                 TextWrapping = TextWrapping.Wrap
             });
 
-            // характеристики (не для azimp)
-            if ((lens.Source ?? "").ToLower() != "python")
-            {
-                stack.Children.Add(CreateText($"Фокус: {lens.Focal}"));
-                stack.Children.Add(CreateText($"Сенсор: {lens.Sensor}"));
-                stack.Children.Add(CreateText($"Категория: {lens.Category}"));
-            }
-
-            // кнопка
             var btn = new Button
             {
                 Content = "Открыть",
@@ -247,7 +269,6 @@ namespace Calculation_of_optical_systems
             };
         }
 
-        // dto
         public class LensDto
         {
             public string Title { get; set; }
