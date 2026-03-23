@@ -108,7 +108,6 @@ namespace Calculation_of_optical_systems
             };
 
             var stack = new StackPanel();
-
             // КАРТИНКА
             if (!string.IsNullOrEmpty(lens.ImageUrl))
             {
