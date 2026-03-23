@@ -5,12 +5,16 @@
 
     <Grid Margin="25">
 
+        <!-- строки -->
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <!-- ВЕРХ -->
+        
+        <!-- верх -->
+
         <Grid Margin="0,0,0,20">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
@@ -22,81 +26,91 @@
                        FontWeight="SemiBold"
                        VerticalAlignment="Center"/>
 
-            <!-- ИСТОЧНИК -->
+            <!-- источник -->
             <ComboBox Name="SourceBox"
                       Grid.Column="1"
-                      Width="150"
-                      Height="30">
+                      Width="160"
+                      Height="30"
+                      VerticalAlignment="Center">
                 <ComboBoxItem Content="cctv" IsSelected="True"/>
                 <ComboBoxItem Content="cameralab"/>
                 <ComboBoxItem Content="azimp"/>
             </ComboBox>
         </Grid>
 
-        <!-- ФИЛЬТРЫ -->
+        
+        <!-- фильтры -->
         <Border Grid.Row="1"
                 Background="White"
                 CornerRadius="14"
-                Padding="24">
+                Padding="20"
+                Margin="0,0,0,15">
+
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="20"
+                                  ShadowDepth="2"
+                                  Opacity="0.15"/>
+            </Border.Effect>
 
             <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
 
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
+                <!-- Сенсор -->
+                <StackPanel x:Name="SensorPanel" Margin="0,0,20,0">
+                    <TextBlock Text="Формат матрицы"/>
+                    <TextBox Name="SensorBox" Width="140" Height="30"/>
+                </StackPanel>
 
-                    <!-- Сенсор -->
-                    <StackPanel Margin="0,0,20,0">
-                        <TextBlock Text="Формат матрицы"/>
-                        <TextBox Name="SensorBox" Width="140" Height="30"/>
-                    </StackPanel>
+                <!-- Фокус -->
+                <StackPanel x:Name="FocalPanel" Grid.Column="1" Margin="0,0,20,0">
+                    <TextBlock Text="Фокус (мм)"/>
+                    <TextBox Name="FocalBox" Width="140" Height="30"/>
+                </StackPanel>
 
-                    <!-- Фокус -->
-                    <StackPanel Grid.Column="1" Margin="0,0,20,0">
-                        <TextBlock Text="Фокус (мм)"/>
-                        <TextBox Name="FocalBox" Width="140" Height="30"/>
-                    </StackPanel>
+                <!-- Категория -->
+                <StackPanel x:Name="CategoryPanel" Grid.Column="2" Margin="0,0,20,0">
+                    <TextBlock Text="Категория"/>
+                    <ComboBox Name="CategoryBox" Width="140" Height="30">
+                        <ComboBoxItem Content=""/>
+                        <ComboBoxItem Content="Фикс"/>
+                        <ComboBoxItem Content="Вариофокал"/>
+                    </ComboBox>
+                </StackPanel>
 
-                    <!-- Категория -->
-                    <StackPanel Grid.Column="2" Margin="0,0,20,0">
-                        <TextBlock Text="Категория"/>
-                        <ComboBox Name="CategoryBox" Width="140" Height="30">
-                            <ComboBoxItem Content=""/>
-                            <ComboBoxItem Content="Фикс"/>
-                            <ComboBoxItem Content="Вариофокал"/>
-                        </ComboBox>
-                    </StackPanel>
+                <!-- Кнопка -->
+                <Button Grid.Column="3"
+                        Name="SearchButton"
+                        Content="Подобрать"
+                        Width="130"
+                        Height="32"
+                        VerticalAlignment="Bottom"
+                        Background="#4F6DFF"
+                        Foreground="White"
+                        BorderThickness="0"
+                        Cursor="Hand"
+                        Click="ApplyFilter"/>
 
-                    <!-- Кнопка -->
-                    <Button Grid.Column="3"
-                            Name="SearchButton"
-                            Content="Подобрать"
-                            Width="120"
-                            Height="30"
-                            VerticalAlignment="Bottom"
-                            Click="ApplyFilter"/>
-
-                    <!-- Статус -->
-                    <TextBlock Grid.Column="4"
-                               Name="StatusText"
-                               Margin="10,0,0,0"
-                               VerticalAlignment="Bottom"
-                               FontWeight="SemiBold"/>
-                </Grid>
+                <!-- Статус -->
+                <TextBlock Grid.Column="4"
+                           Name="StatusText"
+                           Margin="15,0,0,0"
+                           VerticalAlignment="Bottom"
+                           FontWeight="SemiBold"/>
             </Grid>
         </Border>
 
-        <!-- СПИСОК -->
-        <ScrollViewer Grid.Row="1" Margin="0,120,0,0">
-            <WrapPanel Name="LensPanel"/>
+       
+        <ScrollViewer Grid.Row="2"
+                      VerticalScrollBarVisibility="Auto">
+
+            <WrapPanel Name="LensPanel"
+                       Margin="0,10,0,0"/>
         </ScrollViewer>
 
     </Grid>

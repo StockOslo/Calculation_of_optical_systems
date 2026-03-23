@@ -26,8 +26,33 @@ namespace Calculation_of_optical_systems
             };
 
             _client = new HttpClient(handler);
+
+            // 🔥 отслеживаем смену источника
+            SourceBox.SelectionChanged += SourceChanged;
         }
 
+        // =====================================================
+        // 🔥 СКРЫТИЕ ФИЛЬТРОВ
+        // =====================================================
+        private void SourceChanged(object sender, SelectionChangedEventArgs e)
+        {
+            string source = (SourceBox.SelectedItem as ComboBoxItem)?.Content?.ToString()?.ToLower();
+
+            if (source == "azimp")
+            {
+                SensorPanel.Visibility = Visibility.Collapsed;
+                FocalPanel.Visibility = Visibility.Collapsed;
+                CategoryPanel.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                SensorPanel.Visibility = Visibility.Visible;
+                FocalPanel.Visibility = Visibility.Visible;
+                CategoryPanel.Visibility = Visibility.Visible;
+            }
+        }
+
+        // =====================================================
         private async void ApplyFilter(object sender, RoutedEventArgs e)
         {
             StatusText.Text = "Загрузка...";
@@ -39,7 +64,12 @@ namespace Calculation_of_optical_systems
                 LensPanel.Children.Clear();
 
                 foreach (var lens in lenses)
-                    AddLensCard(lens);
+                {
+                    if (lens.Source?.ToLower() == "python")
+                        AddAzimpCard(lens);
+                    else
+                        AddDefaultCard(lens);
+                }
 
                 StatusText.Text = $"Найдено: {lenses.Count}";
             }
@@ -59,8 +89,7 @@ namespace Calculation_of_optical_systems
 
             var query = new List<string>();
 
-            if (!string.IsNullOrWhiteSpace(source))
-                query.Add($"source={Uri.EscapeDataString(source)}");
+            query.Add($"source={Uri.EscapeDataString(source)}");
 
             if (!string.IsNullOrWhiteSpace(sensor))
                 query.Add($"sensor={Uri.EscapeDataString(sensor)}");
@@ -80,7 +109,6 @@ namespace Calculation_of_optical_systems
 
             var json = await response.Content.ReadAsStringAsync();
 
-            // 🔥 ВОТ ГЛАВНЫЙ ФИКС
             var options = new JsonSerializerOptions
             {
                 PropertyNameCaseInsensitive = true
@@ -90,7 +118,10 @@ namespace Calculation_of_optical_systems
                    ?? new List<LensDto>();
         }
 
-        private void AddLensCard(LensDto lens)
+        // =====================================================
+        // ОБЫЧНЫЕ КАРТОЧКИ
+        // =====================================================
+        private void AddDefaultCard(LensDto lens)
         {
             var card = new Border
             {
@@ -98,89 +129,101 @@ namespace Calculation_of_optical_systems
                 Margin = new Thickness(12),
                 Padding = new Thickness(16),
                 CornerRadius = new CornerRadius(16),
-                Background = Brushes.White,
-                Effect = new System.Windows.Media.Effects.DropShadowEffect
-                {
-                    BlurRadius = 20,
-                    ShadowDepth = 4,
-                    Opacity = 0.15
-                }
+                Background = Brushes.White
             };
 
             var stack = new StackPanel();
-            // КАРТИНКА
+
             if (!string.IsNullOrEmpty(lens.ImageUrl))
             {
                 try
                 {
-                    stack.Children.Add(new Border
+                    stack.Children.Add(new Image
                     {
-                        Background = new SolidColorBrush(Color.FromRgb(245, 247, 255)),
-                        CornerRadius = new CornerRadius(10),
-                        Padding = new Thickness(8),
-                        Child = new Image
-                        {
-                            Height = 140,
-                            Stretch = Stretch.Uniform,
-                            Source = new BitmapImage(new Uri(lens.ImageUrl))
-                        }
+                        Height = 140,
+                        Stretch = Stretch.Uniform,
+                        Source = new BitmapImage(new Uri(lens.ImageUrl))
                     });
                 }
                 catch { }
             }
 
-            // НАЗВАНИЕ
             stack.Children.Add(new TextBlock
             {
-                Text = lens.Title ?? "Без названия",
+                Text = lens.Title,
                 FontWeight = FontWeights.SemiBold,
-                FontSize = 14,
                 Margin = new Thickness(0, 10, 0, 8),
                 TextWrapping = TextWrapping.Wrap
             });
 
-            // ХАРАКТЕРИСТИКИ
             stack.Children.Add(CreateInfo("Фокус:", lens.Focal));
             stack.Children.Add(CreateInfo("Сенсор:", lens.Sensor));
             stack.Children.Add(CreateInfo("Категория:", lens.Category));
 
-            // КНОПКА
-            var btn = new Button
-            {
-                Content = "Открыть",
-                Height = 36,
-                Margin = new Thickness(0, 12, 0, 0),
-                Background = new SolidColorBrush(Color.FromRgb(80, 110, 255)),
-                Foreground = Brushes.White,
-                BorderThickness = new Thickness(0)
-            };
-
-            btn.Click += (_, __) =>
-            {
-                if (!string.IsNullOrEmpty(lens.Link))
-                {
-                    System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
-                    {
-                        FileName = lens.Link,
-                        UseShellExecute = true
-                    });
-                }
-            };
-
-            stack.Children.Add(btn);
+            stack.Children.Add(CreateButton(lens.Link));
 
             card.Child = stack;
             LensPanel.Children.Add(card);
         }
 
+        // =====================================================
+        // AZIMP
+        // =====================================================
+        private void AddAzimpCard(LensDto lens)
+        {
+            var card = new Border
+            {
+                Width = 260,
+                Margin = new Thickness(12),
+                Padding = new Thickness(16),
+                CornerRadius = new CornerRadius(16),
+                Background = new SolidColorBrush(Color.FromRgb(245, 245, 255))
+            };
+
+            var stack = new StackPanel();
+
+            stack.Children.Add(new TextBlock
+            {
+                Text = lens.Title,
+                TextWrapping = TextWrapping.Wrap
+            });
+
+            stack.Children.Add(CreateButton(lens.Link));
+
+            card.Child = stack;
+            LensPanel.Children.Add(card);
+        }
+
+        // =====================================================
         private UIElement CreateInfo(string label, string value)
         {
             return new TextBlock
             {
-                Text = $"{label} {value ?? "-"}",
-                Margin = new Thickness(0, 2, 0, 2),
-                Foreground = new SolidColorBrush(Color.FromRgb(60, 60, 60))
+                Text = $"{label} {value ?? "-"}"
             };
+        }
+
+        private Button CreateButton(string link)
+        {
+            var btn = new Button
+            {
+                Content = "Открыть",
+                Margin = new Thickness(0, 10, 0, 0)
+            };
+
+            btn.Click += (_, __) =>
+            {
+                if (!string.IsNullOrEmpty(link))
+                {
+                    System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
+                    {
+                        FileName = link,
+                        UseShellExecute = true
+                    });
+                }
+            };
+
+            return btn;
         }
 
         public class LensDto
@@ -191,6 +234,7 @@ namespace Calculation_of_optical_systems
             public string Focal { get; set; }
             public string ImageUrl { get; set; }
             public string Category { get; set; }
+            public string Source { get; set; }
         }
     }
 }

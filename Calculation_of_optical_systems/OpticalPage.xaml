@@ -10,7 +10,6 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <!-- ОПИСАНИЕ -->
         <StackPanel Margin="0,0,0,20">
 
             <TextBlock FontSize="16" FontWeight="SemiBold" TextWrapping="Wrap">
@@ -33,19 +32,17 @@
 
         </StackPanel>
 
-        <!-- ОСНОВНОЙ БЛОК -->
+
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="340"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <!-- ВВОД -->
             <Border Background="White" CornerRadius="12" Padding="20">
 
                 <StackPanel>
 
-                    <!-- ===== РАЗРЕШЕНИЕ ===== -->
                     <StackPanel x:Name="ResolutionPanel" Margin="0,0,0,15">
 
                         <TextBlock Text="Разрешение"
@@ -90,7 +87,7 @@
 
                     </StackPanel>
 
-                    <!-- ===== ПИКСЕЛЬ ===== -->
+                   
                     <StackPanel x:Name="PixelPanel" Margin="0,0,0,15">
 
                         <TextBlock Text="Размер пикселя"
@@ -131,7 +128,7 @@
 
                     </StackPanel>
 
-                    <!-- ===== УГЛЫ ===== -->
+                    <!-- углы -->
                     <StackPanel x:Name="AnglePanel" Margin="0,0,0,15">
 
                         <TextBlock Text="Углы"
@@ -172,7 +169,7 @@
 
                     </StackPanel>
 
-                    <!-- ===== ФОКУС ===== -->
+                    <!--  фокус -->
                     <StackPanel>
 
                         <TextBlock Text="Фокус"
@@ -199,7 +196,7 @@
                 </StackPanel>
             </Border>
 
-            <!-- РЕЗУЛЬТАТ -->
+            <!-- результат -->
             <Border Grid.Column="1"
                     Margin="20,0,0,0"
                     Background="#FFFBE6"

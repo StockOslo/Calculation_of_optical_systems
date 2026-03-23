@@ -8,11 +8,11 @@ namespace OpticalApi.Controllers
     [Route("api/lenses")]
     public class LensesController : ControllerBase
     {
-        private readonly LensService _service;
+        private readonly LensService _service; // сервис который тянет данные
 
         public LensesController(LensService service)
         {
-            _service = service;
+            _service = service; // внедрение зависимости
         }
 
         [HttpGet]
@@ -23,14 +23,17 @@ namespace OpticalApi.Controllers
             string category = "",
             string focal = "")
         {
+            // получаем список линз из выбранного источника
             var lenses = await _service.GetLenses(source, offline);
 
+            // фильтруем по параметрам если они заданы
             var filtered = lenses.Where(l =>
-                (string.IsNullOrEmpty(sensor) || (l.Sensor ?? "").Contains(sensor)) &&
-                (string.IsNullOrEmpty(category) || (l.Category ?? "") == category) &&
-                (string.IsNullOrEmpty(focal) || (l.Focal ?? "").Contains(focal))
+                (string.IsNullOrEmpty(sensor) || (l.Sensor ?? "").Contains(sensor)) && // фильтр по сенсору
+                (string.IsNullOrEmpty(category) || (l.Category ?? "") == category) && // фильтр по категории
+                (string.IsNullOrEmpty(focal) || (l.Focal ?? "").Contains(focal)) // фильтр по фокусному
             );
 
+            // возвращаем результат клиенту
             return Ok(filtered);
         }
     }

@@ -7,41 +7,40 @@ namespace Calculation_of_optical_systems
 {
     public partial class OpticalPage : Page
     {
-        private bool _isLoaded = false;
+        private bool _isLoaded = false; // флаг чтобы не считать пока страница не загрузилась
 
-        // запоминаем предыдущий режим
-        private int _previousMode = 0;
+        private int _previousMode = 0; // запоминаем предыдущий режим чтобы понимать очищать поля или нет
 
         public OpticalPage()
         {
             InitializeComponent();
-            Loaded += OpticalPage_Loaded;
+            Loaded += OpticalPage_Loaded; // подписка на событие загрузки страницы
         }
 
         private void OpticalPage_Loaded(object sender, RoutedEventArgs e)
         {
-            _isLoaded = true;
+            _isLoaded = true; // теперь можно работать с логикой
 
-            ApplyModeUI();
-            Recalculate();
+            ApplyModeUI(); // применяем видимость блоков
+            Recalculate(); // первый расчет сразу при открытии
         }
 
         private void InputChanged(object sender, RoutedEventArgs e)
         {
             if (!_isLoaded)
-                return;
+                return; // если еще не загрузилось то ничего не делаем
 
-            Recalculate();
+            Recalculate(); // пересчет при любом изменении поля
         }
 
         private CalculationMode GetMode()
         {
             return ModeBox.SelectedIndex switch
             {
-                0 => CalculationMode.Base,
-                1 => CalculationMode.Base,
-                2 => CalculationMode.SolveResolution,
-                3 => CalculationMode.SolvePixelSize,
+                0 => CalculationMode.Base, // базовый режим
+                1 => CalculationMode.Base, // режим пикселя использует ту же формулу
+                2 => CalculationMode.SolveResolution, // поиск Nh Nv
+                3 => CalculationMode.SolvePixelSize, // поиск Δh Δv
                 _ => CalculationMode.Base
             };
         }
@@ -49,25 +48,25 @@ namespace Calculation_of_optical_systems
         private void Recalculate()
         {
             if (!_isLoaded || ResultPanel == null)
-                return;
+                return; // защита от null и преждевременного вызова
 
             var input = new FirstFileCalculationInput
             {
-                Nh = Parse(NhBox?.Text),
-                Nv = Parse(NvBox?.Text),
-                Δh = Parse(DhBox?.Text),
-                Δv = Parse(DvBox?.Text),
-                f = Parse(FBox?.Text),
-                δh = Parse(AngleHBox?.Text),
-                δv = Parse(AngleVBox?.Text)
+                Nh = Parse(NhBox?.Text), // парсим Nh
+                Nv = Parse(NvBox?.Text), // парсим Nv
+                Δh = Parse(DhBox?.Text), // парсим Δh
+                Δv = Parse(DvBox?.Text), // парсим Δv
+                f = Parse(FBox?.Text), // парсим фокус
+                δh = Parse(AngleHBox?.Text), // парсим угол h
+                δv = Parse(AngleVBox?.Text) // парсим угол v
             };
 
-            int uiMode = ModeBox.SelectedIndex;
-            var mode = GetMode();
+            int uiMode = ModeBox.SelectedIndex; // текущий режим UI
+            var mode = GetMode(); // логический режим
 
-            var result = FirstFileCalculator.Calculate(input, mode);
+            var result = FirstFileCalculator.Calculate(input, mode); // считаем
 
-            ResultPanel.Children.Clear();
+            ResultPanel.Children.Clear(); // очищаем старые результаты
 
             string[] visibleProps;
 
@@ -78,7 +77,7 @@ namespace Calculation_of_optical_systems
                     "h","i","d",
                     "δh","δv","δd",
                     "δh_min","δv_min","δd_min"
-                };
+                }; // базовые значения
             }
             else if (uiMode == 1)
             {
@@ -86,33 +85,33 @@ namespace Calculation_of_optical_systems
                 {
                     "δh_pix_grad","δv_pix_grad",
                     "δh_pix_angle","δv_pix_angle"
-                };
+                }; // режим пикселя
             }
             else if (uiMode == 2)
             {
                 visibleProps = new[]
                 {
                     "Nh","Nv"
-                };
+                }; // вывод разрешения
             }
             else
             {
                 visibleProps = new[]
                 {
                     "Δh","Δv"
-                };
+                }; // вывод размера пикселя
             }
 
             foreach (string name in visibleProps)
             {
-                var prop = typeof(FirstFileCalculationResult).GetProperty(name);
+                var prop = typeof(FirstFileCalculationResult).GetProperty(name); // получаем свойство через рефлексию
                 if (prop == null) continue;
 
-                var value = prop.GetValue(result);
+                var value = prop.GetValue(result); // берем значение
                 if (value == null) continue;
 
                 if (value is double d && d == 0)
-                    continue;
+                    continue; // не показываем нули
 
                 var block = new StackPanel
                 {
@@ -121,14 +120,14 @@ namespace Calculation_of_optical_systems
 
                 block.Children.Add(new TextBlock
                 {
-                    Text = GetLabel(name),
+                    Text = GetLabel(name), // подпись
                     FontSize = 14,
                     FontWeight = FontWeights.SemiBold
                 });
 
                 block.Children.Add(new TextBlock
                 {
-                    Text = $"{value:0.00000} {GetUnit(name)}",
+                    Text = $"{value:0.00000} {GetUnit(name)}", // значение + единица
                     FontSize = 15
                 });
 
@@ -139,17 +138,17 @@ namespace Calculation_of_optical_systems
                     Margin = new Thickness(0, 6, 0, 0)
                 });
 
-                ResultPanel.Children.Add(block);
+                ResultPanel.Children.Add(block); // добавляем в UI
             }
         }
 
         private double Parse(string t)
         {
             if (string.IsNullOrWhiteSpace(t))
-                return 0;
+                return 0; // если пусто возвращаем 0
 
             double.TryParse(
-                t.Replace(",", "."),
+                t.Replace(",", "."), // меняем запятую на точку
                 NumberStyles.Any,
                 CultureInfo.InvariantCulture,
                 out double v);
@@ -214,18 +213,20 @@ namespace Calculation_of_optical_systems
 
         private void ApplyModeUI()
         {
-            int m = ModeBox.SelectedIndex;
+            int m = ModeBox.SelectedIndex; // текущий режим
 
             ResolutionPanel.Visibility = Visibility.Visible;
             PixelPanel.Visibility = Visibility.Visible;
             AnglePanel.Visibility = Visibility.Visible;
 
             if (m == 0 || m == 1)
-                AnglePanel.Visibility = Visibility.Collapsed;
+                AnglePanel.Visibility = Visibility.Collapsed; // скрываем углы
+
             else if (m == 2)
-                ResolutionPanel.Visibility = Visibility.Collapsed;
+                ResolutionPanel.Visibility = Visibility.Collapsed; // скрываем разрешение
+
             else if (m == 3)
-                PixelPanel.Visibility = Visibility.Collapsed;
+                PixelPanel.Visibility = Visibility.Collapsed; // скрываем пиксель
         }
 
         private void ModeChanged(object sender, SelectionChangedEventArgs e)
@@ -235,15 +236,15 @@ namespace Calculation_of_optical_systems
 
             int currentMode = ModeBox.SelectedIndex;
 
-            ApplyModeUI();
+            ApplyModeUI(); // обновляем UI
 
-            
             bool sameInput =
                 (_previousMode == 0 && currentMode == 1) ||
-                (_previousMode == 1 && currentMode == 0);
+                (_previousMode == 1 && currentMode == 0); // проверяем одинаковые ли входные данные
 
             if (!sameInput)
             {
+                // очищаем поля если режим реально другой
                 NhBox.Text = "";
                 NvBox.Text = "";
                 DhBox.Text = "";
@@ -252,9 +253,9 @@ namespace Calculation_of_optical_systems
                 AngleVBox.Text = "";
             }
 
-            _previousMode = currentMode;
+            _previousMode = currentMode; // сохраняем текущий режим
 
-            Recalculate();
+            Recalculate(); // пересчет
         }
     }
 }

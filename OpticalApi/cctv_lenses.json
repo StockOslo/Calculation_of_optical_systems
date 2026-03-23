@@ -1400,18 +1400,39 @@
     "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2022/11/pro-1282z42.jpg"
   },
   {
-    "Model": "Daheng HN-P-3528-6M-C1/1.8",
-    "SensorFormat": "1/1.8",
-    "FocalLength": "35",
-    "ProductUrl": "https://cctvlens.ru/product/hn-p-3528-6m-c1-1-8/",
-    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2023/10/20230406102839429-1.jpg"
+    "Model": "MC-S369Q",
+    "SensorFormat": "1/2",
+    "FocalLength": "6-216",
+    "ProductUrl": "https://cctvlens.ru/product/mc-s369q/",
+    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2018/07/MC-S369Q.jpg"
   },
   {
-    "Model": "Kowa LM6HC-V",
+    "Model": "LM16JC5MC",
+    "SensorFormat": "2/3",
+    "FocalLength": "16",
+    "ProductUrl": "https://cctvlens.ru/product/lm16jc5mc/",
+    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2020/06/LM16JC5MC.jpg"
+  },
+  {
+    "Model": "MC-308B",
+    "SensorFormat": "1/2.8",
+    "FocalLength": "4.6-136",
+    "ProductUrl": "https://cctvlens.ru/product/mc-308b/",
+    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2022/02/MM-308B-M2.png"
+  },
+  {
+    "Model": "BLV1P1236MP8-IR",
     "SensorFormat": "1",
-    "FocalLength": "6",
-    "ProductUrl": "https://cctvlens.ru/product/lm6hc-v/",
-    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2025/10/image2025-10-10-11-52-55.jpg"
+    "FocalLength": "12-36",
+    "ProductUrl": "https://cctvlens.ru/product/blv1p1236mp8-ir/",
+    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2023/08/BLV1P1236MP8-IR.jpg"
+  },
+  {
+    "Model": "MER2-1220-9GM/C  (PoE \u043E\u043F\u0446\u0438\u044F)",
+    "SensorFormat": "1/1.7",
+    "FocalLength": null,
+    "ProductUrl": "https://cctvlens.ru/product/mer2-1220-9gm-poe-optsiya/",
+    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2023/12/20210907023031302-8.png"
   },
   {
     "Model": "LMVZ4411",
@@ -1470,83 +1491,6 @@
     "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2017/09/PH36x10RG.jpg"
   },
   {
-    "Model": "MC-S369Q",
-    "SensorFormat": "1/2",
-    "FocalLength": "6-216",
-    "ProductUrl": "https://cctvlens.ru/product/mc-s369q/",
-    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2018/07/MC-S369Q.jpg"
-  },
-  {
-    "Model": "LM16JC5MC",
-    "SensorFormat": "2/3",
-    "FocalLength": "16",
-    "ProductUrl": "https://cctvlens.ru/product/lm16jc5mc/",
-    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2020/06/LM16JC5MC.jpg"
-  },
-  {
-    "Model": "MC-308B",
-    "SensorFormat": "1/2.8",
-    "FocalLength": "4.6-136",
-    "ProductUrl": "https://cctvlens.ru/product/mc-308b/",
-    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2022/02/MM-308B-M2.png"
-  },
-  {
-    "Model": "BLV1P1236MP8-IR",
-    "SensorFormat": "1",
-    "FocalLength": "12-36",
-    "ProductUrl": "https://cctvlens.ru/product/blv1p1236mp8-ir/",
-    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2023/08/BLV1P1236MP8-IR.jpg"
-  },
-  {
-    "Model": "MER2-1220-9GM/C  (PoE \u043E\u043F\u0446\u0438\u044F)",
-    "SensorFormat": "1/1.7",
-    "FocalLength": null,
-    "ProductUrl": "https://cctvlens.ru/product/mer2-1220-9gm-poe-optsiya/",
-    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2023/12/20210907023031302-8.png"
-  },
-  {
-    "Model": "LM8JC1MS",
-    "SensorFormat": "2/3",
-    "FocalLength": "8",
-    "ProductUrl": "https://cctvlens.ru/product/lm8jc1ms/",
-    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2016/09/8mm-C-Mount-Lens-Kowa-LM8JC1MS.jpg"
-  },
-  {
-    "Model": "LM12NCL",
-    "SensorFormat": "1/2",
-    "FocalLength": "12",
-    "ProductUrl": "https://cctvlens.ru/product/lm12ncl/",
-    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2016/09/lm12ncl-1.jpg"
-  },
-  {
-    "Model": "LM35JC10M",
-    "SensorFormat": "2/3",
-    "FocalLength": "35",
-    "ProductUrl": "https://cctvlens.ru/product/lm35jc10m/",
-    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2016/09/lm35jc10m-1.jpg"
-  },
-  {
-    "Model": "LM1138TC",
-    "SensorFormat": "4/3",
-    "FocalLength": "80.6",
-    "ProductUrl": "https://cctvlens.ru/product/lm1138tc/",
-    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2017/08/LM1138TC-2.jpg"
-  },
-  {
-    "Model": "PH16X8RG",
-    "SensorFormat": "1/2",
-    "FocalLength": "8-128",
-    "ProductUrl": "https://cctvlens.ru/product/ph16x8rg/",
-    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2017/09/PH16X8RG-1.jpg"
-  },
-  {
-    "Model": "LMZ0824AMPDC-XFAF",
-    "SensorFormat": "1/1.8",
-    "FocalLength": "8-240",
-    "ProductUrl": "https://cctvlens.ru/product/lmz0824ampdc-xfaf/",
-    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2017/11/LMZ0824AMDC-XF.jpg"
-  },
-  {
     "Model": "HF2516V DN",
     "SensorFormat": "1",
     "FocalLength": "25",
@@ -1596,32 +1540,46 @@
     "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2023/12/20210910100603501-2.png"
   },
   {
-    "Model": "LM50HC",
-    "SensorFormat": "1",
-    "FocalLength": "50",
-    "ProductUrl": "https://cctvlens.ru/product/lm50hc/",
-    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2016/09/lm50hc-1.jpg"
-  },
-  {
-    "Model": "LMZ16160AMPDC-IR",
-    "SensorFormat": "1",
-    "FocalLength": "16-160",
-    "ProductUrl": "https://cctvlens.ru/product/lmz16160ampdc-ir/",
-    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2016/09/LMZ16160AMPDC-IR-1.jpg"
-  },
-  {
-    "Model": "LM28LF",
-    "SensorFormat": "43.3",
-    "FocalLength": "28",
-    "ProductUrl": "https://cctvlens.ru/product/lm28lf/",
-    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2016/09/lm28lf-1.jpg"
-  },
-  {
-    "Model": "LM16JC5M-IR",
+    "Model": "LM8JC1MS",
     "SensorFormat": "2/3",
-    "FocalLength": "16",
-    "ProductUrl": "https://cctvlens.ru/product/lm16jc5m-ir/",
-    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2017/08/LM16JC5M-IR-1.jpg"
+    "FocalLength": "8",
+    "ProductUrl": "https://cctvlens.ru/product/lm8jc1ms/",
+    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2016/09/8mm-C-Mount-Lens-Kowa-LM8JC1MS.jpg"
+  },
+  {
+    "Model": "LM12NCL",
+    "SensorFormat": "1/2",
+    "FocalLength": "12",
+    "ProductUrl": "https://cctvlens.ru/product/lm12ncl/",
+    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2016/09/lm12ncl-1.jpg"
+  },
+  {
+    "Model": "LM35JC10M",
+    "SensorFormat": "2/3",
+    "FocalLength": "35",
+    "ProductUrl": "https://cctvlens.ru/product/lm35jc10m/",
+    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2016/09/lm35jc10m-1.jpg"
+  },
+  {
+    "Model": "LM1138TC",
+    "SensorFormat": "4/3",
+    "FocalLength": "80.6",
+    "ProductUrl": "https://cctvlens.ru/product/lm1138tc/",
+    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2017/08/LM1138TC-2.jpg"
+  },
+  {
+    "Model": "PH16X8RG",
+    "SensorFormat": "1/2",
+    "FocalLength": "8-128",
+    "ProductUrl": "https://cctvlens.ru/product/ph16x8rg/",
+    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2017/09/PH16X8RG-1.jpg"
+  },
+  {
+    "Model": "LMZ0824AMPDC-XFAF",
+    "SensorFormat": "1/1.8",
+    "FocalLength": "8-240",
+    "ProductUrl": "https://cctvlens.ru/product/lmz0824ampdc-xfaf/",
+    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2017/11/LMZ0824AMDC-XF.jpg"
   },
   {
     "Model": "HF1616V DN P",
@@ -1678,6 +1636,76 @@
     "FocalLength": "25",
     "ProductUrl": "https://cctvlens.ru/product/blf11pz2514mp15-ir-s-uzlom-motorizatsii/",
     "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2026/03/BLF11PZ2514MP15-IR.jpg"
+  },
+  {
+    "Model": "LM50HC",
+    "SensorFormat": "1",
+    "FocalLength": "50",
+    "ProductUrl": "https://cctvlens.ru/product/lm50hc/",
+    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2016/09/lm50hc-1.jpg"
+  },
+  {
+    "Model": "LMZ16160AMPDC-IR",
+    "SensorFormat": "1",
+    "FocalLength": "16-160",
+    "ProductUrl": "https://cctvlens.ru/product/lmz16160ampdc-ir/",
+    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2016/09/LMZ16160AMPDC-IR-1.jpg"
+  },
+  {
+    "Model": "LM28LF",
+    "SensorFormat": "43.3",
+    "FocalLength": "28",
+    "ProductUrl": "https://cctvlens.ru/product/lm28lf/",
+    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2016/09/lm28lf-1.jpg"
+  },
+  {
+    "Model": "LM16JC5M-IR",
+    "SensorFormat": "2/3",
+    "FocalLength": "16",
+    "ProductUrl": "https://cctvlens.ru/product/lm16jc5m-ir/",
+    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2017/08/LM16JC5M-IR-1.jpg"
+  },
+  {
+    "Model": "MC-S309Q",
+    "SensorFormat": "1/2",
+    "FocalLength": "6-180",
+    "ProductUrl": "https://cctvlens.ru/product/mc-s309q/",
+    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2018/07/MC-S309Q.jpg"
+  },
+  {
+    "Model": "SL1250M",
+    "SensorFormat": "1/1.7",
+    "FocalLength": "12-50",
+    "ProductUrl": "https://cctvlens.ru/product/sl1250m/",
+    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2017/09/SL1250M.jpg"
+  },
+  {
+    "Model": "LM25JC5MC",
+    "SensorFormat": "2/3",
+    "FocalLength": "25",
+    "ProductUrl": "https://cctvlens.ru/product/lm25jc5mc/",
+    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2020/06/LM25JC5MC.jpg"
+  },
+  {
+    "Model": "LM75JC1MS",
+    "SensorFormat": "2/3",
+    "FocalLength": "75",
+    "ProductUrl": "https://cctvlens.ru/product/lm75jc1ms/",
+    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2021/03/75mm-C-Mount-Lens-Kowa-LM75JC.jpg"
+  },
+  {
+    "Model": "BLVD1670MP8-IR",
+    "SensorFormat": "1/1.7",
+    "FocalLength": "16-70",
+    "ProductUrl": "https://cctvlens.ru/product/blvd1670mp8-ir/",
+    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2023/08/BLVD1670MP8-IR-1-2.jpg"
+  },
+  {
+    "Model": "MER2-160-75GM/C (PoE \u043E\u043F\u0446\u0438\u044F)",
+    "SensorFormat": "1/2.9",
+    "FocalLength": null,
+    "ProductUrl": "https://cctvlens.ru/product/mer2-160-75gc-poe-optsiya/",
+    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2023/12/20210907023031302-9.png"
   },
   {
     "Model": "LMVZ166HC",
@@ -1743,97 +1771,6 @@
     "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2018/04/HV1013MPH-scaled.jpg"
   },
   {
-    "Model": "MC-S309Q",
-    "SensorFormat": "1/2",
-    "FocalLength": "6-180",
-    "ProductUrl": "https://cctvlens.ru/product/mc-s309q/",
-    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2018/07/MC-S309Q.jpg"
-  },
-  {
-    "Model": "SL1250M",
-    "SensorFormat": "1/1.7",
-    "FocalLength": "12-50",
-    "ProductUrl": "https://cctvlens.ru/product/sl1250m/",
-    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2017/09/SL1250M.jpg"
-  },
-  {
-    "Model": "LM25JC5MC",
-    "SensorFormat": "2/3",
-    "FocalLength": "25",
-    "ProductUrl": "https://cctvlens.ru/product/lm25jc5mc/",
-    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2020/06/LM25JC5MC.jpg"
-  },
-  {
-    "Model": "LM75JC1MS",
-    "SensorFormat": "2/3",
-    "FocalLength": "75",
-    "ProductUrl": "https://cctvlens.ru/product/lm75jc1ms/",
-    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2021/03/75mm-C-Mount-Lens-Kowa-LM75JC.jpg"
-  },
-  {
-    "Model": "BLVD1670MP8-IR",
-    "SensorFormat": "1/1.7",
-    "FocalLength": "16-70",
-    "ProductUrl": "https://cctvlens.ru/product/blvd1670mp8-ir/",
-    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2023/08/BLVD1670MP8-IR-1-2.jpg"
-  },
-  {
-    "Model": "MER2-160-75GM/C (PoE \u043E\u043F\u0446\u0438\u044F)",
-    "SensorFormat": "1/2.9",
-    "FocalLength": null,
-    "ProductUrl": "https://cctvlens.ru/product/mer2-160-75gc-poe-optsiya/",
-    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2023/12/20210907023031302-9.png"
-  },
-  {
-    "Model": "LM6HC",
-    "SensorFormat": "1",
-    "FocalLength": "6",
-    "ProductUrl": "https://cctvlens.ru/product/lm6hc/",
-    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2016/09/lm6hc-1.jpg"
-  },
-  {
-    "Model": "LM1119TC",
-    "SensorFormat": "4/3",
-    "FocalLength": "80-81.8",
-    "ProductUrl": "https://cctvlens.ru/product/lm1119tc/",
-    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2016/09/lm1119tc-2.jpg"
-  },
-  {
-    "Model": "LM50JC10M",
-    "SensorFormat": "2/3",
-    "FocalLength": "50",
-    "ProductUrl": "https://cctvlens.ru/product/lm50jc10m/",
-    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2016/09/lm50jc10m-1.jpg"
-  },
-  {
-    "Model": "LM25HC-V",
-    "SensorFormat": "1",
-    "FocalLength": "25",
-    "ProductUrl": "https://cctvlens.ru/product/lm25hc-v/",
-    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2017/08/lm25hc-v-1.jpg"
-  },
-  {
-    "Model": "LM1120TC",
-    "SensorFormat": "2/3",
-    "FocalLength": "65.9",
-    "ProductUrl": "https://cctvlens.ru/product/lm1120tc/",
-    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2017/08/lm1120tc-1.jpg"
-  },
-  {
-    "Model": "J10x12HS RG",
-    "SensorFormat": "2/3",
-    "FocalLength": "12-120",
-    "ProductUrl": "https://cctvlens.ru/product/j10x12hs-rg/",
-    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2017/09/J10X12HS-RG11.jpg"
-  },
-  {
-    "Model": "LMZ0824M3P-XF",
-    "SensorFormat": "1/1.8",
-    "FocalLength": "8-240",
-    "ProductUrl": "https://cctvlens.ru/product/lmz0824m3p-xf/",
-    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2017/11/LMZ0824M3P-XF.jpg"
-  },
-  {
     "Model": "HF3516V DN",
     "SensorFormat": "1",
     "FocalLength": "35",
@@ -1883,39 +1820,53 @@
     "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2023/12/20210910100603501-4.png"
   },
   {
-    "Model": "LM35JCM-V",
-    "SensorFormat": "2/3",
-    "FocalLength": "35",
-    "ProductUrl": "https://cctvlens.ru/product/lm35jcm-v/",
-    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2016/09/lm35jcm-v-1.jpg"
-  },
-  {
-    "Model": "LMZ16160M3P-SW",
+    "Model": "LM6HC",
     "SensorFormat": "1",
-    "FocalLength": "16-160",
-    "ProductUrl": "https://cctvlens.ru/product/lmz16160m3p-sw/",
-    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2016/09/LMZ16160M3P-SW-1.jpg"
+    "FocalLength": "6",
+    "ProductUrl": "https://cctvlens.ru/product/lm6hc/",
+    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2016/09/lm6hc-1.jpg"
   },
   {
-    "Model": "LM35LF",
-    "SensorFormat": "43.3",
-    "FocalLength": "35",
-    "ProductUrl": "https://cctvlens.ru/product/lm35lf/",
-    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2016/09/lm35lf-1.jpg"
+    "Model": "LM1119TC",
+    "SensorFormat": "4/3",
+    "FocalLength": "80-81.8",
+    "ProductUrl": "https://cctvlens.ru/product/lm1119tc/",
+    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2016/09/lm1119tc-2.jpg"
   },
   {
-    "Model": "LM25JC5M-IR",
+    "Model": "LM50JC10M",
     "SensorFormat": "2/3",
-    "FocalLength": "25",
-    "ProductUrl": "https://cctvlens.ru/product/lm25jc5m-ir/",
-    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2017/08/LM25JC5M-IR.jpg"
+    "FocalLength": "50",
+    "ProductUrl": "https://cctvlens.ru/product/lm50jc10m/",
+    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2016/09/lm50jc10m-1.jpg"
   },
   {
-    "Model": "\u042D\u043A\u0441\u0442\u0435\u043D\u0434\u0435\u0440 LMZ2EX",
-    "SensorFormat": null,
-    "FocalLength": null,
-    "ProductUrl": "https://cctvlens.ru/product/kowa-lmz2ex/",
-    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2017/09/LMZ2EX.jpg"
+    "Model": "LM25HC-V",
+    "SensorFormat": "1",
+    "FocalLength": "25",
+    "ProductUrl": "https://cctvlens.ru/product/lm25hc-v/",
+    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2017/08/lm25hc-v-1.jpg"
+  },
+  {
+    "Model": "LM1120TC",
+    "SensorFormat": "2/3",
+    "FocalLength": "65.9",
+    "ProductUrl": "https://cctvlens.ru/product/lm1120tc/",
+    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2017/08/lm1120tc-1.jpg"
+  },
+  {
+    "Model": "J10x12HS RG",
+    "SensorFormat": "2/3",
+    "FocalLength": "12-120",
+    "ProductUrl": "https://cctvlens.ru/product/j10x12hs-rg/",
+    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2017/09/J10X12HS-RG11.jpg"
+  },
+  {
+    "Model": "LMZ0824M3P-XF",
+    "SensorFormat": "1/1.8",
+    "FocalLength": "8-240",
+    "ProductUrl": "https://cctvlens.ru/product/lmz0824m3p-xf/",
+    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2017/11/LMZ0824M3P-XF.jpg"
   },
   {
     "Model": "HF2516V DN P",
@@ -1974,6 +1925,76 @@
     "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2026/03/BLF11PZ3518MP15-IR.jpg"
   },
   {
+    "Model": "LM35JCM-V",
+    "SensorFormat": "2/3",
+    "FocalLength": "35",
+    "ProductUrl": "https://cctvlens.ru/product/lm35jcm-v/",
+    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2016/09/lm35jcm-v-1.jpg"
+  },
+  {
+    "Model": "LMZ16160M3P-SW",
+    "SensorFormat": "1",
+    "FocalLength": "16-160",
+    "ProductUrl": "https://cctvlens.ru/product/lmz16160m3p-sw/",
+    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2016/09/LMZ16160M3P-SW-1.jpg"
+  },
+  {
+    "Model": "LM35LF",
+    "SensorFormat": "43.3",
+    "FocalLength": "35",
+    "ProductUrl": "https://cctvlens.ru/product/lm35lf/",
+    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2016/09/lm35lf-1.jpg"
+  },
+  {
+    "Model": "LM25JC5M-IR",
+    "SensorFormat": "2/3",
+    "FocalLength": "25",
+    "ProductUrl": "https://cctvlens.ru/product/lm25jc5m-ir/",
+    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2017/08/LM25JC5M-IR.jpg"
+  },
+  {
+    "Model": "\u042D\u043A\u0441\u0442\u0435\u043D\u0434\u0435\u0440 LMZ2EX",
+    "SensorFormat": null,
+    "FocalLength": null,
+    "ProductUrl": "https://cctvlens.ru/product/kowa-lmz2ex/",
+    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2017/09/LMZ2EX.jpg"
+  },
+  {
+    "Model": "MC-308",
+    "SensorFormat": "1/2.8",
+    "FocalLength": "4.6-136",
+    "ProductUrl": "https://cctvlens.ru/product/mc-308/",
+    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2018/07/MM-308.jpg"
+  },
+  {
+    "Model": "SL1250P",
+    "SensorFormat": "1/1.7",
+    "FocalLength": "12-50",
+    "ProductUrl": "https://cctvlens.ru/product/sl1250p/",
+    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2017/09/SL1250P.jpg"
+  },
+  {
+    "Model": "LM100JC1MS",
+    "SensorFormat": "2/3",
+    "FocalLength": "100",
+    "ProductUrl": "https://cctvlens.ru/product/lm100jc1ms/",
+    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2021/03/Kowa-LM100JC1MS-scaled.jpg"
+  },
+  {
+    "Model": "BLVD1150MP8-IR",
+    "SensorFormat": "1/1.7",
+    "FocalLength": "11-50",
+    "ProductUrl": "https://cctvlens.ru/product/blvd1150mp8-ir/",
+    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2023/08/BLVD1150MP8-IR-1-1.jpg"
+  },
+  {
+    "Model": "MER2-2000-6GM/C (PoE \u043E\u043F\u0446\u0438\u044F)",
+    "SensorFormat": "1",
+    "FocalLength": null,
+    "ProductUrl": "https://cctvlens.ru/product/mer2-2000-6gm-poe-optsiya/",
+    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2023/12/20210907023031302-12.png"
+  },
+  {
     "Model": "LMZ68M",
     "SensorFormat": "1/2",
     "FocalLength": "8-48",
@@ -2023,90 +2044,6 @@
     "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2018/04/HV1013MPH-D-scaled.jpg"
   },
   {
-    "Model": "MC-308",
-    "SensorFormat": "1/2.8",
-    "FocalLength": "4.6-136",
-    "ProductUrl": "https://cctvlens.ru/product/mc-308/",
-    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2018/07/MM-308.jpg"
-  },
-  {
-    "Model": "SL1250P",
-    "SensorFormat": "1/1.7",
-    "FocalLength": "12-50",
-    "ProductUrl": "https://cctvlens.ru/product/sl1250p/",
-    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2017/09/SL1250P.jpg"
-  },
-  {
-    "Model": "LM100JC1MS",
-    "SensorFormat": "2/3",
-    "FocalLength": "100",
-    "ProductUrl": "https://cctvlens.ru/product/lm100jc1ms/",
-    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2021/03/Kowa-LM100JC1MS-scaled.jpg"
-  },
-  {
-    "Model": "BLVD1150MP8-IR",
-    "SensorFormat": "1/1.7",
-    "FocalLength": "11-50",
-    "ProductUrl": "https://cctvlens.ru/product/blvd1150mp8-ir/",
-    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2023/08/BLVD1150MP8-IR-1-1.jpg"
-  },
-  {
-    "Model": "MER2-2000-6GM/C (PoE \u043E\u043F\u0446\u0438\u044F)",
-    "SensorFormat": "1",
-    "FocalLength": null,
-    "ProductUrl": "https://cctvlens.ru/product/mer2-2000-6gm-poe-optsiya/",
-    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2023/12/20210907023031302-12.png"
-  },
-  {
-    "Model": "LM6JC",
-    "SensorFormat": "2/3",
-    "FocalLength": "6",
-    "ProductUrl": "https://cctvlens.ru/product/lm6jc/",
-    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2016/09/lm6jc-1.jpg"
-  },
-  {
-    "Model": "LM100JC",
-    "SensorFormat": "2/3",
-    "FocalLength": "100",
-    "ProductUrl": "https://cctvlens.ru/product/lm100jc/",
-    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2016/09/lm100jc.jpg"
-  },
-  {
-    "Model": "LM8XC",
-    "SensorFormat": "4/3",
-    "FocalLength": "8.5",
-    "ProductUrl": "https://cctvlens.ru/product/lm8xc/",
-    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2016/09/lm8xc-1.jpg"
-  },
-  {
-    "Model": "LM12HC-V",
-    "SensorFormat": "1",
-    "FocalLength": "12.5",
-    "ProductUrl": "https://cctvlens.ru/product/lm12hc-v/",
-    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2017/08/lm12hc-v-5.jpg"
-  },
-  {
-    "Model": "LM1125TC",
-    "SensorFormat": "2/3",
-    "FocalLength": "112.7",
-    "ProductUrl": "https://cctvlens.ru/product/lm1125tc/",
-    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2017/08/LM1125TC-1.jpg"
-  },
-  {
-    "Model": "V10x16HS RG",
-    "SensorFormat": "1",
-    "FocalLength": "16-160",
-    "ProductUrl": "https://cctvlens.ru/product/v10x16hs-rg/",
-    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2017/09/J10X12HS-RG11-1.jpg"
-  },
-  {
-    "Model": "LMZ20750AMPDC-XFAF",
-    "SensorFormat": "1/1.8",
-    "FocalLength": "20-750",
-    "ProductUrl": "https://cctvlens.ru/product/lmz20750ampdc-xfaf/",
-    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2017/11/LMZ20750AMPDC-XF-1.jpg"
-  },
-  {
     "Model": "HF5018V DN",
     "SensorFormat": "1",
     "FocalLength": "50",
@@ -2147,6 +2084,13 @@
     "FocalLength": "25",
     "ProductUrl": "https://cctvlens.ru/product/hn-p-2524-25m-c1-2-1/",
     "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2023/10/20211013051713193.png"
+  },
+  {
+    "Model": "LMZ20750AMPDC-XFAF",
+    "SensorFormat": "1/1.8",
+    "FocalLength": "20-750",
+    "ProductUrl": "https://cctvlens.ru/product/lmz20750ampdc-xfaf/",
+    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2017/11/LMZ20750AMPDC-XF-1.jpg"
   },
   {
     "Model": "VEN-830-22U3M/C",
@@ -2800,6 +2744,34 @@
     "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2017/09/SL940M.jpg"
   },
   {
+    "Model": "BLF11M3514MP12-IR",
+    "SensorFormat": "1.1",
+    "FocalLength": "35",
+    "ProductUrl": "https://cctvlens.ru/product/blf1-1m3514mp12-ir/",
+    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2023/08/BLF1.1M3514MP12-IR.jpg"
+  },
+  {
+    "Model": "MER2-1220-32U3M/C",
+    "SensorFormat": "1/1.7",
+    "FocalLength": null,
+    "ProductUrl": "https://cctvlens.ru/product/mer2-1220-32u3m/",
+    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2023/12/20210908085350327-11.png"
+  },
+  {
+    "Model": "TEC-M05110MP",
+    "SensorFormat": "2/3",
+    "FocalLength": "111.8",
+    "ProductUrl": "https://cctvlens.ru/product/tec-m05110mp/",
+    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2016/09/TEC-M05110MP-1.png"
+  },
+  {
+    "Model": "E1220KV",
+    "SensorFormat": "1/1.8",
+    "FocalLength": "12",
+    "ProductUrl": "https://cctvlens.ru/product/e1220kv/",
+    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2016/09/E1220KV.png"
+  },
+  {
     "Model": "V5028-MPY",
     "SensorFormat": "1.1",
     "FocalLength": "50",
@@ -2842,18 +2814,18 @@
     "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2020/01/M0528-MPW3.png"
   },
   {
-    "Model": "TEC-M05110MP",
+    "Model": "TEC-M03110MPC",
     "SensorFormat": "2/3",
-    "FocalLength": "111.8",
-    "ProductUrl": "https://cctvlens.ru/product/tec-m05110mp/",
-    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2016/09/TEC-M05110MP-1.png"
+    "FocalLength": "111",
+    "ProductUrl": "https://cctvlens.ru/product/tec-m03110mpc/",
+    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2016/09/TEC-M03110MPC.png"
   },
   {
-    "Model": "E1220KV",
-    "SensorFormat": "1/1.8",
-    "FocalLength": "12",
-    "ProductUrl": "https://cctvlens.ru/product/e1220kv/",
-    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2016/09/E1220KV.png"
+    "Model": "AG4Z2812FCS-MPIR",
+    "SensorFormat": "1/2.7",
+    "FocalLength": "2.8-10",
+    "ProductUrl": "https://cctvlens.ru/product/ag4z2812fcs-mpir/",
+    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2016/09/AG4Z2812FCS-MPIR-1.png"
   },
   {
     "Model": "AG3Z2812KCS-MPWIR",
@@ -2884,18 +2856,18 @@
     "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2022/08/DL1224UC-MPY.png"
   },
   {
-    "Model": "TEC-M03110MPC",
-    "SensorFormat": "2/3",
-    "FocalLength": "111",
-    "ProductUrl": "https://cctvlens.ru/product/tec-m03110mpc/",
-    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2016/09/TEC-M03110MPC.png"
+    "Model": "TEC-V10110MPW",
+    "SensorFormat": "1",
+    "FocalLength": "110.2",
+    "ProductUrl": "https://cctvlens.ru/product/tec-v10110mpw/",
+    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2016/09/TEC-V10110MPW.png"
   },
   {
-    "Model": "AG4Z2812FCS-MPIR",
-    "SensorFormat": "1/2.7",
-    "FocalLength": "2.8-10",
-    "ProductUrl": "https://cctvlens.ru/product/ag4z2812fcs-mpir/",
-    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2016/09/AG4Z2812FCS-MPIR-1.png"
+    "Model": "M3518FIC-MPIR",
+    "SensorFormat": "2/3",
+    "FocalLength": "35",
+    "ProductUrl": "https://cctvlens.ru/product/m3518fic-mpir/",
+    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2016/09/M3518FIC-MPIR.png"
   },
   {
     "Model": "M1214-MP2",
@@ -2947,18 +2919,18 @@
     "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2022/08/VL7531U-MPZ.png"
   },
   {
-    "Model": "TEC-V10110MPW",
-    "SensorFormat": "1",
-    "FocalLength": "110.2",
-    "ProductUrl": "https://cctvlens.ru/product/tec-v10110mpw/",
-    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2016/09/TEC-V10110MPW.png"
+    "Model": "TEC-M05110MPC",
+    "SensorFormat": "2/3",
+    "FocalLength": "111.8",
+    "ProductUrl": "https://cctvlens.ru/product/tec-m05110mpc/",
+    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2016/09/TEC-M05110MPC.png"
   },
   {
-    "Model": "M3518FIC-MPIR",
-    "SensorFormat": "2/3",
-    "FocalLength": "35",
-    "ProductUrl": "https://cctvlens.ru/product/m3518fic-mpir/",
-    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2016/09/M3518FIC-MPIR.png"
+    "Model": "E1620KV",
+    "SensorFormat": "1/1.8",
+    "FocalLength": "16",
+    "ProductUrl": "https://cctvlens.ru/product/e1620kv/",
+    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2016/09/E1620KV.png"
   },
   {
     "Model": "H0514-MP2",
@@ -3017,18 +2989,18 @@
     "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2024/03/VL2Z2533UM6C-MPWIR.jpg"
   },
   {
-    "Model": "TEC-M05110MPC",
+    "Model": "M5028-MPW2",
     "SensorFormat": "2/3",
-    "FocalLength": "111.8",
-    "ProductUrl": "https://cctvlens.ru/product/tec-m05110mpc/",
-    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2016/09/TEC-M05110MPC.png"
+    "FocalLength": "50",
+    "ProductUrl": "https://cctvlens.ru/product/m5028-mpw2/",
+    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2016/09/M5028-MPW2-2.png"
   },
   {
-    "Model": "E1620KV",
-    "SensorFormat": "1/1.8",
-    "FocalLength": "16",
-    "ProductUrl": "https://cctvlens.ru/product/e1620kv/",
-    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2016/09/E1620KV.png"
+    "Model": "AG4Z2812KCS-MPIR",
+    "SensorFormat": "1/2.7",
+    "FocalLength": "2.8-10",
+    "ProductUrl": "https://cctvlens.ru/product/ag4z2812kcs-mpir/",
+    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2016/09/AG4Z2812KCS-MPIR-1.png"
   },
   {
     "Model": "AG4Z1214KCS-MPIR",
@@ -3066,18 +3038,18 @@
     "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2022/08/DL1623UC-MPY.png"
   },
   {
-    "Model": "M5028-MPW2",
-    "SensorFormat": "2/3",
-    "FocalLength": "50",
-    "ProductUrl": "https://cctvlens.ru/product/m5028-mpw2/",
-    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2016/09/M5028-MPW2-2.png"
+    "Model": "TEC-V1065MPW",
+    "SensorFormat": "1",
+    "FocalLength": "65.2",
+    "ProductUrl": "https://cctvlens.ru/product/tec-v1065mpw/",
+    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2016/09/TEC-V1065MPW.png"
   },
   {
-    "Model": "AG4Z2812KCS-MPIR",
-    "SensorFormat": "1/2.7",
-    "FocalLength": "2.8-10",
-    "ProductUrl": "https://cctvlens.ru/product/ag4z2812kcs-mpir/",
-    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2016/09/AG4Z2812KCS-MPIR-1.png"
+    "Model": "EG7Z1519KCS-MPWIR-V",
+    "SensorFormat": "1/1.8",
+    "FocalLength": "15-100",
+    "ProductUrl": "https://cctvlens.ru/product/eg7z1519kcs-mpwir/",
+    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2016/09/68a3323d17e6247da641426c_eg7z1519kcs-mpwir.jpg"
   },
   {
     "Model": "M1614-MP2",
@@ -3136,18 +3108,18 @@
     "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2021/10/VG5020KC-MPYIR-1.jpg"
   },
   {
-    "Model": "TEC-V1065MPW",
-    "SensorFormat": "1",
-    "FocalLength": "65.2",
-    "ProductUrl": "https://cctvlens.ru/product/tec-v1065mpw/",
-    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2016/09/TEC-V1065MPW.png"
+    "Model": "TEC-M0565MP",
+    "SensorFormat": "2/3",
+    "FocalLength": "65.5",
+    "ProductUrl": "https://cctvlens.ru/product/tec-m0565mp/",
+    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2016/09/TEC-M0565MP.png"
   },
   {
-    "Model": "EG7Z1519KCS-MPWIR-V",
+    "Model": "E24Z1018PDC-MP",
     "SensorFormat": "1/1.8",
-    "FocalLength": "15-100",
-    "ProductUrl": "https://cctvlens.ru/product/eg7z1519kcs-mpwir/",
-    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2016/09/68a3323d17e6247da641426c_eg7z1519kcs-mpwir.jpg"
+    "FocalLength": "10-240",
+    "ProductUrl": "https://cctvlens.ru/product/e24z1018pdc-mp/",
+    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2016/09/E24Z1018PDC-MP-1.png"
   },
   {
     "Model": "E1628KRY",
@@ -3206,18 +3178,18 @@
     "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2021/11/V2518FIC-MPYIR.png"
   },
   {
-    "Model": "TEC-M0565MP",
-    "SensorFormat": "2/3",
-    "FocalLength": "65.5",
-    "ProductUrl": "https://cctvlens.ru/product/tec-m0565mp/",
-    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2016/09/TEC-M0565MP.png"
+    "Model": "MLH-10X",
+    "SensorFormat": "1/2",
+    "FocalLength": "13-130",
+    "ProductUrl": "https://cctvlens.ru/product/mlh-10x/",
+    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2016/09/MLH-10X-1.png"
   },
   {
-    "Model": "E24Z1018PDC-MP",
-    "SensorFormat": "1/1.8",
-    "FocalLength": "10-240",
-    "ProductUrl": "https://cctvlens.ru/product/e24z1018pdc-mp/",
-    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2016/09/E24Z1018PDC-MP-1.png"
+    "Model": "AG6Z8516FCS-MP",
+    "SensorFormat": "1/2.7",
+    "FocalLength": "8.5-50",
+    "ProductUrl": "https://cctvlens.ru/product/ag6z8516fcs-mp/",
+    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2016/09/AG6Z8516FCS-MP-1.png"
   },
   {
     "Model": "EG3Z3915KCS-MPWIR-31",
@@ -3248,18 +3220,18 @@
     "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2022/08/DL3525UC-MPY.png"
   },
   {
-    "Model": "MLH-10X",
-    "SensorFormat": "1/2",
-    "FocalLength": "13-130",
-    "ProductUrl": "https://cctvlens.ru/product/mlh-10x/",
-    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2016/09/MLH-10X-1.png"
+    "Model": "TEC-M1065MP",
+    "SensorFormat": "2/3",
+    "FocalLength": "65.5",
+    "ProductUrl": "https://cctvlens.ru/product/tec-m1065mp/",
+    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2016/09/TEC-M1065MP.png"
   },
   {
-    "Model": "AG6Z8516FCS-MP",
-    "SensorFormat": "1/2.7",
-    "FocalLength": "8.5-50",
-    "ProductUrl": "https://cctvlens.ru/product/ag6z8516fcs-mp/",
-    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2016/09/AG6Z8516FCS-MP-1.png"
+    "Model": "H2Z0414C-MP",
+    "SensorFormat": "1/2",
+    "FocalLength": "4-8",
+    "ProductUrl": "https://cctvlens.ru/product/h2z0414c-mp/",
+    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2016/09/H2Z0414C-MP.png"
   },
   {
     "Model": "M3514-MP",
@@ -3311,18 +3283,18 @@
     "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2022/02/EL3Z0416UCS-MPWIR.png"
   },
   {
-    "Model": "TEC-M1065MP",
+    "Model": "TEC-M0565MP\u0421",
     "SensorFormat": "2/3",
     "FocalLength": "65.5",
-    "ProductUrl": "https://cctvlens.ru/product/tec-m1065mp/",
-    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2016/09/TEC-M1065MP.png"
+    "ProductUrl": "https://cctvlens.ru/product/tec-m0565mps/",
+    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2016/09/TEC-M0565MPC.png"
   },
   {
-    "Model": "H2Z0414C-MP",
-    "SensorFormat": "1/2",
-    "FocalLength": "4-8",
-    "ProductUrl": "https://cctvlens.ru/product/h2z0414c-mp/",
-    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2016/09/H2Z0414C-MP.png"
+    "Model": "E24Z1018PDC-MPIR",
+    "SensorFormat": "1/1.8",
+    "FocalLength": "10-240",
+    "ProductUrl": "https://cctvlens.ru/product/e24z1018pdc-mpir/",
+    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2016/09/E24Z1018PDC-MPIR.png"
   },
   {
     "Model": "E1222KRY",
@@ -3381,18 +3353,18 @@
     "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2021/11/V5020FIC-MPYIR.png"
   },
   {
-    "Model": "TEC-M0565MP\u0421",
+    "Model": "MLM-3XMP",
     "SensorFormat": "2/3",
-    "FocalLength": "65.5",
-    "ProductUrl": "https://cctvlens.ru/product/tec-m0565mps/",
-    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2016/09/TEC-M0565MPC.png"
+    "FocalLength": "90",
+    "ProductUrl": "https://cctvlens.ru/product/mlm-3xmp/",
+    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2016/09/MLM3X-MP.png"
   },
   {
-    "Model": "E24Z1018PDC-MPIR",
-    "SensorFormat": "1/1.8",
-    "FocalLength": "10-240",
-    "ProductUrl": "https://cctvlens.ru/product/e24z1018pdc-mpir/",
-    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2016/09/E24Z1018PDC-MPIR.png"
+    "Model": "AG6Z8516KCS-MP",
+    "SensorFormat": "1/2.7",
+    "FocalLength": "8.5-50",
+    "ProductUrl": "https://cctvlens.ru/product/ag6z8516kcs-mp/",
+    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2016/09/AG6Z8516KCS-MP-1.png"
   },
   {
     "Model": "MG2514KC-MPIR-V31",
@@ -3430,18 +3402,18 @@
     "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2022/08/657ab63875271fb6f2345c3f_657041161b95671e3b6f411b_DL2523UC-MPY.png"
   },
   {
-    "Model": "MLM-3XMP",
+    "Model": "TEC-M1065MPC",
     "SensorFormat": "2/3",
-    "FocalLength": "90",
-    "ProductUrl": "https://cctvlens.ru/product/mlm-3xmp/",
-    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2016/09/MLM3X-MP.png"
+    "FocalLength": "65.5",
+    "ProductUrl": "https://cctvlens.ru/product/tec-m1065mpc/",
+    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2016/09/TEC-M1065MPC.png"
   },
   {
-    "Model": "AG6Z8516KCS-MP",
-    "SensorFormat": "1/2.7",
-    "FocalLength": "8.5-50",
-    "ProductUrl": "https://cctvlens.ru/product/ag6z8516kcs-mp/",
-    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2016/09/AG6Z8516KCS-MP-1.png"
+    "Model": "H62Z1235PDC-MP",
+    "SensorFormat": "1/2",
+    "FocalLength": "12.5-775",
+    "ProductUrl": "https://cctvlens.ru/product/h62z1235pdc-mp/",
+    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2016/09/H62Z1235PDC-MP_photo-scaled.jpg"
   },
   {
     "Model": "M5018-MP2",
@@ -3472,18 +3444,25 @@
     "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2019/08/V5024-MPZ.png"
   },
   {
-    "Model": "M1214-VSW",
+    "Model": "M5028-MPW2-R",
     "SensorFormat": "2/3",
-    "FocalLength": "12",
-    "ProductUrl": "https://cctvlens.ru/product/m1214-vsw/",
-    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2021/04/m1214-1.jpg"
+    "FocalLength": "50",
+    "ProductUrl": "https://cctvlens.ru/product/m5028-mpw2-r/",
+    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2018/10/M5028-MPW2-R_photo-1.jpg"
   },
   {
-    "Model": "TEC-M1065MPC",
+    "Model": "TEC-M40110MP",
     "SensorFormat": "2/3",
-    "FocalLength": "65.5",
-    "ProductUrl": "https://cctvlens.ru/product/tec-m1065mpc/",
-    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2016/09/TEC-M1065MPC.png"
+    "FocalLength": "110.5",
+    "ProductUrl": "https://cctvlens.ru/product/tec-m40110mp/",
+    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2019/08/TEC-M40110MP.png"
+  },
+  {
+    "Model": "M3528-MPW3",
+    "SensorFormat": "2/3",
+    "FocalLength": "35",
+    "ProductUrl": "https://cctvlens.ru/product/m3528-mpw3/",
+    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2020/01/m3528_mpw3.png"
   },
   {
     "Model": "TEC-M08110MP",
@@ -3521,41 +3500,6 @@
     "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2017/09/TEC-M55-20.jpg"
   },
   {
-    "Model": "M5028-MPW2-R",
-    "SensorFormat": "2/3",
-    "FocalLength": "50",
-    "ProductUrl": "https://cctvlens.ru/product/m5028-mpw2-r/",
-    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2018/10/M5028-MPW2-R_photo-1.jpg"
-  },
-  {
-    "Model": "TEC-M40110MP",
-    "SensorFormat": "2/3",
-    "FocalLength": "110.5",
-    "ProductUrl": "https://cctvlens.ru/product/tec-m40110mp/",
-    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2019/08/TEC-M40110MP.png"
-  },
-  {
-    "Model": "M3528-MPW3",
-    "SensorFormat": "2/3",
-    "FocalLength": "35",
-    "ProductUrl": "https://cctvlens.ru/product/m3528-mpw3/",
-    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2020/01/m3528_mpw3.png"
-  },
-  {
-    "Model": "M3520-MPW2",
-    "SensorFormat": "2/3",
-    "FocalLength": "35",
-    "ProductUrl": "https://cctvlens.ru/product/m3520-mpw2/",
-    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2016/09/M3520-MPW2-1.png"
-  },
-  {
-    "Model": "MG3518KC-MPIR-V31",
-    "SensorFormat": "2/3",
-    "FocalLength": "35",
-    "ProductUrl": "https://cctvlens.ru/product/mg3518kc-mpir-v31/",
-    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2017/08/MG3518KC-MPIR-V31-1.png"
-  },
-  {
     "Model": "V0826-MPZ",
     "SensorFormat": "1",
     "FocalLength": "8",
@@ -3575,6 +3519,34 @@
     "FocalLength": "50",
     "ProductUrl": "https://cctvlens.ru/product/dl5028uc-mpy/",
     "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2022/08/657ab639a634a91ca099fc29_657040bccd4cd453c08ffaa6_DL5028UC-MPY.png"
+  },
+  {
+    "Model": "M3520-MPW2",
+    "SensorFormat": "2/3",
+    "FocalLength": "35",
+    "ProductUrl": "https://cctvlens.ru/product/m3520-mpw2/",
+    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2016/09/M3520-MPW2-1.png"
+  },
+  {
+    "Model": "MG3518KC-MPIR-V31",
+    "SensorFormat": "2/3",
+    "FocalLength": "35",
+    "ProductUrl": "https://cctvlens.ru/product/mg3518kc-mpir-v31/",
+    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2017/08/MG3518KC-MPIR-V31-1.png"
+  },
+  {
+    "Model": "EG6Z0915KCS-MPWIR",
+    "SensorFormat": "1/1.8",
+    "FocalLength": "9-50",
+    "ProductUrl": "https://cctvlens.ru/product/eg6z0915kcs-mpwir/",
+    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2019/08/EG6Z0915KCS-MPWIR.png"
+  },
+  {
+    "Model": "M1614-VSW",
+    "SensorFormat": "2/3",
+    "FocalLength": "16",
+    "ProductUrl": "https://cctvlens.ru/product/m1614-vsw/",
+    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2021/04/m1614-1.jpg"
   },
   {
     "Model": "TEC-M15110MP",
@@ -3605,18 +3577,25 @@
     "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2017/08/T10Z5712DC.png"
   },
   {
-    "Model": "EG6Z0915KCS-MPWIR",
-    "SensorFormat": "1/1.8",
-    "FocalLength": "9-50",
-    "ProductUrl": "https://cctvlens.ru/product/eg6z0915kcs-mpwir/",
-    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2019/08/EG6Z0915KCS-MPWIR.png"
+    "Model": "TEC-M40110MPC",
+    "SensorFormat": "2/3",
+    "FocalLength": "110.5",
+    "ProductUrl": "https://cctvlens.ru/product/tec-m40110mpc/",
+    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2019/08/TEC-M40110MPC.png"
   },
   {
-    "Model": "M1614-VSW",
+    "Model": "M5028-MPW3",
     "SensorFormat": "2/3",
-    "FocalLength": "16",
-    "ProductUrl": "https://cctvlens.ru/product/m1614-vsw/",
-    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2021/04/m1614-1.jpg"
+    "FocalLength": "50",
+    "ProductUrl": "https://cctvlens.ru/product/m5028-mpw3/",
+    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2020/01/m5028_mpw3.jpg"
+  },
+  {
+    "Model": "MG5020KC-MPIR-V31 \u0441 \u0443\u0437\u043B\u043E\u043C \u043C\u043E\u0442\u043E\u0440\u0438\u0437\u0430\u0446\u0438\u0438",
+    "SensorFormat": "2/3",
+    "FocalLength": "50",
+    "ProductUrl": "https://cctvlens.ru/product/mg5020kc-mpir-v31-s-uzlom-motorizatsii/",
+    "ImageUrl": null
   },
   {
     "Model": "TEC-M08110MP\u0421",
@@ -3647,41 +3626,6 @@
     "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2017/08/H62Z1235PDC-MPIR_photo-scaled.jpg"
   },
   {
-    "Model": "TEC-M40110MPC",
-    "SensorFormat": "2/3",
-    "FocalLength": "110.5",
-    "ProductUrl": "https://cctvlens.ru/product/tec-m40110mpc/",
-    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2019/08/TEC-M40110MPC.png"
-  },
-  {
-    "Model": "M5028-MPW3",
-    "SensorFormat": "2/3",
-    "FocalLength": "50",
-    "ProductUrl": "https://cctvlens.ru/product/m5028-mpw3/",
-    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2020/01/m5028_mpw3.jpg"
-  },
-  {
-    "Model": "MG5020KC-MPIR-V31 \u0441 \u0443\u0437\u043B\u043E\u043C \u043C\u043E\u0442\u043E\u0440\u0438\u0437\u0430\u0446\u0438\u0438",
-    "SensorFormat": "2/3",
-    "FocalLength": "50",
-    "ProductUrl": "https://cctvlens.ru/product/mg5020kc-mpir-v31-s-uzlom-motorizatsii/",
-    "ImageUrl": null
-  },
-  {
-    "Model": "M2518-MPW2",
-    "SensorFormat": "2/3",
-    "FocalLength": "25",
-    "ProductUrl": "https://cctvlens.ru/product/m2518-mpw2/",
-    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2016/09/M2518-MPW2-1.png"
-  },
-  {
-    "Model": "MG5020KC-MPIR-V31",
-    "SensorFormat": "2/3",
-    "FocalLength": "50",
-    "ProductUrl": "https://cctvlens.ru/product/mg5020kc-mpir-v31/",
-    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2017/08/MG5020KC-MPIR-V31.jpg"
-  },
-  {
     "Model": "V1624-MPZ",
     "SensorFormat": "1",
     "FocalLength": "16",
@@ -3710,32 +3654,18 @@
     "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2022/08/659045610c1bc03529c32eb8_658e6ce446e668ae2260a63f_VL0826U-MPZ.png"
   },
   {
-    "Model": "TEC-M15110MP\u0421",
+    "Model": "M2518-MPW2",
     "SensorFormat": "2/3",
-    "FocalLength": "110.7",
-    "ProductUrl": "https://cctvlens.ru/product/tec-m15110mps/",
-    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2016/09/TEC-M15110MPC.png"
+    "FocalLength": "25",
+    "ProductUrl": "https://cctvlens.ru/product/m2518-mpw2/",
+    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2016/09/M2518-MPW2-1.png"
   },
   {
-    "Model": "H0320KP",
-    "SensorFormat": "1/2",
-    "FocalLength": "3",
-    "ProductUrl": "https://cctvlens.ru/product/h0320kp/",
-    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2016/09/H0320KP.png"
-  },
-  {
-    "Model": "V0828-MPY2",
-    "SensorFormat": "1.1",
-    "FocalLength": "8",
-    "ProductUrl": "https://cctvlens.ru/product/v0828-mpy/",
-    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2017/08/V0828-MPY.png"
-  },
-  {
-    "Model": "H6Z0812M",
-    "SensorFormat": "1/2",
-    "FocalLength": "8-48",
-    "ProductUrl": "https://cctvlens.ru/product/h6z0812m/",
-    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2017/08/H6Z0812M_photo.jpg"
+    "Model": "MG5020KC-MPIR-V31",
+    "SensorFormat": "2/3",
+    "FocalLength": "50",
+    "ProductUrl": "https://cctvlens.ru/product/mg5020kc-mpir-v31/",
+    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2017/08/MG5020KC-MPIR-V31.jpg"
   },
   {
     "Model": "EG6Z0915TCS-MPWIR",
@@ -3766,32 +3696,32 @@
     "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2021/04/m2514-2.jpg"
   },
   {
-    "Model": "TEC-M0865MP",
+    "Model": "TEC-M15110MP\u0421",
     "SensorFormat": "2/3",
-    "FocalLength": "66",
-    "ProductUrl": "https://cctvlens.ru/product/tec-m0865mp/",
-    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2016/09/TEC-M0865MP.png"
+    "FocalLength": "110.7",
+    "ProductUrl": "https://cctvlens.ru/product/tec-m15110mps/",
+    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2016/09/TEC-M15110MPC.png"
   },
   {
-    "Model": "E5228KRW",
-    "SensorFormat": "1/1.8",
-    "FocalLength": "5.2",
-    "ProductUrl": "https://cctvlens.ru/product/e5228krw/",
-    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2016/09/E5228KRW.png"
-  },
-  {
-    "Model": "M1614-SW",
-    "SensorFormat": "2/3",
-    "FocalLength": "16",
-    "ProductUrl": "https://cctvlens.ru/product/m1614-sw/",
-    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2017/08/M1614-SW.png"
-  },
-  {
-    "Model": "H62Z1235PDC-MPIR-EX",
+    "Model": "H0320KP",
     "SensorFormat": "1/2",
-    "FocalLength": "12.5\u2010775 (25-1550)",
-    "ProductUrl": "https://cctvlens.ru/product/h62z1235pdc-mpir-ex/",
-    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2017/08/H62Z1235PDC-MPIR-EX.png"
+    "FocalLength": "3",
+    "ProductUrl": "https://cctvlens.ru/product/h0320kp/",
+    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2016/09/H0320KP.png"
+  },
+  {
+    "Model": "V0828-MPY2",
+    "SensorFormat": "1.1",
+    "FocalLength": "8",
+    "ProductUrl": "https://cctvlens.ru/product/v0828-mpy/",
+    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2017/08/V0828-MPY.png"
+  },
+  {
+    "Model": "H6Z0812M",
+    "SensorFormat": "1/2",
+    "FocalLength": "8-48",
+    "ProductUrl": "https://cctvlens.ru/product/h6z0812m/",
+    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2017/08/H6Z0812M_photo.jpg"
   },
   {
     "Model": "MLH-10X \u0441 \u0443\u0437\u043B\u043E\u043C \u043C\u043E\u0442\u043E\u0440\u0438\u0437\u0430\u0446\u0438\u0438",
@@ -3822,18 +3752,32 @@
     "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2021/12/Pasport-VG2518KC-MPYIR.jpg"
   },
   {
-    "Model": "M2518-MPW",
+    "Model": "TEC-M0865MP",
     "SensorFormat": "2/3",
-    "FocalLength": "25",
-    "ProductUrl": "https://cctvlens.ru/product/m2518-mpw/",
-    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2016/09/M2518-MPW.png"
+    "FocalLength": "66",
+    "ProductUrl": "https://cctvlens.ru/product/tec-m0865mp/",
+    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2016/09/TEC-M0865MP.png"
   },
   {
-    "Model": "A3Z2812CS-MPWIR",
-    "SensorFormat": "1/2.7",
-    "FocalLength": "2.8-8.5",
-    "ProductUrl": "https://cctvlens.ru/product/a3z2812cs-mpwir/",
-    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2017/08/A3Z2812CS-MPWIR-1.png"
+    "Model": "E5228KRW",
+    "SensorFormat": "1/1.8",
+    "FocalLength": "5.2",
+    "ProductUrl": "https://cctvlens.ru/product/e5228krw/",
+    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2016/09/E5228KRW.png"
+  },
+  {
+    "Model": "M1614-SW",
+    "SensorFormat": "2/3",
+    "FocalLength": "16",
+    "ProductUrl": "https://cctvlens.ru/product/m1614-sw/",
+    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2017/08/M1614-SW.png"
+  },
+  {
+    "Model": "H62Z1235PDC-MPIR-EX",
+    "SensorFormat": "1/2",
+    "FocalLength": "12.5\u2010775 (25-1550)",
+    "ProductUrl": "https://cctvlens.ru/product/h62z1235pdc-mpir-ex/",
+    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2017/08/H62Z1235PDC-MPIR-EX.png"
   },
   {
     "Model": "V7531-MPZ",
@@ -3857,32 +3801,18 @@
     "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2022/08/vl1226u_mpz.jpg"
   },
   {
-    "Model": "TEC-M20110MP",
+    "Model": "M2518-MPW",
     "SensorFormat": "2/3",
-    "FocalLength": "110.9",
-    "ProductUrl": "https://cctvlens.ru/product/tec-m20110mp/",
-    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2016/09/TEC-M20110MP.png"
+    "FocalLength": "25",
+    "ProductUrl": "https://cctvlens.ru/product/m2518-mpw/",
+    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2016/09/M2518-MPW.png"
   },
   {
-    "Model": "H0624KP",
-    "SensorFormat": "1/2",
-    "FocalLength": "6",
-    "ProductUrl": "https://cctvlens.ru/product/h0624kp/",
-    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2016/09/H0624KP.png"
-  },
-  {
-    "Model": "V1228-MPY2",
-    "SensorFormat": "1.1",
-    "FocalLength": "12",
-    "ProductUrl": "https://cctvlens.ru/product/v1228-mpy/",
-    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2017/08/V1228-MPY.png"
-  },
-  {
-    "Model": "H6Z0812AMSP",
-    "SensorFormat": "1/2",
-    "FocalLength": "8-48",
-    "ProductUrl": "https://cctvlens.ru/product/h6z0812amsp/",
-    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2017/08/H6Z0812AMSP_photo.jpg"
+    "Model": "A3Z2812CS-MPWIR",
+    "SensorFormat": "1/2.7",
+    "FocalLength": "2.8-8.5",
+    "ProductUrl": "https://cctvlens.ru/product/a3z2812cs-mpwir/",
+    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2017/08/A3Z2812CS-MPWIR-1.png"
   },
   {
     "Model": "AG3Z2812TCS-MPWIR",
@@ -3913,25 +3843,32 @@
     "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2021/04/m3514-1.jpg"
   },
   {
-    "Model": "TEC-M0865MP\u0421",
+    "Model": "TEC-M20110MP",
     "SensorFormat": "2/3",
-    "FocalLength": "66",
-    "ProductUrl": "https://cctvlens.ru/product/tec-m0865mps/",
-    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2016/09/TEC-M0865MPC.png"
+    "FocalLength": "110.9",
+    "ProductUrl": "https://cctvlens.ru/product/tec-m20110mp/",
+    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2016/09/TEC-M20110MP.png"
   },
   {
-    "Model": "A4Z2812CS-MPIR",
-    "SensorFormat": "1/2.7",
-    "FocalLength": "2.8-10",
-    "ProductUrl": "https://cctvlens.ru/product/a4z2812cs-mpir/",
-    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2016/09/A4Z2812CS-MPIR.png"
+    "Model": "H0624KP",
+    "SensorFormat": "1/2",
+    "FocalLength": "6",
+    "ProductUrl": "https://cctvlens.ru/product/h0624kp/",
+    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2016/09/H0624KP.png"
   },
   {
-    "Model": "M2514-SW",
-    "SensorFormat": "2/3",
-    "FocalLength": "25",
-    "ProductUrl": "https://cctvlens.ru/product/m2514-sw/",
-    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2017/08/M2514-SW.png"
+    "Model": "V1228-MPY2",
+    "SensorFormat": "1.1",
+    "FocalLength": "12",
+    "ProductUrl": "https://cctvlens.ru/product/v1228-mpy/",
+    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2017/08/V1228-MPY.png"
+  },
+  {
+    "Model": "H6Z0812AMSP",
+    "SensorFormat": "1/2",
+    "FocalLength": "8-48",
+    "ProductUrl": "https://cctvlens.ru/product/h6z0812amsp/",
+    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2017/08/H6Z0812AMSP_photo.jpg"
   },
   {
     "Model": "MLM-3XMP \u0441 \u0443\u0437\u043B\u043E\u043C \u043C\u043E\u0442\u043E\u0440\u0438\u0437\u0430\u0446\u0438\u0438",
@@ -3962,6 +3899,41 @@
     "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2021/12/Pasport-VG3518KC-MPYIR.jpg"
   },
   {
+    "Model": "TEC-M0865MP\u0421",
+    "SensorFormat": "2/3",
+    "FocalLength": "66",
+    "ProductUrl": "https://cctvlens.ru/product/tec-m0865mps/",
+    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2016/09/TEC-M0865MPC.png"
+  },
+  {
+    "Model": "A4Z2812CS-MPIR",
+    "SensorFormat": "1/2.7",
+    "FocalLength": "2.8-10",
+    "ProductUrl": "https://cctvlens.ru/product/a4z2812cs-mpir/",
+    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2016/09/A4Z2812CS-MPIR.png"
+  },
+  {
+    "Model": "M2514-SW",
+    "SensorFormat": "2/3",
+    "FocalLength": "25",
+    "ProductUrl": "https://cctvlens.ru/product/m2514-sw/",
+    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2017/08/M2514-SW.png"
+  },
+  {
+    "Model": "M2518-APVSW",
+    "SensorFormat": "2/3",
+    "FocalLength": "25",
+    "ProductUrl": "https://cctvlens.ru/product/m2518-apvsw/",
+    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2021/08/25mm.jpg"
+  },
+  {
+    "Model": "Computar VL1624U-MPZ",
+    "SensorFormat": "1",
+    "FocalLength": "16",
+    "ProductUrl": "https://cctvlens.ru/product/vl1624u-mpz/",
+    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2022/08/VL1624U-MPZ.png"
+  },
+  {
     "Model": "TG4Z2816FCS-MPIR",
     "SensorFormat": "1/3",
     "FocalLength": "2.8-12",
@@ -3981,48 +3953,6 @@
     "FocalLength": "3.9-10",
     "ProductUrl": "https://cctvlens.ru/product/e3z3915cs-mpwir/",
     "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2017/08/E3Z3915CS-MPWIR_photo.jpg"
-  },
-  {
-    "Model": "M2518-APVSW",
-    "SensorFormat": "2/3",
-    "FocalLength": "25",
-    "ProductUrl": "https://cctvlens.ru/product/m2518-apvsw/",
-    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2021/08/25mm.jpg"
-  },
-  {
-    "Model": "Computar VL1624U-MPZ",
-    "SensorFormat": "1",
-    "FocalLength": "16",
-    "ProductUrl": "https://cctvlens.ru/product/vl1624u-mpz/",
-    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2022/08/VL1624U-MPZ.png"
-  },
-  {
-    "Model": "TEC-M20110MP\u0421",
-    "SensorFormat": "2/3",
-    "FocalLength": "110.9",
-    "ProductUrl": "https://cctvlens.ru/product/tec-m20110mps/",
-    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2016/09/TEC-M20110MPC.png"
-  },
-  {
-    "Model": "H0924KP",
-    "SensorFormat": "1/2",
-    "FocalLength": "9",
-    "ProductUrl": "https://cctvlens.ru/product/h0924kp/",
-    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2016/09/H0924KP.png"
-  },
-  {
-    "Model": "V1628-MPY2",
-    "SensorFormat": "1.1",
-    "FocalLength": "16",
-    "ProductUrl": "https://cctvlens.ru/product/v1628-mpy/",
-    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2017/08/V1628-MPY.png"
-  },
-  {
-    "Model": "M24Z1527PDC-MP",
-    "SensorFormat": "2/3",
-    "FocalLength": "15-360",
-    "ProductUrl": "https://cctvlens.ru/product/m24z1527pdc-mp/",
-    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2017/08/M24Z1527PDC-MP.png"
   },
   {
     "Model": "EG3Z3915TCS-MPWIR",
@@ -4053,6 +3983,41 @@
     "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2021/04/m5018-1.jpg"
   },
   {
+    "Model": "TEC-M20110MP\u0421",
+    "SensorFormat": "2/3",
+    "FocalLength": "110.9",
+    "ProductUrl": "https://cctvlens.ru/product/tec-m20110mps/",
+    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2016/09/TEC-M20110MPC.png"
+  },
+  {
+    "Model": "H0924KP",
+    "SensorFormat": "1/2",
+    "FocalLength": "9",
+    "ProductUrl": "https://cctvlens.ru/product/h0924kp/",
+    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2016/09/H0924KP.png"
+  },
+  {
+    "Model": "V1628-MPY2",
+    "SensorFormat": "1.1",
+    "FocalLength": "16",
+    "ProductUrl": "https://cctvlens.ru/product/v1628-mpy/",
+    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2017/08/V1628-MPY.png"
+  },
+  {
+    "Model": "M24Z1527PDC-MP",
+    "SensorFormat": "2/3",
+    "FocalLength": "15-360",
+    "ProductUrl": "https://cctvlens.ru/product/m24z1527pdc-mp/",
+    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2017/08/M24Z1527PDC-MP.png"
+  },
+  {
+    "Model": "VG5020KC-MPYIR \u0441 \u0443\u0437\u043B\u043E\u043C \u043C\u043E\u0442\u043E\u0440\u0438\u0437\u0430\u0446\u0438\u0438",
+    "SensorFormat": "1.1",
+    "FocalLength": "50",
+    "ProductUrl": "https://cctvlens.ru/product/vg5020kc-mpyir-s-uzlom-motorizatsii/",
+    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2021/12/VG5020KC-MPYIR.jpg"
+  },
+  {
     "Model": "TEC-M10110MP",
     "SensorFormat": "2/3",
     "FocalLength": "111.5",
@@ -4074,11 +4039,25 @@
     "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2017/08/M3514-SW.png"
   },
   {
-    "Model": "VG5020KC-MPYIR \u0441 \u0443\u0437\u043B\u043E\u043C \u043C\u043E\u0442\u043E\u0440\u0438\u0437\u0430\u0446\u0438\u0438",
+    "Model": "\u0414\u0435\u0440\u0436\u0430\u0442\u0435\u043B\u044C \u0444\u0438\u043B\u044C\u0442\u0440\u0430 ZM-01810",
+    "SensorFormat": "M67 P=0.75",
+    "FocalLength": null,
+    "ProductUrl": "https://cctvlens.ru/product/derzhatel-filtra-zm-01810/",
+    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2020/07/ZM-01810.png"
+  },
+  {
+    "Model": "V3518FIC-MPYIR",
     "SensorFormat": "1.1",
-    "FocalLength": "50",
-    "ProductUrl": "https://cctvlens.ru/product/vg5020kc-mpyir-s-uzlom-motorizatsii/",
-    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2021/12/VG5020KC-MPYIR.jpg"
+    "FocalLength": "35",
+    "ProductUrl": "https://cctvlens.ru/product/v3518fic-mpyir/",
+    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2021/09/V3518FIC-MPYIR.png"
+  },
+  {
+    "Model": "Computar VL2520U-MPZ",
+    "SensorFormat": "1",
+    "FocalLength": "25",
+    "ProductUrl": "https://cctvlens.ru/product/vl2520u-mpz/",
+    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2022/08/VL2520U-MPZ.png"
   },
   {
     "Model": "TEC-M55MPW",
@@ -4109,25 +4088,25 @@
     "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2017/08/M3Z1228C-MP.png"
   },
   {
-    "Model": "\u0414\u0435\u0440\u0436\u0430\u0442\u0435\u043B\u044C \u0444\u0438\u043B\u044C\u0442\u0440\u0430 ZM-01810",
-    "SensorFormat": "M67 P=0.75",
-    "FocalLength": null,
-    "ProductUrl": "https://cctvlens.ru/product/derzhatel-filtra-zm-01810/",
-    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2020/07/ZM-01810.png"
+    "Model": "TEC-M4065MP",
+    "SensorFormat": "2/3",
+    "FocalLength": "65.3",
+    "ProductUrl": "https://cctvlens.ru/product/tec-m4065mp/",
+    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2019/08/TEC-M4065MP.png"
   },
   {
-    "Model": "V3518FIC-MPYIR",
-    "SensorFormat": "1.1",
-    "FocalLength": "35",
-    "ProductUrl": "https://cctvlens.ru/product/v3518fic-mpyir/",
-    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2021/09/V3518FIC-MPYIR.png"
+    "Model": "M24Z1527MP-MP",
+    "SensorFormat": "2/3",
+    "FocalLength": "15-360",
+    "ProductUrl": "https://cctvlens.ru/product/m24z1527mp-mp/",
+    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2017/08/M24Z1527PDC-MP.png"
   },
   {
-    "Model": "Computar VL2520U-MPZ",
-    "SensorFormat": "1",
-    "FocalLength": "25",
-    "ProductUrl": "https://cctvlens.ru/product/vl2520u-mpz/",
-    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2022/08/VL2520U-MPZ.png"
+    "Model": "M1218-APVSW",
+    "SensorFormat": "2/3",
+    "FocalLength": "12",
+    "ProductUrl": "https://cctvlens.ru/product/m1218-apvsw/",
+    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2021/04/12mm-1.jpg"
   },
   {
     "Model": "TEC-M2065MP",
@@ -4156,34 +4135,6 @@
     "FocalLength": "21-500",
     "ProductUrl": "https://cctvlens.ru/product/m24z2138pdc-mp/",
     "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2017/08/M24Z2138PDC-MP_photo.jpg"
-  },
-  {
-    "Model": "\u041C\u0430\u043A\u0440\u043E\u043A\u043E\u043B\u044C\u0446\u0430 VM100",
-    "SensorFormat": null,
-    "FocalLength": null,
-    "ProductUrl": "https://cctvlens.ru/product/computar-vm100/",
-    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2017/09/1347394047000_889272.jpg"
-  },
-  {
-    "Model": "TEC-M4065MP",
-    "SensorFormat": "2/3",
-    "FocalLength": "65.3",
-    "ProductUrl": "https://cctvlens.ru/product/tec-m4065mp/",
-    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2019/08/TEC-M4065MP.png"
-  },
-  {
-    "Model": "M24Z1527MP-MP",
-    "SensorFormat": "2/3",
-    "FocalLength": "15-360",
-    "ProductUrl": "https://cctvlens.ru/product/m24z1527mp-mp/",
-    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2017/08/M24Z1527PDC-MP.png"
-  },
-  {
-    "Model": "M1218-APVSW",
-    "SensorFormat": "2/3",
-    "FocalLength": "12",
-    "ProductUrl": "https://cctvlens.ru/product/m1218-apvsw/",
-    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2021/04/12mm-1.jpg"
   },
   {
     "Model": "TEC-M10110MPC",
@@ -6993,18 +6944,18 @@
     "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2017/09/10620MAS.jpg"
   },
   {
-    "Model": "27629F-16MAS-CM (f2.9)",
-    "SensorFormat": "1/2.3",
-    "FocalLength": "2.7",
-    "ProductUrl": "https://cctvlens.ru/product/27629cm-16mas-f2-9/",
-    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2019/06/27629-16mas-cm.jpg"
-  },
-  {
     "Model": "DW2162 (f2.1)",
     "SensorFormat": "1/3",
     "FocalLength": "2.1",
     "ProductUrl": "https://cctvlens.ru/product/dw2162/",
     "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2016/09/DW2162.jpg"
+  },
+  {
+    "Model": "27629F-16MAS-CM (f2.9)",
+    "SensorFormat": "1/2.3",
+    "FocalLength": "2.7",
+    "ProductUrl": "https://cctvlens.ru/product/27629cm-16mas-f2-9/",
+    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2019/06/27629-16mas-cm.jpg"
   },
   {
     "Model": "VIR50200MASD (f5.0-20.0)",
@@ -7035,18 +6986,18 @@
     "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2017/09/12624MAS-CM.jpg"
   },
   {
-    "Model": "31420-2M (f3.1)",
-    "SensorFormat": "1/3",
-    "FocalLength": "3.1",
-    "ProductUrl": "https://cctvlens.ru/product/31420-3m-f3-1/",
-    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2019/06/31420-2M.jpg"
-  },
-  {
     "Model": "DW25425 (f25)",
     "SensorFormat": "1/2",
     "FocalLength": "25",
     "ProductUrl": "https://cctvlens.ru/product/bl25025/",
     "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2016/10/DW25425.jpg"
+  },
+  {
+    "Model": "31420-2M (f3.1)",
+    "SensorFormat": "1/3",
+    "FocalLength": "3.1",
+    "ProductUrl": "https://cctvlens.ru/product/31420-3m-f3-1/",
+    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2019/06/31420-2M.jpg"
   },
   {
     "Model": "VIR50200MASDN (f5.0-20.0)",
@@ -7084,18 +7035,18 @@
     "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2017/09/18524MAS-CM.jpg"
   },
   {
-    "Model": "DW9616 (f2.97)",
-    "SensorFormat": "1/3",
-    "FocalLength": "2.97",
-    "ProductUrl": "https://cctvlens.ru/product/dw9616-f2-97/",
-    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2019/06/DW9616.jpg"
-  },
-  {
     "Model": "DW28120D (f2.8-12.0)",
     "SensorFormat": "1/3",
     "FocalLength": "2.8-12",
     "ProductUrl": "https://cctvlens.ru/product/lv28120d-cs/",
     "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2016/09/1270166516-1.jpg"
+  },
+  {
+    "Model": "DW9616 (f2.97)",
+    "SensorFormat": "1/3",
+    "FocalLength": "2.97",
+    "ProductUrl": "https://cctvlens.ru/product/dw9616-f2-97/",
+    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2019/06/DW9616.jpg"
   },
   {
     "Model": "VIR50500ASD (f5.0-50.0)",
@@ -7133,6 +7084,13 @@
     "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2017/09/DW245625.jpg"
   },
   {
+    "Model": "DW3042 (f3.0)",
+    "SensorFormat": "1/3",
+    "FocalLength": "3",
+    "ProductUrl": "https://cctvlens.ru/product/bl2921/",
+    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2016/10/DW3042.jpg"
+  },
+  {
     "Model": "DW62428CM (f6.2)",
     "SensorFormat": "1/3",
     "FocalLength": "6.2",
@@ -7152,13 +7110,6 @@
     "FocalLength": "3.7",
     "ProductUrl": "https://cctvlens.ru/product/37518-3mas-f3-7/",
     "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2020/06/37518-3mas.jpg"
-  },
-  {
-    "Model": "DW3042 (f3.0)",
-    "SensorFormat": "1/3",
-    "FocalLength": "3",
-    "ProductUrl": "https://cctvlens.ru/product/bl2921/",
-    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2016/10/DW3042.jpg"
   },
   {
     "Model": "VIR50500ASDN (f5.0-50.0)",
@@ -7196,13 +7147,6 @@
     "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2017/09/DW2425F.jpg"
   },
   {
-    "Model": "DW10353CM (f10.3)",
-    "SensorFormat": "1/2",
-    "FocalLength": "10.3",
-    "ProductUrl": "https://cctvlens.ru/product/dw10353cm-f10-3/",
-    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2019/06/DW10353CM.jpg"
-  },
-  {
     "Model": "DW3080M (f3.0-8.0)",
     "SensorFormat": "1/3",
     "FocalLength": "3-8",
@@ -7210,11 +7154,11 @@
     "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2016/09/i_349.jpg"
   },
   {
-    "Model": "24620-2M (f2.4)",
-    "SensorFormat": "1/3",
-    "FocalLength": "2.4",
-    "ProductUrl": "https://cctvlens.ru/product/24620-2m-f2-4/",
-    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2018/04/24620-3MAS.jpg"
+    "Model": "DW10353CM (f10.3)",
+    "SensorFormat": "1/2",
+    "FocalLength": "10.3",
+    "ProductUrl": "https://cctvlens.ru/product/dw10353cm-f10-3/",
+    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2019/06/DW10353CM.jpg"
   },
   {
     "Model": "VIR50500D (f5.0-50.0)",
@@ -7238,11 +7182,11 @@
     "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2017/09/17620-2MAS-CM.jpg"
   },
   {
-    "Model": "60500-3MASPDNZ (f6.0-50.0)",
-    "SensorFormat": "1/2.7",
-    "FocalLength": "6-50",
-    "ProductUrl": "https://cctvlens.ru/product/60500-3maspdnz-f6-0-50-0/",
-    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2017/09/60500-3MASDNZ.png"
+    "Model": "24620-2M (f2.4)",
+    "SensorFormat": "1/3",
+    "FocalLength": "2.4",
+    "ProductUrl": "https://cctvlens.ru/product/24620-2m-f2-4/",
+    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2018/04/24620-3MAS.jpg"
   },
   {
     "Model": "DW9610 (f8.0)",
@@ -7257,6 +7201,13 @@
     "FocalLength": "2.8-11",
     "ProductUrl": "https://cctvlens.ru/product/28110l-2m/",
     "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2017/09/28110L-2M.jpg"
+  },
+  {
+    "Model": "60500-3MASPDNZ (f6.0-50.0)",
+    "SensorFormat": "1/2.7",
+    "FocalLength": "6-50",
+    "ProductUrl": "https://cctvlens.ru/product/60500-3maspdnz-f6-0-50-0/",
+    "ImageUrl": "https://cctvlens.ru/wp-content/uploads/2017/09/60500-3MASDNZ.png"
   },
   {
     "Model": "DW350420 (f35)",
