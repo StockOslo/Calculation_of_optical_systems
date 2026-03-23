@@ -5,16 +5,13 @@
 
     <Grid Margin="25">
 
-        <!-- строки -->
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        
-        <!-- верх -->
-
+        <!-- ВЕРХ -->
         <Grid Margin="0,0,0,20">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
@@ -26,54 +23,53 @@
                        FontWeight="SemiBold"
                        VerticalAlignment="Center"/>
 
-            <!-- источник -->
             <ComboBox Name="SourceBox"
                       Grid.Column="1"
                       Width="160"
                       Height="30"
-                      VerticalAlignment="Center">
+                      SelectionChanged="SourceChanged">
                 <ComboBoxItem Content="cctv" IsSelected="True"/>
                 <ComboBoxItem Content="cameralab"/>
                 <ComboBoxItem Content="azimp"/>
             </ComboBox>
         </Grid>
 
-        
-        <!-- фильтры -->
+        <!-- ФИЛЬТРЫ -->
         <Border Grid.Row="1"
                 Background="White"
                 CornerRadius="14"
                 Padding="20"
                 Margin="0,0,0,15">
 
-            <Border.Effect>
-                <DropShadowEffect BlurRadius="20"
-                                  ShadowDepth="2"
-                                  Opacity="0.15"/>
-            </Border.Effect>
-
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
+                    <!-- sensor -->
                     <ColumnDefinition Width="Auto"/>
+                    <!-- focal -->
                     <ColumnDefinition Width="Auto"/>
+                    <!-- category -->
                     <ColumnDefinition Width="Auto"/>
+                    <!-- azimp -->
+                    <ColumnDefinition Width="Auto"/>
+                    <!-- button -->
                     <ColumnDefinition Width="*"/>
+                    <!-- status -->
                 </Grid.ColumnDefinitions>
 
-                <!-- Сенсор -->
+                <!-- SENSOR -->
                 <StackPanel x:Name="SensorPanel" Margin="0,0,20,0">
                     <TextBlock Text="Формат матрицы"/>
                     <TextBox Name="SensorBox" Width="140" Height="30"/>
                 </StackPanel>
 
-                <!-- Фокус -->
+                <!-- FOCAL -->
                 <StackPanel x:Name="FocalPanel" Grid.Column="1" Margin="0,0,20,0">
                     <TextBlock Text="Фокус (мм)"/>
                     <TextBox Name="FocalBox" Width="140" Height="30"/>
                 </StackPanel>
 
-                <!-- Категория -->
+                <!-- CATEGORY -->
                 <StackPanel x:Name="CategoryPanel" Grid.Column="2" Margin="0,0,20,0">
                     <TextBlock Text="Категория"/>
                     <ComboBox Name="CategoryBox" Width="140" Height="30">
@@ -83,34 +79,41 @@
                     </ComboBox>
                 </StackPanel>
 
-                <!-- Кнопка -->
-                <Button Grid.Column="3"
-                        Name="SearchButton"
+                <!-- AZIMP (отдельная колонка!) -->
+                <StackPanel x:Name="AzimpPanel"
+                            Grid.Column="3"
+                            Margin="0,0,20,0"
+                            Visibility="Collapsed">
+
+                    <TextBlock Text="Фокус (мм)"/>
+                    <TextBox Name="AzimpFocalBox" Width="140" Height="30" Margin="0,0,0,5"/>
+
+                    <TextBlock Text="ИК фильтр"/>
+                    <TextBox Name="AzimpIrBox" Width="140" Height="30" Margin="0,0,0,5"/>
+
+                    <TextBlock Text="Поиск"/>
+                    <TextBox Name="AzimpSearchBox" Width="140" Height="30"/>
+
+                </StackPanel>
+
+                <!-- BUTTON -->
+                <Button Grid.Column="4"
                         Content="Подобрать"
                         Width="130"
                         Height="32"
-                        VerticalAlignment="Bottom"
-                        Background="#4F6DFF"
-                        Foreground="White"
-                        BorderThickness="0"
-                        Cursor="Hand"
                         Click="ApplyFilter"/>
 
-                <!-- Статус -->
-                <TextBlock Grid.Column="4"
+                <!-- STATUS -->
+                <TextBlock Grid.Column="5"
                            Name="StatusText"
-                           Margin="15,0,0,0"
-                           VerticalAlignment="Bottom"
-                           FontWeight="SemiBold"/>
+                           Margin="10,0,0,0"
+                           VerticalAlignment="Bottom"/>
             </Grid>
         </Border>
 
-       
-        <ScrollViewer Grid.Row="2"
-                      VerticalScrollBarVisibility="Auto">
-
-            <WrapPanel Name="LensPanel"
-                       Margin="0,10,0,0"/>
+        <!-- СПИСОК -->
+        <ScrollViewer Grid.Row="2">
+            <WrapPanel Name="LensPanel"/>
         </ScrollViewer>
 
     </Grid>
