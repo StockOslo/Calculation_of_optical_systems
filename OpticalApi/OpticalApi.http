@@ -1,0 +1,6 @@
+@OpticalApi_HostAddress = http://localhost:5220
+
+GET {{OpticalApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

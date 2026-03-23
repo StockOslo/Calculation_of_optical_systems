@@ -5,127 +5,96 @@
 
     <Grid Margin="25">
 
-        <!-- Строки -->
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <!-- 🔥 ВЕРХ: заголовок + источники -->
+        <!-- ВЕРХ -->
         <Grid Margin="0,0,0,20">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
 
-            <!-- Заголовок -->
             <TextBlock Text="Подбор объективов"
                        FontSize="22"
                        FontWeight="SemiBold"
                        VerticalAlignment="Center"/>
 
-            <!-- КНОПКИ ИСТОЧНИКОВ -->
-            <StackPanel Grid.Column="1"
-                        Orientation="Horizontal"
-                        VerticalAlignment="Center">
-
-                <Button Name="BtnCctv"
-                        Content="CCTVLens"
-                        Width="110"
-                        Height="34"
-                        Margin="0,0,10,0"
-                        Click="SelectSource"/>
-
-                <Button Name="BtnCameraLab"
-                        Content="CameraLab"
-                        Width="110"
-                        Height="34"
-                        Margin="0,0,10,0"
-                        Click="SelectSource"/>
-
-                <Button Name="BtnAzimp"
-                        Content="Azimp"
-                        Width="90"
-                        Height="34"
-                        Click="SelectSource"/>
-            </StackPanel>
+            <!-- ИСТОЧНИК -->
+            <ComboBox Name="SourceBox"
+                      Grid.Column="1"
+                      Width="150"
+                      Height="30">
+                <ComboBoxItem Content="cctv" IsSelected="True"/>
+                <ComboBoxItem Content="cameralab"/>
+                <ComboBoxItem Content="azimp"/>
+            </ComboBox>
         </Grid>
 
-        <!-- Панель фильтров -->
+        <!-- ФИЛЬТРЫ -->
         <Border Grid.Row="1"
                 Background="White"
                 CornerRadius="14"
-                Padding="24"
-                Margin="0,0,0,2">
-
-            <Border.Effect>
-                <DropShadowEffect BlurRadius="25"
-                                  ShadowDepth="2"
-                                  Opacity="0.15"/>
-            </Border.Effect>
+                Padding="24">
 
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
-                <!-- Верхняя строка -->
-                <Grid Grid.Row="0">
+                <Grid>
                     <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
 
-                    <!-- Формат -->
+                    <!-- Сенсор -->
                     <StackPanel Margin="0,0,20,0">
                         <TextBlock Text="Формат матрицы"/>
-                        <TextBox Name="SensorBox"
-                                 Width="160"
-                                 Height="35"/>
+                        <TextBox Name="SensorBox" Width="140" Height="30"/>
                     </StackPanel>
 
                     <!-- Фокус -->
                     <StackPanel Grid.Column="1" Margin="0,0,20,0">
-                        <TextBlock Text="Фокусное расстояние (мм)"/>
-                        <TextBox Name="FocalBox"
-                                 Width="160"
-                                 Height="35"/>
+                        <TextBlock Text="Фокус (мм)"/>
+                        <TextBox Name="FocalBox" Width="140" Height="30"/>
+                    </StackPanel>
+
+                    <!-- Категория -->
+                    <StackPanel Grid.Column="2" Margin="0,0,20,0">
+                        <TextBlock Text="Категория"/>
+                        <ComboBox Name="CategoryBox" Width="140" Height="30">
+                            <ComboBoxItem Content=""/>
+                            <ComboBoxItem Content="Фикс"/>
+                            <ComboBoxItem Content="Вариофокал"/>
+                        </ComboBox>
                     </StackPanel>
 
                     <!-- Кнопка -->
-                    <Button Grid.Column="2"
+                    <Button Grid.Column="3"
                             Name="SearchButton"
                             Content="Подобрать"
-                            Width="140"
-                            Height="36"
+                            Width="120"
+                            Height="30"
                             VerticalAlignment="Bottom"
                             Click="ApplyFilter"/>
 
                     <!-- Статус -->
-                    <TextBlock Grid.Column="3"
+                    <TextBlock Grid.Column="4"
                                Name="StatusText"
+                               Margin="10,0,0,0"
                                VerticalAlignment="Bottom"
-                               Margin="10,0,0,5"
                                FontWeight="SemiBold"/>
                 </Grid>
-
-                <!-- Офлайн режим -->
-                <StackPanel Grid.Row="1"
-                            Orientation="Horizontal"
-                            Margin="0,20,0,0"
-                            VerticalAlignment="Center">
-
-                    <CheckBox Name="OfflineToggle"
-                              Content="Офлайн режим (использовать локальный JSON)"
-                              FontWeight="SemiBold"/>
-                </StackPanel>
             </Grid>
         </Border>
 
-        <!-- Список -->
+        <!-- СПИСОК -->
         <ScrollViewer Grid.Row="1" Margin="0,120,0,0">
             <WrapPanel Name="LensPanel"/>
         </ScrollViewer>

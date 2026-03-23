@@ -1,4 +1,4 @@
 <Solution>
   <Project Path="Calculation_of_optical_systems/Calculation_of_optical_systems.csproj" />
-  <Project Path="UnitTestsCalculation_of_optical_systems/UnitTestsCalculation_of_optical_systems.csproj" Id="8bb84f9b-77c2-4377-96c9-cfb677231183" />
+  <Project Path="OpticalApi/OpticalApi.csproj" Id="a6ba5552-bfc5-4826-a917-feea2b96ffc1" />
 </Solution>

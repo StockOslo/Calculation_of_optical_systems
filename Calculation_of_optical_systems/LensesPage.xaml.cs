@@ -1,5 +1,6 @@
 ﻿using System;
-using System.Linq;
+using System.Net.Http;
+using System.Text.Json;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Windows;
@@ -11,240 +12,186 @@ namespace Calculation_of_optical_systems
 {
     public partial class LensesPage : Page
     {
-        private string currentSource = "cctv";
+        private readonly HttpClient _client;
+        private const string API_URL = "http://localhost:5220/api/lenses";
 
         public LensesPage()
         {
             InitializeComponent();
-        }
 
-        // 🔹 Выбор источника
-        private void SelectSource(object sender, RoutedEventArgs e)
-        {
-            if (sender is Button btn)
+            var handler = new HttpClientHandler()
             {
-                BtnCctv.Background = Brushes.LightGray;
-                BtnCameraLab.Background = Brushes.LightGray;
-                BtnAzimp.Background = Brushes.LightGray;
+                UseProxy = false,
+                UseDefaultCredentials = true
+            };
 
-                switch (btn.Name)
-                {
-                    case "BtnCctv":
-                        currentSource = "cctv";
-                        StatusText.Text = "Источник: CCTVLens";
-                        break;
-                    case "BtnCameraLab":
-                        currentSource = "cameralab";
-                        StatusText.Text = "Источник: CameraLab";
-                        break;
-                    case "BtnAzimp":
-                        currentSource = "azimp";
-                        StatusText.Text = "Источник: Azimp";
-                        break;
-                }
-
-                btn.Background = Brushes.LightBlue;
-            }
+            _client = new HttpClient(handler);
         }
 
-        // 🔹 Применение фильтров
         private async void ApplyFilter(object sender, RoutedEventArgs e)
         {
-            bool isOffline = OfflineToggle.IsChecked == true;
-            StatusText.Text = isOffline ? "Загрузка из файла..." : "Загрузка с сервера...";
-
-            var lenses = await LoadLenses(isOffline);
-
-            // 🔹 Фильтруем
-            var filtered = lenses.Where(l => LensMatchesFilter(l)).ToList();
-
-            // 🔹 Обновляем интерфейс
-            LensPanel.Children.Clear();
-            foreach (var lens in filtered)
-                AddLensCard(lens);
-
-            StatusText.Text = $"Найдено: {filtered.Count}";
-        }
-
-        // 🔹 Загрузка линз в зависимости от источника
-        private async Task<List<LensParserPython.Lens>> LoadLenses(bool isOffline)
-        {
-            switch (currentSource)
-            {
-                case "cctv":
-                    var cctvList = await new LensParser().GetCctvLensesAsync(isOffline);
-                    return cctvList.Select(l => new LensParserPython.Lens
-                    {
-                        title = l.Model,
-                        link = l.ProductUrl,
-                        characteristics = new Dictionary<string, string>
-                        {
-                            { "Фокусное расстояние, мм", l.FocalLength ?? "" },
-                            { "Формат сенсора", l.SensorFormat ?? "" },
-                            { "ImageUrl", l.ImageUrl ?? "" }
-                        }
-                    }).ToList();
-
-                case "cameralab":
-                    return isOffline
-                        ? await LensParserPython.LoadFromJsonAsync()
-                        : await LensParserPython.UpdateFromPythonAsync();
-
-                case "azimp":
-                    return isOffline
-                        ? await LensParserPython.LoadAzimpFromJsonAsync()
-                        : await LensParserPython.UpdateAzimpFromPythonAsync();
-
-                default:
-                    return new List<LensParserPython.Lens>();
-            }
-        }
-
-        // 🔹 Проверка фильтра для сенсора и фокусного расстояния
-        private bool LensMatchesFilter(LensParserPython.Lens lens)
-        {
-            string sensorInput = SensorBox.Text ?? "";
-            string focalInput = FocalBox.Text ?? "";
-
-            string lensSensor = lens.characteristics.ContainsKey("Формат сенсора")
-                ? lens.characteristics["Формат сенсора"]
-                : "";
-            string lensFocal = lens.characteristics.ContainsKey("Фокусное расстояние, мм")
-                ? lens.characteristics["Фокусное расстояние, мм"]
-                : "";
-
-            // 🔹 Нормализация сенсора
-            string normLensSensor = NormalizeSensor(lensSensor);
-            string normSensorInput = NormalizeSensor(sensorInput);
-
-            // 🔹 Парсим диапазоны фокусного расстояния
-            (double minFocal, double maxFocal) = ParseFocalRange(lensFocal);
-            (double userMin, double userMax) = ParseFocalRange(focalInput);
-
-            // 🔹 Проверка сенсора
-            bool sensorOk = string.IsNullOrWhiteSpace(normSensorInput) || normLensSensor.Contains(normSensorInput);
-
-            // 🔹 Проверка пересечения диапазонов фокусного расстояния
-            bool focalOk = string.IsNullOrWhiteSpace(focalInput) || (userMax >= minFocal && userMin <= maxFocal);
-
-            return sensorOk && focalOk;
-        }
-
-        // 🔹 Нормализация сенсора для корректного сравнения
-        private string NormalizeSensor(string s)
-        {
-            if (string.IsNullOrWhiteSpace(s)) return "";
-            return new string(s.Where(c => char.IsDigit(c) || c == '/').ToArray());
-        }
-
-        // 🔹 Парсим строку с фокусным расстоянием в диапазон
-        private (double min, double max) ParseFocalRange(string s)
-        {
-            if (string.IsNullOrWhiteSpace(s))
-                return (0, double.MaxValue);
-
-            s = s.ToLower()
-                 .Replace("мм", "")
-                 .Replace("mm", "")
-                 .Replace("f=", "")
-                 .Replace("f", "")
-                 .Replace("–", "-")
-                 .Replace(" ", "")
-                 .Trim();
-
-            s = new string(s.Where(c => char.IsDigit(c) || c == '.' || c == ',' || c == '-').ToArray());
-            s = s.Replace(',', '.');
-
-            string[] parts = s.Split('-', StringSplitOptions.RemoveEmptyEntries);
+            StatusText.Text = "Загрузка...";
 
             try
             {
-                if (parts.Length == 1 && double.TryParse(parts[0], out double val))
-                    return (val, val);
-                else if (parts.Length == 2)
-                {
-                    double min = double.TryParse(parts[0], out double a) ? a : 0;
-                    double max = double.TryParse(parts[1], out double b) ? b : double.MaxValue;
-                    return (min, max);
-                }
-            }
-            catch { }
+                var lenses = await LoadFromApi();
 
-            return (0, double.MaxValue);
+                LensPanel.Children.Clear();
+
+                foreach (var lens in lenses)
+                    AddLensCard(lens);
+
+                StatusText.Text = $"Найдено: {lenses.Count}";
+            }
+            catch (Exception ex)
+            {
+                StatusText.Text = "Ошибка";
+                MessageBox.Show(ex.Message);
+            }
         }
 
-        // 🔹 Отображение карточки линзы
-        private void AddLensCard(LensParserPython.Lens lens)
+        private async Task<List<LensDto>> LoadFromApi()
+        {
+            string source = (SourceBox.SelectedItem as ComboBoxItem)?.Content?.ToString() ?? "cctv";
+            string sensor = SensorBox.Text ?? "";
+            string focal = FocalBox.Text ?? "";
+            string category = (CategoryBox.SelectedItem as ComboBoxItem)?.Content?.ToString() ?? "";
+
+            var query = new List<string>();
+
+            if (!string.IsNullOrWhiteSpace(source))
+                query.Add($"source={Uri.EscapeDataString(source)}");
+
+            if (!string.IsNullOrWhiteSpace(sensor))
+                query.Add($"sensor={Uri.EscapeDataString(sensor)}");
+
+            if (!string.IsNullOrWhiteSpace(focal))
+                query.Add($"focal={Uri.EscapeDataString(focal)}");
+
+            if (!string.IsNullOrWhiteSpace(category))
+                query.Add($"category={Uri.EscapeDataString(category)}");
+
+            string url = API_URL + "?" + string.Join("&", query);
+
+            var response = await _client.GetAsync(url);
+
+            if (!response.IsSuccessStatusCode)
+                throw new Exception($"Ошибка API: {response.StatusCode}");
+
+            var json = await response.Content.ReadAsStringAsync();
+
+            // 🔥 ВОТ ГЛАВНЫЙ ФИКС
+            var options = new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true
+            };
+
+            return JsonSerializer.Deserialize<List<LensDto>>(json, options)
+                   ?? new List<LensDto>();
+        }
+
+        private void AddLensCard(LensDto lens)
         {
             var card = new Border
             {
-                Width = 240,
+                Width = 260,
                 Margin = new Thickness(12),
-                Padding = new Thickness(14),
-                CornerRadius = new CornerRadius(14),
+                Padding = new Thickness(16),
+                CornerRadius = new CornerRadius(16),
                 Background = Brushes.White,
-                Cursor = System.Windows.Input.Cursors.Hand,
-                Effect = new System.Windows.Media.Effects.DropShadowEffect { BlurRadius = 18, ShadowDepth = 3, Opacity = 0.18 }
+                Effect = new System.Windows.Media.Effects.DropShadowEffect
+                {
+                    BlurRadius = 20,
+                    ShadowDepth = 4,
+                    Opacity = 0.15
+                }
             };
-
-            card.MouseEnter += (_, __) => card.RenderTransform = new ScaleTransform(1.03, 1.03);
-            card.MouseLeave += (_, __) => card.RenderTransform = new ScaleTransform(1, 1);
 
             var stack = new StackPanel();
 
-            // 🔹 Картинка
-            if (lens.characteristics.ContainsKey("ImageUrl") && !string.IsNullOrEmpty(lens.characteristics["ImageUrl"]))
+            // КАРТИНКА
+            if (!string.IsNullOrEmpty(lens.ImageUrl))
             {
                 try
                 {
-                    var image = new BitmapImage();
-                    image.BeginInit();
-                    image.UriSource = new Uri(lens.characteristics["ImageUrl"]);
-                    image.CacheOption = BitmapCacheOption.OnLoad;
-                    image.EndInit();
-
                     stack.Children.Add(new Border
                     {
-                        CornerRadius = new CornerRadius(10),
                         Background = new SolidColorBrush(Color.FromRgb(245, 247, 255)),
-                        Padding = new Thickness(6),
-                        Child = new Image { Height = 130, Stretch = Stretch.Uniform, Source = image }
+                        CornerRadius = new CornerRadius(10),
+                        Padding = new Thickness(8),
+                        Child = new Image
+                        {
+                            Height = 140,
+                            Stretch = Stretch.Uniform,
+                            Source = new BitmapImage(new Uri(lens.ImageUrl))
+                        }
                     });
                 }
                 catch { }
             }
 
-            // 🔹 Заголовок
+            // НАЗВАНИЕ
             stack.Children.Add(new TextBlock
             {
-                Text = lens.title,
-                FontWeight = FontWeights.Bold,
-                FontSize = 15,
-                Margin = new Thickness(0, 10, 0, 6),
+                Text = lens.Title ?? "Без названия",
+                FontWeight = FontWeights.SemiBold,
+                FontSize = 14,
+                Margin = new Thickness(0, 10, 0, 8),
                 TextWrapping = TextWrapping.Wrap
             });
 
-            // 🔹 Характеристики
-            foreach (var kv in lens.characteristics)
-                stack.Children.Add(new TextBlock { Text = $"{kv.Key}: {kv.Value}" });
+            // ХАРАКТЕРИСТИКИ
+            stack.Children.Add(CreateInfo("Фокус:", lens.Focal));
+            stack.Children.Add(CreateInfo("Сенсор:", lens.Sensor));
+            stack.Children.Add(CreateInfo("Категория:", lens.Category));
 
-            // 🔹 Кнопка открыть
-            var openBtn = new Button { Content = "Открыть", Margin = new Thickness(0, 10, 0, 0) };
-            openBtn.Click += (_, __) =>
+            // КНОПКА
+            var btn = new Button
             {
-                if (!string.IsNullOrEmpty(lens.link))
+                Content = "Открыть",
+                Height = 36,
+                Margin = new Thickness(0, 12, 0, 0),
+                Background = new SolidColorBrush(Color.FromRgb(80, 110, 255)),
+                Foreground = Brushes.White,
+                BorderThickness = new Thickness(0)
+            };
+
+            btn.Click += (_, __) =>
+            {
+                if (!string.IsNullOrEmpty(lens.Link))
                 {
                     System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
                     {
-                        FileName = lens.link,
+                        FileName = lens.Link,
                         UseShellExecute = true
                     });
                 }
             };
-            stack.Children.Add(openBtn);
+
+            stack.Children.Add(btn);
 
             card.Child = stack;
             LensPanel.Children.Add(card);
+        }
+
+        private UIElement CreateInfo(string label, string value)
+        {
+            return new TextBlock
+            {
+                Text = $"{label} {value ?? "-"}",
+                Margin = new Thickness(0, 2, 0, 2),
+                Foreground = new SolidColorBrush(Color.FromRgb(60, 60, 60))
+            };
+        }
+
+        public class LensDto
+        {
+            public string Title { get; set; }
+            public string Link { get; set; }
+            public string Sensor { get; set; }
+            public string Focal { get; set; }
+            public string ImageUrl { get; set; }
+            public string Category { get; set; }
         }
     }
 }
