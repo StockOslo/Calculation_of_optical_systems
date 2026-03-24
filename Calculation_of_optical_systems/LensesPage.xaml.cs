@@ -17,7 +17,7 @@ namespace Calculation_of_optical_systems
         private const string API_URL = "http://localhost:5220/api/lenses";
         private bool _isLoaded = false; // флаг загрузки страницы
 
-    public LensesPage()
+        public LensesPage()
         {
             InitializeComponent();
 
@@ -113,6 +113,7 @@ namespace Calculation_of_optical_systems
             var data = JsonSerializer.Deserialize<List<LensDto>>(json,
                 new JsonSerializerOptions { PropertyNameCaseInsensitive = true })
                 ?? new List<LensDto>();
+
 
             if (source == "azimp") // фильтрация azimp
             {
@@ -234,6 +235,7 @@ namespace Calculation_of_optical_systems
                 Margin = new Thickness(0, 10, 0, 0)
             };
 
+
             btn.Click += (_, __) =>
             {
                 if (!string.IsNullOrEmpty(lens.Link))
@@ -265,3 +267,5 @@ namespace Calculation_of_optical_systems
     }
 
 }
+
+

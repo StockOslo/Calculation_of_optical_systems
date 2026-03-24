@@ -1,4 +1,7 @@
 <Solution>
   <Project Path="Calculation_of_optical_systems/Calculation_of_optical_systems.csproj" />
-  <Project Path="OpticalApi/OpticalApi.csproj" Id="a6ba5552-bfc5-4826-a917-feea2b96ffc1" />
+  <Project Path="OpticalApi/OpticalApi.csproj" Id="a6ba5552-bfc5-4826-a917-feea2b96ffc1">
+    <Build Solution="Debug|*" Project="false" />
+  </Project>
+  <Project Path="TestsAntonov/TestsAntonov.csproj" Id="0b7ecdfb-8e7a-412b-9daf-cbf2c89bd2db" />
 </Solution>

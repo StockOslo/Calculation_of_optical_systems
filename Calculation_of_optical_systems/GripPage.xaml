@@ -3,13 +3,37 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       Background="#F4F6FB">
 
+    <Page.Resources>
+
+        <Style x:Key="ModernInput" TargetType="TextBox">
+            <Setter Property="Height" Value="34"/>
+            <Setter Property="Padding" Value="10,5"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="Background" Value="#F8FAFF"/>
+            <Setter Property="BorderBrush" Value="#D0D5DD"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TextBox">
+                        <Border CornerRadius="8"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}">
+                            <ScrollViewer x:Name="PART_ContentHost"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+    </Page.Resources>
+
     <Grid Margin="30">
 
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-
 
         <TextBlock
             Text="Расчет глубины резкости изображаемого пространства (ГРИП)"
@@ -40,45 +64,68 @@
                                FontWeight="Bold"
                                Margin="0,0,0,18"/>
 
-                    <!-- R -->
                     <StackPanel Margin="0,0,0,14">
-                        <TextBlock Text="R — дистанция фокусировки (м)"/>
+                        <TextBlock Text="R"
+                                   FontWeight="SemiBold"/>
+                        <TextBlock Text="дистанция фокусировки"
+                                   FontSize="12"
+                                   Foreground="#6B7280"/>
+                        <TextBlock Text="м"
+                                   FontSize="12"
+                                   Foreground="#9CA3AF"
+                                   Margin="0,0,0,5"/>
                         <TextBox Name="RBox"
-                                 Height="32"
-                                 Padding="6"
+                                 Style="{StaticResource ModernInput}"
                                  TextChanged="InputChanged"/>
                     </StackPanel>
 
-                    <!-- f -->
-                    <StackPanel Margin="0,0,0,14">
-                        <TextBlock Text="f — фокусное расстояние (мм)"/>
+                    <StackPanel Margin="0,0,0,14" >
+                        <TextBlock Text="f"
+                                   FontWeight="SemiBold"/>
+                        <TextBlock Text="фокусное расстояние"
+                                   FontSize="12"
+                                   Foreground="#6B7280"/>
+                        <TextBlock Text="мм"
+                                   FontSize="12"
+                                   Foreground="#9CA3AF"
+                                   Margin="0,0,0,5"/>
                         <TextBox Name="FBox"
-                                 Height="32"
-                                 Padding="6"
+                                 Style="{StaticResource ModernInput}"
                                  TextChanged="InputChanged"/>
                     </StackPanel>
 
-                    <!-- z -->
                     <StackPanel Margin="0,0,0,14">
-                        <TextBlock Text="z — кружок нерезкости (мкм)"/>
+                        <TextBlock Text="z"
+                                   FontWeight="SemiBold"/>
+                        <TextBlock Text="кружок нерезкости"
+                                   FontSize="12"
+                                   Foreground="#6B7280"/>
+                        <TextBlock Text="мкм"
+                                   FontSize="12"
+                                   Foreground="#9CA3AF"
+                                   Margin="0,0,0,5"/>
                         <TextBox Name="ZBox"
-                                 Height="32"
-                                 Padding="6"
+                                 Style="{StaticResource ModernInput}"
                                  TextChanged="InputChanged"/>
                     </StackPanel>
 
-                    <!-- K -->
                     <StackPanel>
-                        <TextBlock Text="K — диафрагменное число"/>
+                        <TextBlock Text="K"
+                                   FontWeight="SemiBold"/>
+                        <TextBlock Text="диафрагменное число"
+                                   FontSize="12"
+                                   Foreground="#6B7280"/>
+                        <TextBlock Text=""
+                                   FontSize="12"
+                                   Foreground="#9CA3AF"
+                                   Margin="0,0,0,5"/>
                         <TextBox Name="KBox"
-                                 Height="32"
-                                 Padding="6"
+                                 Style="{StaticResource ModernInput}"
                                  TextChanged="InputChanged"/>
                     </StackPanel>
 
                 </StackPanel>
             </Border>
-
 
             <Border Grid.Column="1"
                     Margin="25,0,0,0"

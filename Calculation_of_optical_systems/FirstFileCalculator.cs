@@ -4,7 +4,7 @@ namespace Calculation_of_optical_systems
 {
     public static class FirstFileCalculator
     {
-        public static FirstFileCalculationResult Calculate(
+        public static FirstFileCalculationResult Calculate( 
             FirstFileCalculationInput input,
             CalculationMode mode)
         {
@@ -13,6 +13,10 @@ namespace Calculation_of_optical_systems
 
             // просто для удобства выносим фокус
             double f = input.f;
+
+            // проверка фокуса
+            if (f <= 0)
+                throw new ArgumentException("f must be greater than 0");
 
             // копируем входные значения (чтобы они тоже отображались в результате)
             r.Δh = input.Δh;

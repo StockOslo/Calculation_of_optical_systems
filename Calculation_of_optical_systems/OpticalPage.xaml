@@ -3,6 +3,88 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       Background="#F4F6FB">
 
+    <Page.Resources>
+
+        <Style x:Key="ModernInput" TargetType="TextBox">
+            <Setter Property="Height" Value="32"/>
+            <Setter Property="Padding" Value="8,4"/>
+            <Setter Property="Background" Value="#F8FAFF"/>
+            <Setter Property="BorderBrush" Value="#D0D5DD"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TextBox">
+                        <Border CornerRadius="6"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}">
+                            <ScrollViewer x:Name="PART_ContentHost"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="ModernComboBox" TargetType="ComboBox">
+            <Setter Property="OverridesDefaultStyle" Value="True"/>
+            <Setter Property="Background" Value="#F8FAFF"/>
+            <Setter Property="BorderBrush" Value="#D0D5DD"/>
+            <Setter Property="BorderThickness" Value="1"/>
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ComboBox">
+                        <Grid>
+
+                            <ToggleButton IsChecked="{Binding IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}}"
+                                          Background="Transparent"
+                                          BorderThickness="0">
+
+                                <Border CornerRadius="8"
+                                        Background="{TemplateBinding Background}"
+                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                        BorderThickness="{TemplateBinding BorderThickness}"
+                                        Padding="8,4">
+
+                                    <Grid>
+                                        <ContentPresenter Margin="0,0,20,0"
+                                                          VerticalAlignment="Center"
+                                                          Content="{TemplateBinding SelectionBoxItem}"/>
+
+                                        <Path HorizontalAlignment="Right"
+                                              VerticalAlignment="Center"
+                                              Fill="#6B7280"
+                                              Data="M 0 0 L 5 5 L 10 0 Z"/>
+                                    </Grid>
+
+                                </Border>
+                            </ToggleButton>
+
+                            <Popup IsOpen="{TemplateBinding IsDropDownOpen}"
+                                   Placement="Bottom">
+
+                                <Border Margin="0,5,0,0"
+                                        Background="White"
+                                        BorderBrush="#D0D5DD"
+                                        BorderThickness="1"
+                                        CornerRadius="8">
+
+                                    <ScrollViewer>
+                                        <StackPanel IsItemsHost="True"/>
+                                    </ScrollViewer>
+
+                                </Border>
+
+                            </Popup>
+
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+    </Page.Resources>
+
     <Grid Margin="30">
 
         <Grid.RowDefinitions>
@@ -19,11 +101,14 @@
             </TextBlock>
 
             <ComboBox Name="ModeBox"
+                      Style="{StaticResource ModernComboBox}"
                       SelectionChanged="ModeChanged"
+                      HorizontalAlignment ="Right"
                       Margin="0,15,0,0"
-                      Height="32">
+                      Height="32"
+                      SelectedIndex="0">
 
-                <ComboBoxItem Content="1. Объектив" IsSelected="True"/>
+                <ComboBoxItem Content="1. Объектив"/>
                 <ComboBoxItem Content="2. Пиксель"/>
                 <ComboBoxItem Content="3. Найти Nh Nv"/>
                 <ComboBoxItem Content="4. Найти Δh Δv"/>
@@ -31,7 +116,6 @@
             </ComboBox>
 
         </StackPanel>
-
 
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
@@ -49,7 +133,6 @@
                                    FontWeight="Bold"
                                    Margin="0,0,0,10"/>
 
-                        <!-- Nh -->
                         <Grid Margin="0,5">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="50"/>
@@ -57,44 +140,38 @@
                                 <ColumnDefinition Width="70"/>
                             </Grid.ColumnDefinitions>
 
-                            <TextBlock Text="Nh"
-                                       VerticalAlignment="Center"/>
-                            <TextBox Name="NhBox"
+                            <TextBlock Text="Nh" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            <TextBox Style="{StaticResource ModernInput}"
+                                     Name="NhBox"
                                      Grid.Column="1"
                                      TextChanged="InputChanged"/>
-                            <TextBlock Text="пикс"
-                                       Grid.Column="2"
-                                       VerticalAlignment="Center"/>
+                            <TextBlock Text="пикс" Grid.Column="2"  VerticalAlignment="Center" HorizontalAlignment="Center"/>
                         </Grid>
 
-                        <!-- Nv -->
                         <Grid Margin="0,5">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="50"/>
-                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="38*"/>
+                                <ColumnDefinition Width="7*"/>
                                 <ColumnDefinition Width="70"/>
                             </Grid.ColumnDefinitions>
 
-                            <TextBlock Text="Nv"
-                                       VerticalAlignment="Center"/>
-                            <TextBox Name="NvBox"
+                            <TextBlock Text="Nv"  VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            <TextBox Style="{StaticResource ModernInput}"
+                                     Name="NvBox"
                                      Grid.Column="1"
-                                     TextChanged="InputChanged"/>
-                            <TextBlock Text="пикс"
-                                       Grid.Column="2"
-                                       VerticalAlignment="Center"/>
+                                     TextChanged="InputChanged" Grid.ColumnSpan="2"/>
+                            <TextBlock Text="пикс" Grid.Column="3"  VerticalAlignment="Center" HorizontalAlignment="Center"/>
                         </Grid>
 
                     </StackPanel>
 
-                   
                     <StackPanel x:Name="PixelPanel" Margin="0,0,0,15">
 
                         <TextBlock Text="Размер пикселя"
                                    FontWeight="Bold"
                                    Margin="0,0,0,10"/>
 
-                        <!-- Δh -->
                         <Grid Margin="0,5">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="50"/>
@@ -102,15 +179,14 @@
                                 <ColumnDefinition Width="70"/>
                             </Grid.ColumnDefinitions>
 
-                            <TextBlock Text="Δh"/>
-                            <TextBox Name="DhBox"
+                            <TextBlock Text="Δh"  VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            <TextBox Style="{StaticResource ModernInput}"
+                                     Name="DhBox"
                                      Grid.Column="1"
                                      TextChanged="InputChanged"/>
-                            <TextBlock Text="мкм"
-                                       Grid.Column="2"/>
+                            <TextBlock Text="мкм" Grid.Column="2"  VerticalAlignment="Center" HorizontalAlignment="Center"/>
                         </Grid>
 
-                        <!-- Δv -->
                         <Grid Margin="0,5">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="50"/>
@@ -118,24 +194,22 @@
                                 <ColumnDefinition Width="70"/>
                             </Grid.ColumnDefinitions>
 
-                            <TextBlock Text="Δv"/>
-                            <TextBox Name="DvBox"
+                            <TextBlock Text="Δv"  VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            <TextBox Style="{StaticResource ModernInput}"
+                                     Name="DvBox"
                                      Grid.Column="1"
                                      TextChanged="InputChanged"/>
-                            <TextBlock Text="мкм"
-                                       Grid.Column="2"/>
+                            <TextBlock Text="мкм" Grid.Column="2"  VerticalAlignment="Center" HorizontalAlignment="Center"/>
                         </Grid>
 
                     </StackPanel>
 
-                    <!-- углы -->
                     <StackPanel x:Name="AnglePanel" Margin="0,0,0,15">
 
                         <TextBlock Text="Углы"
                                    FontWeight="Bold"
                                    Margin="0,0,0,10"/>
 
-                        <!-- δh -->
                         <Grid Margin="0,5">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="50"/>
@@ -143,15 +217,14 @@
                                 <ColumnDefinition Width="70"/>
                             </Grid.ColumnDefinitions>
 
-                            <TextBlock Text="δh"/>
-                            <TextBox Name="AngleHBox"
+                            <TextBlock Text="δh"  VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            <TextBox Style="{StaticResource ModernInput}"
+                                     Name="AngleHBox"
                                      Grid.Column="1"
                                      TextChanged="InputChanged"/>
-                            <TextBlock Text="°"
-                                       Grid.Column="2"/>
+                            <TextBlock Text="градусы" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                         </Grid>
 
-                        <!-- δv -->
                         <Grid Margin="0,5">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="50"/>
@@ -159,17 +232,16 @@
                                 <ColumnDefinition Width="70"/>
                             </Grid.ColumnDefinitions>
 
-                            <TextBlock Text="δv"/>
-                            <TextBox Name="AngleVBox"
+                            <TextBlock Text="δv"  VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            <TextBox Style="{StaticResource ModernInput}"
+                                     Name="AngleVBox"
                                      Grid.Column="1"
                                      TextChanged="InputChanged"/>
-                            <TextBlock Text="°"
-                                       Grid.Column="2"/>
+                            <TextBlock Text="градусы" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                         </Grid>
 
                     </StackPanel>
 
-                    <!--  фокус -->
                     <StackPanel>
 
                         <TextBlock Text="Фокус"
@@ -183,12 +255,12 @@
                                 <ColumnDefinition Width="70"/>
                             </Grid.ColumnDefinitions>
 
-                            <TextBlock Text="f"/>
-                            <TextBox Name="FBox"
+                            <TextBlock Text="f"  VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            <TextBox Style="{StaticResource ModernInput}"
+                                     Name="FBox"
                                      Grid.Column="1"
                                      TextChanged="InputChanged"/>
-                            <TextBlock Text="мм"
-                                       Grid.Column="2"/>
+                            <TextBlock Text="мм" Grid.Column="2"  VerticalAlignment="Center" HorizontalAlignment="Center"/>
                         </Grid>
 
                     </StackPanel>
@@ -196,7 +268,6 @@
                 </StackPanel>
             </Border>
 
-            <!-- результат -->
             <Border Grid.Column="1"
                     Margin="20,0,0,0"
                     Background="#FFFBE6"
