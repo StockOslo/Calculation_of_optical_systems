@@ -15,6 +15,17 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v3
 
+    - name: Show .NET version
+      run: dotnet --info
+
+    - name: Cache NuGet packages
+      uses: actions/cache@v3
+      with:
+        path: ~/.nuget/packages
+        key: ${{ runner.os }}-nuget-${{ hashFiles('**/*.csproj') }}
+        restore-keys: |
+          ${{ runner.os }}-nuget-
+
     - name: Setup .NET
       uses: actions/setup-dotnet@v3
       with:
@@ -25,6 +36,15 @@ jobs:
 
     - name: Build project
       run: dotnet build --no-restore --configuration Release
+
+    - name: Publish build artifacts
+      run: dotnet publish -c Release -o publish
+
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: optical-app
+        path: publish/
 
     - name: Skip tests (temporary)
       run: echo "Tests are disabled for now"
