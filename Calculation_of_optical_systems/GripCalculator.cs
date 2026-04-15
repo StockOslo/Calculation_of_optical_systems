@@ -12,13 +12,13 @@ namespace Calculation_of_optical_systems
             double f_m = input.f * 1e-3;   // мм → м
             double z_m = input.z * 1e-6;   // мкм → м
 
-            // H (Excel F10)
+            // H 
             // =(f^2)/(K*z) + f
 
             r.H = (f_m * f_m) / (input.K * z_m) + f_m;
 
 
-            // R1 (Excel F4)
+            // R1 
 
             r.R1 =
                 (input.R * (f_m * f_m)) /
@@ -27,7 +27,7 @@ namespace Calculation_of_optical_systems
                  + input.K * input.R * z_m);
 
 
-            // R2 (Excel F7)
+            // R2 
 
             r.R2 =
                 (input.R * (f_m * f_m)) /

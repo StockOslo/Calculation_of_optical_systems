@@ -11,7 +11,7 @@ namespace Calculation_of_optical_systems
             InitializeComponent();
         }
 
-        // Пересчёт при изменении любого поля
+        // пересчет при изменении любого поля
         private void InputChanged(object sender, RoutedEventArgs e)
         {
             Recalculate();
@@ -27,35 +27,42 @@ namespace Calculation_of_optical_systems
                 K = Parse(KBox.Text)
             };
 
+            // защита от некорректных данных
+            if (input.f <= 0 || input.K <= 0 || input.z <= 0)
+            {
+                HResult.Text = "введите корректные данные";
+                R1Result.Text = "";
+                R2Result.Text = "";
+                return;
+            }
+
             var result = GripCalculator.Calculate(input);
 
-            // Гиперфокальное расстояние
+            // гиперфокальное расстояние
             HResult.Text =
-                $"Гиперфокальное расстояние (H) = {result.H:0.00000} м";
+                $"гиперфокальное расстояние (h) = {result.H:0.00000} м";
 
-            // Передняя граница резкости
+            // передняя граница
             R1Result.Text =
-                $"Передняя граница (R₁) = {result.R1:0.00000} м";
+                $"передняя граница (r1) = {result.R1:0.00000} м";
 
-            // Задняя граница резкости
-            // Если отрицательная — значит уходит в бесконечность
+            // задняя граница
             if (result.R2 < 0)
             {
-                R2Result.Text =
-                    $"Задняя граница (R₂) = ∞";
+                R2Result.Text = "задняя граница (r2) = ∞";
             }
             else
             {
                 R2Result.Text =
-                    $"Задняя граница (R₂) = {result.R2:0.00000} м";
+                    $"задняя граница (r2) = {result.R2:0.00000} м";
             }
         }
 
-        // Безопасный парсинг числа (поддержка точки и запятой)
-        private double Parse(string text)
+        // безопасный парсинг
+        public static double Parse(string text)
         {
             double.TryParse(
-                text.Replace(",", "."),
+                text?.Replace(",", "."),
                 NumberStyles.Any,
                 CultureInfo.InvariantCulture,
                 out double value);

@@ -1,42 +1,97 @@
 ﻿using OpticalApi.Parsers;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 
 namespace OpticalApi.Background
 {
     public class PythonScheduler : BackgroundService
     {
+        private readonly ILogger<PythonScheduler> _logger;
+
+        public PythonScheduler(ILogger<PythonScheduler> logger)
+        {
+            _logger = logger;
+        }
+        public static DateTime GetNextRun(DateTime now)
+        {
+            var nextRun = new DateTime(now.Year, now.Month, 23);
+
+            if (now.Day >= 23)
+                nextRun = nextRun.AddMonths(1);
+
+            return nextRun;
+        }
+
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            // бесконечный цикл пока сервис работает
+            _logger.LogInformation("scheduler started");
+
             while (!stoppingToken.IsCancellationRequested)
             {
-                var now = DateTime.Now; // текущее время
+                try
+                {
+                    var now = DateTime.Now;
 
-                // ставим запуск на 23 число текущего месяца
-                var nextRun = new DateTime(now.Year, now.Month, 23);
+                    var nextRun = new DateTime(now.Year, now.Month, 23);
 
-                // если уже позже 23 — переносим на следующий месяц
-                if (now.Day >= 23)
-                    nextRun = nextRun.AddMonths(1);
+                    if (now.Day >= 23)
+                        nextRun = nextRun.AddMonths(1);
 
-                var delay = nextRun - now; // сколько ждать до запуска
+                    var delay = nextRun - now;
 
-                // ждем нужное время
-                await Task.Delay(delay, stoppingToken);
+                    // защита от отрицательного времени
+                    if (delay.TotalMilliseconds < 0)
+                        delay = TimeSpan.FromMinutes(1);
 
-                // запускаем парсеры
-                await RunPython();
+                    _logger.LogInformation($"next run in {delay}");
+
+                    await Task.Delay(delay, stoppingToken);
+
+                    await RunPython(stoppingToken);
+                }
+                catch (TaskCanceledException)
+                {
+                    _logger.LogInformation("scheduler stopped");
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogError(ex, "error in scheduler loop");
+
+                    // чтобы не уйти в бесконечный краш
+                    await Task.Delay(TimeSpan.FromMinutes(1), stoppingToken);
+                }
             }
         }
 
-        private async Task RunPython()
+        private async Task RunPython(CancellationToken token)
         {
-            Console.WriteLine("обновление данных"); // просто лог в консоль
+            _logger.LogInformation("starting python update");
 
-            // обновляем данные из python парсеров
-            await LensParserPython.UpdateFromPythonAsync();
-            await LensParserPython.UpdateAzimpFromPythonAsync();
+            try
+            {
+                // timeout защита
+                var task = Task.Run(async () =>
+                {
+                    await LensParserPython.UpdateFromPythonAsync();
+                    await LensParserPython.UpdateAzimpFromPythonAsync();
+                }, token);
 
-            Console.WriteLine("готово"); // сигнал что всё завершилось
+                // максимум 5 минут
+                var completed = await Task.WhenAny(task, Task.Delay(TimeSpan.FromMinutes(5), token));
+
+                if (completed != task)
+                {
+                    _logger.LogWarning("python execution timeout");
+                }
+                else
+                {
+                    _logger.LogInformation("python update completed");
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "error during python execution");
+            }
         }
     }
 }
