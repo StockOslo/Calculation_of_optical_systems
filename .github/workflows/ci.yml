@@ -8,43 +8,32 @@ on:
 
 jobs:
   build:
-
     runs-on: windows-latest
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v3
-
-    - name: Show .NET version
-      run: dotnet --info
-
-    - name: Cache NuGet packages
-      uses: actions/cache@v3
-      with:
-        path: ~/.nuget/packages
-        key: ${{ runner.os }}-nuget-${{ hashFiles('**/*.csproj') }}
-        restore-keys: |
-          ${{ runner.os }}-nuget-
+      uses: actions/checkout@v4
 
     - name: Setup .NET
-      uses: actions/setup-dotnet@v3
+      uses: actions/setup-dotnet@v4
       with:
         dotnet-version: '7.0.x'
 
     - name: Restore dependencies
       run: dotnet restore
 
-    - name: Build project
+    - name: Build
       run: dotnet build --no-restore --configuration Release
 
-    - name: Publish build artifacts
-      run: dotnet publish -c Release -o publish
+    # 🔥 ВОТ ЭТО ГЛАВНОЕ — запуск тестов
+    - name: Run tests
+      run: dotnet test --no-build --verbosity normal
+
+    - name: Publish
+      run: dotnet publish --configuration Release --output publish
 
     - name: Upload artifacts
       uses: actions/upload-artifact@v4
       with:
         name: optical-app
         path: publish/
-
-    - name: Skip tests (temporary)
-      run: echo "Tests are disabled for now"
