@@ -11,7 +11,7 @@ jobs:
     runs-on: windows-latest
 
     steps:
-    - name: Checkout repository
+    - name: Checkout repo
       uses: actions/checkout@v4
 
     - name: Setup .NET
@@ -19,21 +19,20 @@ jobs:
       with:
         dotnet-version: '7.0.x'
 
-    - name: Restore dependencies
+    - name: Restore
       run: dotnet restore
 
     - name: Build
-      run: dotnet build --no-restore --configuration Release
+      run: dotnet build --configuration Release --no-restore
 
-    # 🔥 ВОТ ЭТО ГЛАВНОЕ — запуск тестов
     - name: Run tests
-      run: dotnet test --no-build --verbosity normal
+      run: dotnet test --configuration Release --no-build --verbosity normal
 
     - name: Publish
-      run: dotnet publish --configuration Release --output publish
+      run: dotnet publish -c Release -o publish
 
     - name: Upload artifacts
       uses: actions/upload-artifact@v4
       with:
-        name: optical-app
+        name: app
         path: publish/
